@@ -1,0 +1,1 @@
+resource=http://data-iremus.huma-num.fr/id/18654b25-a05d-415e-b809-e334827edea8 envsubst <$(dirname -- "$0")/identity.sparql

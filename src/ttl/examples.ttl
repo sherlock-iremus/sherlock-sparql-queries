@@ -1,0 +1,89 @@
+@base <http://data-iremus.huma-num.fr/id/> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmdig: <http://www.cidoc-crm.org/crmdig/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sherlockns: <http://data-iremus.huma-num.fr/ns/sherlock#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<3f42bfe1-4dd2-4b2f-acbd-dd4b24e1a423>
+    a crm:E32_Authority_Document ;
+    crm:P1_is_identified_by "Un référentiel" ;
+    crm:P71_lists <18654b25-a05d-415e-b809-e334827edea8> ;
+    .
+
+<18654b25-a05d-415e-b809-e334827edea8>
+    a crm:E21_Person ;
+    a crm:E55_Type ;
+
+    crm:P127_has_broader_term <b433eee1-4f4b-4d52-b12e-a2cac1be661a> ;
+    crm:P127_has_broader_term <a2ea7874-515c-43c9-ae72-6b72395b810d> ;
+    crm:P2_has_type <d4b92b44-3305-44c7-87a9-a56bfd5539ec> ;
+    
+    crm:P1_is_identified_by "This is my crm:P1_is_identified_by" ;
+    crm:P102_has_title "This is my crm:P102_has_title" ;
+    dcterms:title "This is my dcterms:title" ;
+    rdfs:label "This is my rdfs:label" ;
+    skos:prefLabel "This is my skos:prefLabel" ;
+    skos:altLabel "This is my skos:altLabel" ;
+
+    crm:P102_has_title <8b2c8e5b-a264-4d0b-a578-a1aeb675b33e> ;
+    crm:P1_is_identified_by <342c404d-7b54-4e38-8a3a-ed04af8bf16c> ;
+    crm:P1_is_identified_by <d68556e7-56fe-47e6-b6dd-4e5d4471ef43> ;
+
+    .
+
+<d4b92b44-3305-44c7-87a9-a56bfd5539ec>
+    a crm:E55_Type ;
+    crm:P1_is_identified_by "A cool type" ;
+    crm:P127_has_broader_term <b433eee1-4f4b-4d52-b12e-a2cac1be661a> ;
+    crm:P127_has_broader_term <a2ea7874-515c-43c9-ae72-6b72395b810d> ;
+    .
+<b433eee1-4f4b-4d52-b12e-a2cac1be661a>
+    a crm:E55_Type ;
+    crm:P1_is_identified_by "My parent1 type" ;
+    crm:P127_has_broader_term <801aa102-d63c-4f5d-b847-51f03da0493b> ;
+    .
+<a2ea7874-515c-43c9-ae72-6b72395b810d>
+    a crm:E55_Type ;
+    crm:P1_is_identified_by "My parent2 type" ;
+    crm:P127_has_broader_term <abc66d3e-7e8c-4ecf-b15f-ecbc982cff36> ;
+    .
+<abc66d3e-7e8c-4ecf-b15f-ecbc982cff36>
+    a crm:E55_Type ;
+    crm:P1_is_identified_by "My grand-parent (parent2) type" ;
+    .
+<801aa102-d63c-4f5d-b847-51f03da0493b>
+    a crm:E55_Type ;
+    crm:P1_is_identified_by "My grand-parent (parent1) type" ; ;
+    .
+<0722ac54-cb72-42eb-87a1-03a2ee68995e>
+    a crm:E32_Authority_Document ;
+    crm:P1_is_identified_by "I'm a cool voc" ;
+    crm:P71_lists <b433eee1-4f4b-4d52-b12e-a2cac1be661a>,
+    <a2ea7874-515c-43c9-ae72-6b72395b810d>,
+    <abc66d3e-7e8c-4ecf-b15f-ecbc982cff36>,
+    <801aa102-d63c-4f5d-b847-51f03da0493b>,
+    <d4b92b44-3305-44c7-87a9-a56bfd5539ec> ;
+    .
+
+<8b2c8e5b-a264-4d0b-a578-a1aeb675b33e>
+    a crm:E35_Title ;
+    crm:P190_has_symbolic_content "This is the symbolic content of my E35" ;
+    .
+
+<342c404d-7b54-4e38-8a3a-ed04af8bf16c>
+    a crm:E41_Appellation ;
+    crm:P190_has_symbolic_content "This is the symbolic content of my E41" ;
+    .
+
+<d68556e7-56fe-47e6-b6dd-4e5d4471ef43>
+    a crm:E42_Identifier ;
+    crm:P2_has_type <32fa356b-d95b-46ee-b44e-f485f4d04dd3> ;
+    crm:P190_has_symbolic_content "This is the symbolic content of my E42" ;
+    .
+
+<32fa356b-d95b-46ee-b44e-f485f4d04dd3>
+    a crm:E55_Type ;
+    crm:P1_is_identified_by "Identifier type #0000"
+    .
