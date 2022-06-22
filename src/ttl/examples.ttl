@@ -43,6 +43,7 @@
     a crm:E55_Type ;
     crm:P1_is_identified_by "My parent1 type" ;
     crm:P127_has_broader_term <801aa102-d63c-4f5d-b847-51f03da0493b> ;
+    crm:P127_has_broader_term <abc66d3e-7e8c-4ecf-b15f-ecbc982cff36> ;
     .
 <a2ea7874-515c-43c9-ae72-6b72395b810d>
     a crm:E55_Type ;
