@@ -1,0 +1,17 @@
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT *
+WHERE {
+  GRAPH ?g {
+    <${resource}> crm:P127_has_broader_term* ?bt .
+    ?bt crm:P1_is_identified_by ?bt_label .
+    OPTIONAL {
+      ?bt crm:P127_has_broader_term ?btbt .
+      ?btbt crm:P1_is_identified_by ?btbt_label .
+    }
+  }
+}
