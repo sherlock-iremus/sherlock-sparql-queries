@@ -1,1 +1,1 @@
-
+curl -X POST http://data-iremus.huma-num.fr/sparql --data "query=$(node src/js/p127.js)"

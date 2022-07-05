@@ -1,3 +1,4 @@
+export const q = (resource) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -69,3 +70,8 @@ WHERE {
         }
     }
 }
+`;
+
+console.log(
+  q(`http://data-iremus.huma-num.fr/id/18654b25-a05d-415e-b809-e334827edea8`)
+);

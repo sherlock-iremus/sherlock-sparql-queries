@@ -1,7 +1,0 @@
-SELECT *
-WHERE {
-    GRAPH ?g {
-        <${s}> ?p ?o
-    }
-}
-

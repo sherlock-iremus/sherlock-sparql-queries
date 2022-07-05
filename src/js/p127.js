@@ -1,8 +1,5 @@
+export const q = (resource) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX dcterms: <http://purl.org/dc/terms/>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT *
 WHERE {
@@ -15,3 +12,8 @@ WHERE {
     }
   }
 }
+`;
+
+console.log(
+  q(`http://data-iremus.huma-num.fr/id/d4b92b44-3305-44c7-87a9-a56bfd5539ec`)
+);
