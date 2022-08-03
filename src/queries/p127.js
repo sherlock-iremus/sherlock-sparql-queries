@@ -1,3 +1,7 @@
+export const example = [
+  ["resource", "http://data-iremus.huma-num.fr/id/d4b92b44-3305-44c7-87a9-a56bfd5539ec"],
+]
+
 export const p127 = (resource) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 

@@ -1,3 +1,11 @@
+export const example = [
+  ["resource", "http://data-iremus.huma-num.fr/id/18654b25-a05d-415e-b809-e334827edea8"],
+  ["getLinkedResourcesIdentity", true],
+  ["countLinkedResources", true],
+  ["linkingPredicate", undefined],
+  ["linkedResourcesDirection", "OUTGOING"]
+]
+
 const LinkedResourcesDirectionEnum = {
   INCOMING: "INCOMING",
   OUTGOING: "OUTGOING"
@@ -12,7 +20,7 @@ const LinkedResourcesDirectionEnum = {
  * @returns A formatted and executable sparql query
  */
 export const identity = (resource, getLinkedResourcesIdentity = false, countLinkedResources = false, linkingPredicate = null, linkedResourcesDirection = LinkedResourcesDirectionEnum.OUTGOING) => 
-  getLinkedResourcesIdentity 
+  stringToBoolean(getLinkedResourcesIdentity) 
     ? linkedResourcesIdentity(resource, countLinkedResources, linkingPredicate, linkedResourcesDirection) 
     : resourceIdentity(resource, countLinkedResources);
 
@@ -41,7 +49,7 @@ const resourceIdentity = (resource, countLinkedResources) => `
  */
 const linkedResourcesIdentity = (resource, countLinkedResources, linkingPredicate, linkedResourcesDirection) => {
   const p = linkingPredicate ? `<${linkingPredicate}>` : '?lp';
-  
+
   return `
   ${prefixesFragment()}
   SELECT *
@@ -131,7 +139,7 @@ const identifiersFragment = (resource) => `
  * @param {string} resource IRI of the resource
  */
 const countLinkedResourcesFragment = (resource, countLinkedResources) => 
-  countLinkedResources 
+  stringToBoolean(countLinkedResources)
     ? `
     UNION {
       SELECT (COUNT(?r_out) AS ?c_out) ?lr
@@ -145,7 +153,7 @@ const countLinkedResourcesFragment = (resource, countLinkedResources) =>
     }`
     : ''
 
-const resourceDeclarationFragment = (resource, p, linkedResourcesDirection) =>
+const resourceDeclarationFragment = (resource, p, linkedResourcesDirection) => 
   linkedResourcesDirection === LinkedResourcesDirectionEnum.INCOMING 
     ? `?lr ${p} ${resource}`
     : `${resource} ${p} ?lr`
@@ -157,3 +165,5 @@ const prefixesFragment = () => `
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   `
+
+const stringToBoolean = (string) => string === 'false' ? false : !!string
