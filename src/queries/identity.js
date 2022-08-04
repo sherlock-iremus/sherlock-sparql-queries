@@ -129,7 +129,9 @@ const identifiersFragment = (resource) => `
     OPTIONAL {
       GRAPH ?r_types_types__graph {
         ?r crm:P2_has_type ?r_type_type .
-        ?r_type_type crm:P1_is_identified_by ?r_type_type__label .
+        GRAPH ?r_types_types_label_graph {
+          ?r_type_type crm:P1_is_identified_by ?r_type_type__label .
+        }
       }
     }
   }
