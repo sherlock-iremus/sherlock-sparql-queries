@@ -1,11 +1,3 @@
-export const example = [
-  ["resource", "http://data-iremus.huma-num.fr/id/18654b25-a05d-415e-b809-e334827edea8"],
-  ["getLinkedResourcesIdentity", true],
-  ["countLinkedResources", true],
-  ["linkingPredicate", undefined],
-  ["linkedResourcesDirection", "OUTGOING"]
-]
-
 const LinkedResourcesDirectionEnum = {
   INCOMING: "INCOMING",
   OUTGOING: "OUTGOING"
@@ -155,10 +147,12 @@ const countLinkedResourcesFragment = (resource, countLinkedResources) =>
     }`
     : ''
 
-const resourceDeclarationFragment = (resource, p, linkedResourcesDirection) => 
-  linkedResourcesDirection === LinkedResourcesDirectionEnum.INCOMING 
-    ? `?lr ${p} ${resource}`
-    : `${resource} ${p} ?lr`
+const resourceDeclarationFragment = (resource, p, linkedResourcesDirection) => {
+  if (linkedResourcesDirection === LinkedResourcesDirectionEnum.INCOMING)
+    return `?lr ${p} ${resource}`
+  else if (linkedResourcesDirection === LinkedResourcesDirectionEnum.OUTGOING)
+    return `${resource} ${p} ?lr` 
+}
 
 const prefixesFragment = () => `
   PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
