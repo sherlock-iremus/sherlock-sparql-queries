@@ -66,6 +66,11 @@ export const RESOURCE_IDENTITY_PREDICATES = [
   RDFS_BASE + "subClassOf",
 ];
 
+export const SHERLOCK_TYPE = {
+  selection: DATA_IREMUS_ID_BASE + "9d0388cb-a178-46b2-b047-b5a98f7bdf0b",
+  analyticalEntity: DATA_IREMUS_ID_BASE + "6d72746a-9f28-4739-8786-c6415d53c56d"
+}
+
 //
 // LANGS
 //
