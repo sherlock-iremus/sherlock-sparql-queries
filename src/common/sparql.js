@@ -12,3 +12,16 @@ export const sparqlEndpoint = async (query) => {
   res = await res.json();
   return res;
 };
+
+export const rekeyBindings = (bindings, keys = {}) => {
+  return bindings.map((binding) => {
+    const rekeyedBinding = {};
+    for (const k in binding) {
+      let v = binding[k].value;
+      if (binding[k].datatype === "http://www.w3.org/2001/XMLSchema#integer")
+        v = parseInt(v);
+      rekeyedBinding[keys[k] || k] = v;
+    }
+    return rekeyedBinding;
+  });
+};

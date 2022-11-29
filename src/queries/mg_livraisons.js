@@ -4,7 +4,7 @@ export const mg_livraisons = () => `
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
            
-    SELECT DISTINCT ?F2_livraison ?titre ?date ?reference_livraison
+    SELECT DISTINCT ?F2_livraison ?titre ?date ?reference_livraison (COUNT(?F2_article) AS ?n_articles)
     WHERE {
       GRAPH <http://data-iremus.huma-num.fr/graph/mercure-galant> {
       
@@ -32,8 +32,17 @@ export const mg_livraisons = () => `
         ?F30_manifestation_creation lrmoo:R24_created ?F3_manifestation .
         ?F30_manifestation_creation rdf:type lrmoo:F30_Manifestation_Creation .
         ?F30_manifestation_creation crm:P4_has_time-span ?E52_time_span .
-        ?E52_time_span crm:P82b_end_of_the_end ?date
+        ?E52_time_span crm:P82b_end_of_the_end ?date .
+
+        # COMPTAGE DES ARTICLES
+
+        ?F2_livraison crm:P148_has_component ?F2_article .
+
+        # ESTAMPES
+
+        ?F2_livraison crm:P165_has_component
       }
     }
+    GROUP BY ?F2_livraison ?titre ?date ?reference_livraison
     ORDER BY ?date
 `;
