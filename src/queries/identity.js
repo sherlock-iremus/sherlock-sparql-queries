@@ -51,7 +51,7 @@ const linkedResourcesIdentity = (resource, countLinkedResources, linkingPredicat
       OPTIONAL {
         GRAPH ?g {
           {
-            VALUES ?p { crm:P1_is_identified_by crm:P102_has_title dcterms:title rdfs:label skos:prefLabel skos:altLabel }
+            VALUES ?p { crm:P1_is_identified_by crm:P102_has_title dcterms:title rdfs:label skos:prefLabel skos:altLabel crm:P190_has_symbolic_content }
             ?lr ?p ?label .
             FILTER(isLiteral(?label)) .
           }

@@ -15,7 +15,7 @@ export const mg_livraisons = () => `
         ?F1_livraison lrmoo:R3_is_realised_in ?F2_livraison .
         ?F1_livraison lrmoo:R3_is_realised_in ?E31_livraison_document .
         ?E31_livraison_document crm:P1_is_identified_by ?E42_reference_livraison .
-        ?E42_reference_livraison rdfs:label ?reference_livraison .
+        ?E42_reference_livraison crm:P190_has_symbolic_content ?reference_livraison .
         ?E42_reference_livraison crm:P2_has_type ?type .
         VALUES (?type) {
           (<http://data-iremus.huma-num.fr/id/92c258a0-1e34-437f-9686-e24322b95305>)
