@@ -41,7 +41,7 @@ WHERE {
     OPTIONAL {
 	  ?contributor crm:P1_is_identified_by ?ORCID_identifier.
       ?ORCID_identifier crm:P2_has_type <${SHERLOCK_TYPE.orcidId}>. #ORCID IDENTIFIER
-      ?ORCID_identifier rdfs:label ?orcid
+      ?ORCID_identifier crm:P190_has_symbolic_content ?orcid
     }
     OPTIONAL {
     	GRAPH ?g2 {
