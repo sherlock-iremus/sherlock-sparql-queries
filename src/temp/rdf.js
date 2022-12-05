@@ -177,15 +177,9 @@ WHERE {
     ${getLinkedResourcesIdentity ? 'OPTIONAL {' : ''}
       GRAPH ?ir_g {
         {
-          VALUES ?id_p { crm:P1_is_identified_by crm:P102_has_title rdfs:label }
+          VALUES ?id_p { crm:P1_is_identified_by crm:P102_has_title rdfs:label crm:P190_has_symbolic_content }
           ${resource} ?id_p ?label .
           FILTER(isLiteral(?label)) .
-        }
-        UNION
-        {
-          VALUES ?id_p { rdfs:label }
-          ${resource} ?id_p ?label .
-          FILTER(!isLiteral(?label)) .
         }
         UNION
         {
@@ -194,7 +188,7 @@ WHERE {
           GRAPH ?ir_e41_label_g {
             VALUES ?e41_type { crm:E35_Title crm:E41_Appellation crm:E42_Identifier }
             ?id_r rdf:type ?e41_type .
-            ?id_r rdfs:label ?label .
+            ?id_r crm:P190_has_symbolic_content ?label .
           }
         }
         UNION
