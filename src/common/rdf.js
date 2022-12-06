@@ -74,7 +74,10 @@ export const SHERLOCK_TYPE = {
   hexColorCode: DATA_IREMUS_ID_BASE + "5f1bb74f-6ea0-4073-8b68-086f98454f1c",
   emoji: DATA_IREMUS_ID_BASE + "04242f64-fbb3-4b5b-bb2e-3ddd59eeea18",
   orcidId: DATA_IREMUS_ID_BASE + "d7ef2583-ff31-4913-9ed3-bc3a1c664b21",
-  note: DATA_IREMUS_ID_BASE + "d2a536eb-4a95-484f-b13d-f597ac8ea2fd"
+  note: DATA_IREMUS_ID_BASE + "d2a536eb-4a95-484f-b13d-f597ac8ea2fd",
+  verticality: DATA_IREMUS_ID_BASE + "90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86",
+  fondamentaleIdentification: DATA_IREMUS_ID_BASE + "003559fc-f033-4fc3-9c05-0d5f283123ed",
+  orcidGeneratedName: DATA_IREMUS_ID_BASE + "73ea8d74-3526-4f6a-8830-dd369795650d"
 }
 
 //
