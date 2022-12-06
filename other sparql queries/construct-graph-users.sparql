@@ -1,0 +1,11 @@
+# curl --data-urlencode query@construct-graph-users.sparql https://data-iremus.huma-num.fr/sparql
+
+CONSTRUCT
+{
+    ?s ?p ?o
+}
+WHERE {
+    GRAPH <http://data-iremus.huma-num.fr/graph/users> {
+        ?s ?p ?o
+    }
+}

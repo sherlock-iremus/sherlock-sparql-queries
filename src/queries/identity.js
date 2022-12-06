@@ -11,9 +11,9 @@ const LinkedResourcesDirectionEnum = {
  * @param {"INCOMING"|"OUTGOING"} linkedResourcesDirection Define which linked resources you want to get the identity of, default outgoing (getLinkedResourceIdentity must be true) 
  * @returns A formatted and executable sparql query
  */
-export const identity = (resource, getLinkedResourcesIdentity = false, countLinkedResources = false, linkingPredicate = null, linkedResourcesDirection = LinkedResourcesDirectionEnum.OUTGOING) => 
-  stringToBoolean(getLinkedResourcesIdentity) 
-    ? linkedResourcesIdentity(resource, countLinkedResources, linkingPredicate, linkedResourcesDirection) 
+export const identity = (resource, getLinkedResourcesIdentity = false, countLinkedResources = false, linkingPredicate = null, linkedResourcesDirection = LinkedResourcesDirectionEnum.OUTGOING) =>
+  stringToBoolean(getLinkedResourcesIdentity)
+    ? linkedResourcesIdentity(resource, countLinkedResources, linkingPredicate, linkedResourcesDirection)
     : resourceIdentity(resource, countLinkedResources);
 
 /**
@@ -132,7 +132,7 @@ const identifiersFragment = (resource) => `
 /**
  * @param {string} resource IRI of the resource
  */
-const countLinkedResourcesFragment = (resource, countLinkedResources) => 
+const countLinkedResourcesFragment = (resource, countLinkedResources) =>
   stringToBoolean(countLinkedResources)
     ? `
     UNION {
@@ -151,7 +151,7 @@ const resourceDeclarationFragment = (resource, p, linkedResourcesDirection) => {
   if (linkedResourcesDirection === LinkedResourcesDirectionEnum.INCOMING)
     return `?lr ${p} ${resource}`
   else if (linkedResourcesDirection === LinkedResourcesDirectionEnum.OUTGOING)
-    return `${resource} ${p} ?lr` 
+    return `${resource} ${p} ?lr`
 }
 
 const prefixesFragment = () => `
