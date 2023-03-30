@@ -29,7 +29,7 @@ WHERE {
         }
         UNION {
             GRAPH <http://data-iremus.huma-num.fr/graph/mei> {
-                ?fragment sherlock:is_fragment_of ?score .
+                ?fragment crm:P106i_forms_part_of ?score .
             }
             GRAPH <http://data-iremus.huma-num.fr/graph/sherlock> {
                 ?e13_on_fragment rdf:type crm:E13_Attribute_Assignment .
