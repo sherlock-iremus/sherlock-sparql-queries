@@ -3,9 +3,6 @@ PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX analysis: <http://modality-tonality.huma-num.fr/analysisOntology#>
 SELECT ?contributor ?color ?emoji ?program
 FROM <http://data-iremus.huma-num.fr/graph/users>
-FROM <http://data-iremus.huma-num.fr/graph/sherlock>
-FROM <http://data-iremus.huma-num.fr/graph/modality-tonality>
-FROM <http://data-iremus.huma-num.fr/graph/mei>
 WHERE {
     VALUES ?contributor { <${contributorIri}> }
     
