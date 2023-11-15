@@ -1,133 +1,234 @@
 const LinkedResourcesDirectionEnum = {
   INCOMING: "INCOMING",
-  OUTGOING: "OUTGOING"
-}
+  OUTGOING: "OUTGOING",
+};
+
+const LITERAL_IDENTIFIERS_PREDICATES = [
+  "crm:P1_is_identified_by",
+  "crm:P102_has_title dcterms:title",
+  "rdfs:label",
+  "skos:prefLabel",
+  "skos:altLabel",
+  "crm:P190_has_symbolic_content",
+];
+
+const literalIdentifiersPredicates = () => {
+  return LITERAL_IDENTIFIERS_PREDICATES.join(" ");
+};
+
+const IDENTIFIERS_PREDICATES = [
+  "crm:P1_is_identified_by",
+  "crm:P102_has_title",
+];
+
+const identifiersPredicates = () => {
+  return IDENTIFIERS_PREDICATES.join(" ");
+};
+
+const IDENTIFIERS_CRM_CLASSES = [
+  "crm:E35_Title",
+  "crm:E41_Appellation",
+  "crm:E42_Identifier",
+];
+
+const identifiersCrmClasses = () => {
+  return IDENTIFIERS_CRM_CLASSES.join(" ");
+};
+
+const TYPE_ATTRIBUTION_PREDICATES = ["crm:P2_has_type", "rdf:type"];
+
+const typeAttributionPredicates = () => {
+  return TYPE_ATTRIBUTION_PREDICATES.join(" ");
+};
 
 /**
  * @param {string} resource IRI of the targeted resource
- * @param {boolean} getLinkedResourcesIdentity True if you want to retrieve identity of all linked resources to your resource 
- * @param {boolean} countLinkedResources True if you want to get number of linked resources 
- * @param {string} linkingPredicate Will return only identites of resources linked with this predicate (getLinkedResourceIdentity must be true) 
- * @param {"INCOMING"|"OUTGOING"} linkedResourcesDirection Define which linked resources you want to get the identity of, default outgoing (getLinkedResourceIdentity must be true) 
+ * @param {boolean} getLinkedResourcesIdentity True if you want to retrieve identity of all linked resources to your resource
+ * @param {boolean} appendE13ifiedIdentity True if you want to retrieve identity linked by an E13 to your resource
+ * @param {boolean} countLinkedResources True if you want to get number of linked resources
+ * @param {string} linkingPredicate Will return only identites of resources linked with this predicate (getLinkedResourceIdentity must be true)
+ * @param {"INCOMING"|"OUTGOING"} linkedResourcesDirection Define which linked resources you want to get the identity of, default outgoing (getLinkedResourceIdentity must be true)
  * @returns A formatted and executable sparql query
  */
-export const identity = (resource, getLinkedResourcesIdentity = false, countLinkedResources = false, linkingPredicate = null, linkedResourcesDirection = LinkedResourcesDirectionEnum.OUTGOING) =>
+export const identity = (
+  resource,
+  getLinkedResourcesIdentity = false,
+  appendE13ifiedIdentity = false,
+  countLinkedResources = false,
+  linkingPredicate = null,
+  linkedResourcesDirection = LinkedResourcesDirectionEnum.OUTGOING
+) =>
   stringToBoolean(getLinkedResourcesIdentity)
-    ? linkedResourcesIdentity(resource, countLinkedResources, linkingPredicate, linkedResourcesDirection)
-    : resourceIdentity(resource, countLinkedResources);
+    ? linkedResourcesIdentity(
+        resource,
+        countLinkedResources,
+        linkingPredicate,
+        linkedResourcesDirection
+      )
+    : resourceIdentity(resource, countLinkedResources, appendE13ifiedIdentity);
 
 /**
- * @returns Resource identity (types / identifiers / number of resources linked / vocabularies) 
+ * @returns Resource identity (types / identifiers / number of resources linked / vocabularies)
  */
-const resourceIdentity = (resource, countLinkedResources) => `
+const resourceIdentity = (
+  resource,
+  countLinkedResources,
+  appendE13ifiedIdentity
+) => `
   ${prefixesFragment()}
   SELECT *
   WHERE {
     GRAPH ?g {
-      {
-        VALUES ?p { crm:P1_is_identified_by crm:P102_has_title dcterms:title rdfs:label skos:prefLabel skos:altLabel crm:P190_has_symbolic_content }
-        <${resource}> ?p ?label .
-        FILTER(isLiteral(?label)) .
-      }
-      ${identifiersFragment(`<${resource}>`)}
-      ${authorityDocumentFragment(`<${resource}>`)}
+      ${literalIdentifiersFragment(
+        `<${resource}>`,
+        "?p",
+        "?label",
+        appendE13ifiedIdentity
+      )}
+      ${identifiersFragment(
+        `<${resource}>`,
+        "?p",
+        "?r",
+        "?label",
+        appendE13ifiedIdentity
+      )}
+      ${authorityDocumentFragment(`<${resource}>`, appendE13ifiedIdentity)}
       ${typesDocumentationFragment(`<${resource}>`)}
       ${countLinkedResourcesFragment(`<${resource}>`, countLinkedResources)}
     }
-  }`
+  }`;
 
 /**
  * @returns Resources linked identity (types / identifiers / number of resources linked / vocabularies)
  */
-const linkedResourcesIdentity = (resource, countLinkedResources, linkingPredicate, linkedResourcesDirection) => {
-  const p = linkingPredicate ? `<${linkingPredicate}>` : '?lp';
+const linkedResourcesIdentity = (
+  resource,
+  countLinkedResources,
+  linkingPredicate,
+  linkedResourcesDirection
+) => {
+  const p = linkingPredicate ? `<${linkingPredicate}>` : "?lp";
 
   return `
   ${prefixesFragment()}
   SELECT *
   WHERE {
     GRAPH ?lr_g {
-      ${resourceDeclarationFragment(`<${resource}>`, p, linkedResourcesDirection)}
+      ${resourceDeclarationFragment(
+        `<${resource}>`,
+        p,
+        linkedResourcesDirection
+      )}
       OPTIONAL {
         GRAPH ?g {
-          {
-            VALUES ?p { crm:P1_is_identified_by crm:P102_has_title dcterms:title rdfs:label skos:prefLabel skos:altLabel crm:P190_has_symbolic_content }
-            ?lr ?p ?label .
-            FILTER(isLiteral(?label)) .
-          }
-          ${identifiersFragment("?lr")}
-          ${authorityDocumentFragment("?lr")}
+          ${literalIdentifiersFragment(`?lr`, "?p", "?label", false)}
+          ${identifiersFragment(`?lr`, "?p", "?r", "?label", false)}
+          ${authorityDocumentFragment("?lr", false)}
           ${typesDocumentationFragment("?lr")}
           ${countLinkedResourcesFragment("?lr", countLinkedResources)}
         }
       }
     }
-  }`
+  }`;
+};
+
+const literalIdentifiersFragment = (
+  resource,
+  predicate,
+  label,
+  appendE13ifiedIdentity
+) => `
+{
+  VALUES ${predicate} { ${literalIdentifiersPredicates()} } .
+  ${resourcePredicateObjectFragment(
+    resource,
+    predicate,
+    label,
+    appendE13ifiedIdentity
+  )}
+  FILTER(isLiteral(${label})) .  
 }
+`;
 
 /**
- * @param {string} resource IRI of the resource 
+ *
+ * @param {string} resource IRI of the resource
  */
-const authorityDocumentFragment = (resource) => `
+const identifiersFragment = (
+  resource,
+  predicate,
+  object,
+  label,
+  appendE13ifiedIdentity
+) => `
+  UNION
+  {
+    VALUES ${predicate} { ${identifiersPredicates()} }
+    ${resourcePredicateObjectFragment(
+      resource,
+      predicate,
+      object,
+      appendE13ifiedIdentity
+    )}
+    GRAPH ${object}_types__g { 
+      VALUES ${object}_type { ${identifiersCrmClasses()} }
+      ${object} rdf:type ${object}_type .
+      ${object} crm:P190_has_symbolic_content ${label} .
+    }
+    OPTIONAL {
+      GRAPH ${object}_types_types__graph {
+        ${object} crm:P2_has_type ${object}_type_type .
+        GRAPH ${object}_types_types_label_graph {
+          ${object}_type_type crm:P1_is_identified_by ${object}_type_type__label .
+        }
+      }
+    }
+  }
+  `;
+
+/**
+ * @param {string} resource IRI of the resource
+ */
+const authorityDocumentFragment = (resource, appendE13ifiedIdentity) => `
   UNION {
     GRAPH ?e32_e55__g {
-      ?e32 crm:P71_lists ${resource} .
+      ${resourcePredicateObjectFragment(
+        "?e32",
+        "crm:P71_lists",
+        resource,
+        appendE13ifiedIdentity
+      )}
     }
     OPTIONAL {
       GRAPH ?e32__g {
         ?e32 crm:P1_is_identified_by ?e32__label .
       }
     }
-  }`
+  }`;
 
 /**
- * @param {string} resource IRI of the resource 
- */
-const typesDocumentationFragment = (resource) => `
-  UNION {
-    VALUES ?p { crm:P2_has_type rdf:type }
-    ${resource} ?p ?r .
-    OPTIONAL {
-      GRAPH ?r_types__g {
-        VALUES ?r_type { crm:E55_Type } .
-        ?r rdf:type ?r_type .
-        ?r crm:P1_is_identified_by ?label .
-        ?type_e32 crm:P71_lists ?r .
-        FILTER(isLiteral(?label)) .
-        OPTIONAL {
-          GRAPH ?type_e32__g {
-            ?type_e32 crm:P1_is_identified_by ?type_e32__label .
-          }
-        }
-      }
-    }
-  }
-`
-
-/**
- * 
  * @param {string} resource IRI of the resource
  */
-const identifiersFragment = (resource) => `
-  UNION
-  {
-    VALUES ?p { crm:P1_is_identified_by crm:P102_has_title }
-    ${resource} ?p ?r .
-    GRAPH ?r_types__g { 
-      VALUES ?r_type { crm:E35_Title crm:E41_Appellation crm:E42_Identifier }
+const typesDocumentationFragment = (resource) => `
+UNION {
+  VALUES ?p { ${typeAttributionPredicates()} }
+  ${resource} ?p ?r .
+  OPTIONAL {
+    GRAPH ?r_types__g {
+      VALUES ?r_type { crm:E55_Type } .
       ?r rdf:type ?r_type .
-      ?r crm:P190_has_symbolic_content ?label .
-    }
-    OPTIONAL {
-      GRAPH ?r_types_types__graph {
-        ?r crm:P2_has_type ?r_type_type .
-        GRAPH ?r_types_types_label_graph {
-          ?r_type_type crm:P1_is_identified_by ?r_type_type__label .
+      ?r crm:P1_is_identified_by ?label .
+      ?type_e32 crm:P71_lists ?r .
+      FILTER(isLiteral(?label)) .
+      OPTIONAL {
+        GRAPH ?type_e32__g {
+          ?type_e32 crm:P1_is_identified_by ?type_e32__label .
         }
       }
     }
   }
-  `
+}
+`;
 
 /**
  * @param {string} resource IRI of the resource
@@ -145,14 +246,69 @@ const countLinkedResourcesFragment = (resource, countLinkedResources) =>
       WHERE { GRAPH ?g_in { ?r_in ?p_in ${resource} } }
       GROUP BY ?c_in ?lr
     }`
-    : ''
+    : "";
 
+/**
+ * @param {string} resource IRI of the resource
+ * @param {boolean} appendE13ifiedIdentity should retrieve E13ifiedIdentity triples or not
+ */
+const resourcePredicateObjectFragmentE13ified = (
+  resource,
+  predicate,
+  object,
+  appendE13ifiedIdentity
+) =>
+  stringToBoolean(appendE13ifiedIdentity)
+    ? `
+    UNION 
+    {
+      ?e13 crm:P177_assigned_property_of_type ${predicate} .
+      ?e13 crm:P140_assigned_attribute_to ${resource} .
+      ?e13 crm:P141_assigned ${object} .
+      ?e13 crm:P14_carried_out_by ?e13_carrier .
+      OPTIONAL {
+        GRAPH ?e13_g {
+          ${literalIdentifiersFragment(
+            "?e13_carrier",
+            "?e13_carrier_p",
+            "?e13_carrier_label",
+            false
+          )}
+          ${identifiersFragment(
+            "?e13_carrier",
+            "?e13_carrier_p",
+            "?e13_carrier_object",
+            "?e13_carrier_label",
+            false
+          )}
+        }
+      }
+    }`
+    : "";
+
+const resourcePredicateObjectFragment = (
+  resource,
+  predicate,
+  object,
+  appendE13ifiedIdentity
+) =>
+  `
+    {
+      ${resource} ${predicate} ${object} .
+    }
+    ${resourcePredicateObjectFragmentE13ified(
+      resource,
+      predicate,
+      object,
+      appendE13ifiedIdentity
+    )}
+  `;
 const resourceDeclarationFragment = (resource, p, linkedResourcesDirection) => {
   if (linkedResourcesDirection === LinkedResourcesDirectionEnum.INCOMING)
-    return `?lr ${p} ${resource}`
+    return `?lr ${p} ${resource}`;
   else if (linkedResourcesDirection === LinkedResourcesDirectionEnum.OUTGOING)
-    return `${resource} ${p} ?lr`
-}
+    return `${resource} ${p} ?lr`;
+};
 
 const prefixesFragment = () => `
   PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -160,6 +316,6 @@ const prefixesFragment = () => `
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  `
+  `;
 
-const stringToBoolean = (string) => string === 'false' ? false : !!string
+const stringToBoolean = (string) => string !== false && string !== "false";
