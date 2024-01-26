@@ -43,7 +43,7 @@ export const RDF_PREFIXES = {
 };
 
 export const PRIORITIZED_RDF_PREFIXES = Object.entries(RDF_PREFIXES).sort(
-  (a, b) => a[0].length < b[0].length
+  (a, b): number => { return a[0].length < b[0].length ? 1 : -1 }
 );
 
 export const LABEL_PREDICATES = [
@@ -107,7 +107,7 @@ export const LANGS_ORDER = ["fr", "en", "it", "de", "es"];
 //   return res
 // }
 
-export function getCode(uri) {
+export function getCode(uri: string) {
   if (
     uri.startsWith(CRM_BASE) ||
     uri.startsWith(CRMDIG_BASE) ||
@@ -118,18 +118,18 @@ export function getCode(uri) {
   return null;
 }
 
-export function formatUri(uri) {
+export function formatUri(uri: string) {
   for (const [key, value] of Object.entries(RDF_PREFIXES)) {
     uri = uri.replace(key, value !== "" ? value + ":" : "");
   }
   return uri;
 }
 
-export function computeIdentity(identity) {
+export function computeIdentity(identity: any[]) {
   const label = identity.find((identity) => identity.label);
   return label ? label.label.value : "";
 }
 
-export function computeResourceLabel(resourceIri, identity) {
+export function computeResourceLabel(resourceIri: string, identity: any[]) {
   return `${computeIdentity(identity)}   ${formatUri(resourceIri)}`;
 }
