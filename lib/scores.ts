@@ -1,4 +1,4 @@
-import { SHERLOCK_TYPE } from "../common/rdf";
+import { SHERLOCK_TYPE } from "sherlock-rdf/dist/rdf-resource-identity"
 
 /**
  * @returns A formatted and executable sparql query

@@ -1,4 +1,4 @@
-import { SHERLOCK_TYPE } from "sherlock-rdf/
+import { SHERLOCK_TYPE } from "sherlock-rdf/dist/rdf-resource-identity"
 
 /**
  * @param {string} contributorIri Iri of the contributor  
