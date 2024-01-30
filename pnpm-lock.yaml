@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  sherlock-rdf:
+    specifier: github:sherlock-iremus/sherlock-rdf
+    version: github.com/sherlock-iremus/sherlock-rdf/bdd23b0a96405342fdcb67c32b23683c173e42dd
+
 devDependencies:
   typescript:
     specifier: ^5.2.2
@@ -1382,3 +1387,9 @@ packages:
     optionalDependencies:
       commander: 9.5.0
     dev: true
+
+  github.com/sherlock-iremus/sherlock-rdf/bdd23b0a96405342fdcb67c32b23683c173e42dd:
+    resolution: {tarball: https://codeload.github.com/sherlock-iremus/sherlock-rdf/tar.gz/bdd23b0a96405342fdcb67c32b23683c173e42dd}
+    name: sherlock-rdf
+    version: 0.1.0
+    dev: false

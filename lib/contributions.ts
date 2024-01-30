@@ -1,4 +1,4 @@
-import { SHERLOCK_TYPE } from "../common/rdf";
+import { SHERLOCK_TYPE } from "sherlock-rdf/
 
 /**
  * @param {string} contributorIri Iri of the contributor  
