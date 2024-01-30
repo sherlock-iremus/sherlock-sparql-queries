@@ -1,6 +1,6 @@
-const LinkedResourcesDirectionEnum = {
-  INCOMING: "INCOMING",
-  OUTGOING: "OUTGOING",
+enum LinkedResourcesDirectionEnum {
+  INCOMING = 'INCOMING',
+  OUTGOING = 'OUTGOING'
 };
 
 const LITERAL_IDENTIFIERS_PREDICATES = [
@@ -51,47 +51,47 @@ const typeAttributionPredicates = () => {
  * @returns A formatted and executable sparql query
  */
 export const identity = (
-  resource,
+  resource: string,
   getLinkedResourcesIdentity = false,
   appendE13ifiedIdentity = false,
   countLinkedResources = false,
-  linkingPredicate = null,
+  linkingPredicate = '',
   linkedResourcesDirection = LinkedResourcesDirectionEnum.OUTGOING
 ) =>
-  stringToBoolean(getLinkedResourcesIdentity)
+  getLinkedResourcesIdentity
     ? linkedResourcesIdentity(
-        resource,
-        countLinkedResources,
-        linkingPredicate,
-        linkedResourcesDirection
-      )
+      resource,
+      countLinkedResources,
+      linkingPredicate,
+      linkedResourcesDirection
+    )
     : resourceIdentity(resource, countLinkedResources, appendE13ifiedIdentity);
 
 /**
  * @returns Resource identity (types / identifiers / number of resources linked / vocabularies)
  */
 const resourceIdentity = (
-  resource,
-  countLinkedResources,
-  appendE13ifiedIdentity
+  resource: string,
+  countLinkedResources: boolean,
+  appendE13ifiedIdentity: boolean
 ) => `
   ${prefixesFragment()}
   SELECT *
   WHERE {
     GRAPH ?g {
       ${literalIdentifiersFragment(
-        `<${resource}>`,
-        "?p",
-        "?label",
-        appendE13ifiedIdentity
-      )}
+  `<${resource}>`,
+  "?p",
+  "?label",
+  appendE13ifiedIdentity
+)}
       ${identifiersFragment(
-        `<${resource}>`,
-        "?p",
-        "?r",
-        "?label",
-        appendE13ifiedIdentity
-      )}
+  `<${resource}>`,
+  "?p",
+  "?r",
+  "?label",
+  appendE13ifiedIdentity
+)}
       ${authorityDocumentFragment(`<${resource}>`, appendE13ifiedIdentity)}
       ${typesDocumentationFragment(`<${resource}>`)}
       ${countLinkedResourcesFragment(`<${resource}>`, countLinkedResources)}
@@ -102,10 +102,10 @@ const resourceIdentity = (
  * @returns Resources linked identity (types / identifiers / number of resources linked / vocabularies)
  */
 const linkedResourcesIdentity = (
-  resource,
-  countLinkedResources,
-  linkingPredicate,
-  linkedResourcesDirection
+  resource: string,
+  countLinkedResources: boolean,
+  linkingPredicate: string,
+  linkedResourcesDirection: LinkedResourcesDirectionEnum
 ) => {
   const p = linkingPredicate ? `<${linkingPredicate}>` : "?lp";
 
@@ -115,10 +115,10 @@ const linkedResourcesIdentity = (
   WHERE {
     GRAPH ?lr_g {
       ${resourceDeclarationFragment(
-        `<${resource}>`,
-        p,
-        linkedResourcesDirection
-      )}
+    `<${resource}>`,
+    p,
+    linkedResourcesDirection
+  )}
       OPTIONAL {
         GRAPH ?g {
           ${literalIdentifiersFragment(`?lr`, "?p", "?label", false)}
@@ -133,19 +133,19 @@ const linkedResourcesIdentity = (
 };
 
 const literalIdentifiersFragment = (
+  resource: string,
+  predicate: string,
+  label: string,
+  appendE13ifiedIdentity: boolean
+): string => `
+{
+  VALUES ${predicate} { ${literalIdentifiersPredicates()} } .
+  ${resourcePredicateObjectFragment(
   resource,
   predicate,
   label,
   appendE13ifiedIdentity
-) => `
-{
-  VALUES ${predicate} { ${literalIdentifiersPredicates()} } .
-  ${resourcePredicateObjectFragment(
-    resource,
-    predicate,
-    label,
-    appendE13ifiedIdentity
-  )}
+)}
   FILTER(isLiteral(${label})) .  
 }
 `;
@@ -155,21 +155,21 @@ const literalIdentifiersFragment = (
  * @param {string} resource IRI of the resource
  */
 const identifiersFragment = (
-  resource,
-  predicate,
-  object,
-  label,
-  appendE13ifiedIdentity
-) => `
+  resource: string,
+  predicate: string,
+  object: string,
+  label: string,
+  appendE13ifiedIdentity: boolean
+): string => `
   UNION
   {
     VALUES ${predicate} { ${identifiersPredicates()} }
     ${resourcePredicateObjectFragment(
-      resource,
-      predicate,
-      object,
-      appendE13ifiedIdentity
-    )}
+  resource,
+  predicate,
+  object,
+  appendE13ifiedIdentity
+)}
     GRAPH ${object}_types__g { 
       VALUES ${object}_type { ${identifiersCrmClasses()} }
       ${object} rdf:type ${object}_type .
@@ -189,15 +189,15 @@ const identifiersFragment = (
 /**
  * @param {string} resource IRI of the resource
  */
-const authorityDocumentFragment = (resource, appendE13ifiedIdentity) => `
+const authorityDocumentFragment = (resource: string, appendE13ifiedIdentity: boolean): string => `
   UNION {
     GRAPH ?e32_e55__g {
       ${resourcePredicateObjectFragment(
-        "?e32",
-        "crm:P71_lists",
-        resource,
-        appendE13ifiedIdentity
-      )}
+  "?e32",
+  "crm:P71_lists",
+  resource,
+  appendE13ifiedIdentity
+)}
     }
     OPTIONAL {
       GRAPH ?e32__g {
@@ -209,7 +209,7 @@ const authorityDocumentFragment = (resource, appendE13ifiedIdentity) => `
 /**
  * @param {string} resource IRI of the resource
  */
-const typesDocumentationFragment = (resource) => `
+const typesDocumentationFragment = (resource: string) => `
 UNION {
   VALUES ?p { ${typeAttributionPredicates()} }
   ${resource} ?p ?r .
@@ -233,8 +233,8 @@ UNION {
 /**
  * @param {string} resource IRI of the resource
  */
-const countLinkedResourcesFragment = (resource, countLinkedResources) =>
-  stringToBoolean(countLinkedResources)
+const countLinkedResourcesFragment = (resource: string, countLinkedResources: boolean) =>
+  countLinkedResources
     ? `
     UNION {
       SELECT (COUNT(?r_out) AS ?c_out) ?lr
@@ -253,12 +253,12 @@ const countLinkedResourcesFragment = (resource, countLinkedResources) =>
  * @param {boolean} appendE13ifiedIdentity should retrieve E13ifiedIdentity triples or not
  */
 const resourcePredicateObjectFragmentE13ified = (
-  resource,
-  predicate,
-  object,
+  resource: string,
+  predicate: string,
+  object: string,
+  appendE13ifiedIdentity: boolean
+): string =>
   appendE13ifiedIdentity
-) =>
-  stringToBoolean(appendE13ifiedIdentity)
     ? `
     UNION 
     {
@@ -269,41 +269,41 @@ const resourcePredicateObjectFragmentE13ified = (
       OPTIONAL {
         GRAPH ?e13_g {
           ${literalIdentifiersFragment(
-            "?e13_carrier",
-            "?e13_carrier_p",
-            "?e13_carrier_label",
-            false
-          )}
+      "?e13_carrier",
+      "?e13_carrier_p",
+      "?e13_carrier_label",
+      false
+    )}
           ${identifiersFragment(
-            "?e13_carrier",
-            "?e13_carrier_p",
-            "?e13_carrier_object",
-            "?e13_carrier_label",
-            false
-          )}
+      "?e13_carrier",
+      "?e13_carrier_p",
+      "?e13_carrier_object",
+      "?e13_carrier_label",
+      false
+    )}
         }
       }
     }`
     : "";
 
 const resourcePredicateObjectFragment = (
-  resource,
-  predicate,
-  object,
-  appendE13ifiedIdentity
-) =>
+  resource: string,
+  predicate: string,
+  object: string,
+  appendE13ifiedIdentity: boolean
+): string =>
   `
     {
       ${resource} ${predicate} ${object} .
     }
     ${resourcePredicateObjectFragmentE13ified(
-      resource,
-      predicate,
-      object,
-      appendE13ifiedIdentity
-    )}
+    resource,
+    predicate,
+    object,
+    appendE13ifiedIdentity
+  )}
   `;
-const resourceDeclarationFragment = (resource, p, linkedResourcesDirection) => {
+const resourceDeclarationFragment = (resource: string, p: string, linkedResourcesDirection: LinkedResourcesDirectionEnum) => {
   if (linkedResourcesDirection === LinkedResourcesDirectionEnum.INCOMING)
     return `?lr ${p} ${resource}`;
   else if (linkedResourcesDirection === LinkedResourcesDirectionEnum.OUTGOING)
@@ -317,5 +317,3 @@ const prefixesFragment = () => `
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   `;
-
-const stringToBoolean = (string) => string !== false && string !== "false";

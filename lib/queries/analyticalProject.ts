@@ -1,6 +1,6 @@
-import { ANALYTICAL_PROJECT, DRAFT_PROJECT } from "./constants.js";
+import { ANALYTICAL_PROJECT, DRAFT_PROJECT } from "./constants";
 
-export const getAnalyticalProject = (analyticalProjectIri) => `
+export const getAnalyticalProject = (analyticalProjectIri: string) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
 SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>

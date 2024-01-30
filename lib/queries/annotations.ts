@@ -1,4 +1,4 @@
-export const getAnnotations = (scoreIri, projectIri) => `
+export const getAnnotations = (scoreIri: string, projectIri: string) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
 PREFIX dcterms: <http://purl.org/dc/terms/>

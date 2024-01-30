@@ -2,7 +2,7 @@
  * @param {string} indexUri Iri of the index
  * @returns A formatted and executable sparql query
  */
-export const documentsByIndex = (indexUri) => `
+export const documentsByIndex = (indexUri: string) => `
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX she: <http://data-iremus.huma-num.fr/ns/sherlock#>

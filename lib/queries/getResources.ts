@@ -1,4 +1,4 @@
-const getResources = () => `
+export const getResources = () => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -18,5 +18,3 @@ SELECT DISTINCT ?s
     }
   }
 `;
-
-module.exports = getResources;

@@ -1,11 +1,11 @@
-import { SHERLOCK_TYPE } from "../common/rdf.js";
+import { SHERLOCK_TYPE } from "../common/rdf";
 
 /**
  * @param {string} resource Iri of the score
  * @param {string} note Literal representation of the note in the corpus
  * @returns A formatted and executable sparql query
  */
-export const noteOccurences = (resource, note) => `
+export const noteOccurences = (resource: string, note: string) => `
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>

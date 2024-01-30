@@ -1,4 +1,4 @@
-import { SHERLOCK_TYPE } from "../common/rdf.js";
+import { SHERLOCK_TYPE } from "../common/rdf.ts";
 
 /**
  * @returns A formatted and executable sparql query

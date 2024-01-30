@@ -1,4 +1,4 @@
-export const getContributor = (contributorIri) => `
+export const getContributor = (contributorIri: string) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX analysis: <http://modality-tonality.huma-num.fr/analysisOntology#>
 SELECT ?contributor ?color ?emoji ?program

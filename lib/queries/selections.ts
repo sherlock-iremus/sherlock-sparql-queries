@@ -1,10 +1,10 @@
-import { SHERLOCK_TYPE } from "../common/rdf.js";
+import { SHERLOCK_TYPE } from "../common/rdf";
 
 /**
  * @param {string} resource Iri of the document containing selections 
  * @returns A formatted and executable sparql query
  */
-export const selections = (resource) => `
+export const selections = (resource: string) => `
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>

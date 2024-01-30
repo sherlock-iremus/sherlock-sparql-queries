@@ -1,4 +1,4 @@
-export const p127 = (resource) => `
+export const p127 = (resource: string) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 
 SELECT *
@@ -13,9 +13,3 @@ WHERE {
   }
 }
 `;
-
-export const formatAncestorsLabel = (results) => {
-  const s = "a";
-
-  return s;
-};

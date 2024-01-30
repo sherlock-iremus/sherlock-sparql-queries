@@ -1,10 +1,10 @@
-import { SHERLOCK_TYPE } from "../common/rdf.js";
+import { SHERLOCK_TYPE } from "../common/rdf";
 
 /**
  * @param {string} contributorIri Iri of the contributor  
  * @returns A formatted and executable sparql query
  */
-export const contributions = (contributorIri) => `
+export const contributions = (contributorIri: string) => `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>

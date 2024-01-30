@@ -1,5 +1,3 @@
-import { SHERLOCK_TYPE } from "../common/rdf.js";
-
 /**
  * @returns A formatted and executable sparql query
  */

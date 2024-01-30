@@ -1,10 +1,10 @@
-import { SHERLOCK_TYPE } from "../common/rdf.js";
+import { SHERLOCK_TYPE } from "../common/rdf";
 
 /**
  * @param {string} score Iri of the score
  * @returns A formatted and executable sparql query
  */
-export const fondamentales = (score) => `
+export const fondamentales = (score: string) => `
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -34,6 +34,6 @@ WHERE {
 ORDER BY ?score ?measure_number
 `;
 
-const bindScore = (score) => {
+const bindScore = (score: string) => {
   return score ? `BIND (<${score}> as ?score).` : ''
 }
