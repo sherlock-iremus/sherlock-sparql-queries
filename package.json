@@ -4,7 +4,6 @@
   "version": "0.2.0",
   "type": "module",
   "main": "dist/main.js",
-  "types": "dist/main.d.ts",
   "files": [
     "dist"
   ],
@@ -15,13 +14,10 @@
     "prepublishOnly": "pnpm run build",
     "test": "vitest"
   },
-  "dependencies": {
-    "sherlock-rdf": "github:sherlock-iremus/sherlock-rdf"
-  },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
     "vite-plugin-dts": "^3.7.2",
-    "vitest": "^1.2.1"
+    "vitest": "^1.2.2"
   }
 }

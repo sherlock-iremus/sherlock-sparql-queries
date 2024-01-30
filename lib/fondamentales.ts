@@ -1,4 +1,4 @@
-import { SHERLOCK_TYPE } from "sherlock-rdf/dist/rdf-resource-identity";
+import { SHERLOCK_TYPE } from "sherlock-rdf";
 
 /**
  * @param {string} score Iri of the score
@@ -35,5 +35,5 @@ ORDER BY ?score ?measure_number
 `;
 
 const bindScore = (score: string) => {
-  return score ? `BIND (<${score}> as ?score).` : ''
+    return score ? `BIND (<${score}> as ?score).` : ''
 }

@@ -1,4 +1,4 @@
-import { SHERLOCK_TYPE } from "sherlock-rdf/dist/rdf-resource-identity";
+import { SHERLOCK_TYPE } from "sherlock-rdf"
 
 /**
  * @param {string} resource Iri of the score

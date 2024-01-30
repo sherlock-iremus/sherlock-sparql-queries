@@ -1,43 +1,52 @@
-var x = Object.defineProperty;
-var B = (t, e, r) => e in t ? x(t, e, { enumerable: !0, configurable: !0, writable: !0, value: r }) : t[e] = r;
-var a = (t, e, r) => (B(t, typeof e != "symbol" ? e + "" : e, r), r);
-const I = "http://purl.org/ontology/bibo/", p = "http://www.cidoc-crm.org/lrmoo/", s = "http://www.cidoc-crm.org/cidoc-crm/", u = "http://www.ics.forth.gr/isl/CRMdig/", b = "http://purl.org/dc/elements/1.1/", l = "http://purl.org/dc/terms/", i = "http://xmlns.com/foaf/0.1/", T = "http://data-iremus.huma-num.fr/ns/hemef#", W = "http://data-iremus.huma-num.fr/files/", c = "http://data-iremus.huma-num.fr/id/", g = "http://data-iremus.huma-num.fr/id/", A = "http://data-iremus.huma-num.fr/ns/", S = "http://data-iremus.huma-num.fr/graph/", w = "http://data-iremus.huma-num.fr/ns/musrad30#", N = "http://www.w3.org/2002/07/owl#", E = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", m = "http://www.w3.org/2000/01/rdf-schema#", F = "http://schema.org/", d = "http://www.w3.org/2004/02/skos/core#", h = {
-  [s]: "crm",
-  [u]: "crmdig",
-  [I]: "bibo",
-  [b]: "dc",
-  [l]: "dcterms",
-  [i]: "foaf",
-  [T]: "hemef",
+const J = "http://data-iremus.huma-num.fr/id/d2a536eb-4a95-484f-b13d-f597ac8ea2fd", K = "http://data-iremus.huma-num.fr/id/9d0388cb-a178-46b2-b047-b5a98f7bdf0b", q = "http://data-iremus.huma-num.fr/id/689e148d-a97d-45b4-898d-c395a24884df", z = "http://data-iremus.huma-num.fr/id/90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86", Q = "http://data-iremus.huma-num.fr/id/6d72746a-9f28-4739-8786-c6415d53c56d", Z = "http://data-iremus.huma-num.fr/id/bf9dce29-8123-4e8e-b24d-0c7f134bbc8e", tt = "http://data-iremus.huma-num.fr/id/29b00e39-75da-4945-b6c4-a0ca00f96f68", et = "http://data-iremus.huma-num.fr/id/82dbd157-20df-422c-88db-28d6075d99a1", h = "http://data-iremus.huma-num.fr/id/21816195-6708-4bbd-a758-ee354bb84900", E = "http://data-iremus.huma-num.fr/id/cabe46bf-23d4-4392-aa20-b3eb21ad7dfd", rt = (t) => `
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
+SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
+WHERE {
+    VALUES ?project { <${t}> }
+    VALUES ?draft { <${E}> }
+    ?project crm:P2_has_type <${h}>.
+    ?project crm:P1_is_identified_by ?label.
+    ?project crm:P14_carried_out_by ?contributor.
+    OPTIONAL { ?project sherlock:has_privacy_type ?draft }.
+}
+LIMIT 1`, ot = (t, r) => `
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
+WHERE {
+  ?annotation sherlock:has_document_context <${t}>.
+  <${r}> crm:P9_consists_of ?annotation.
+  ?annotation crm:P141_assigned ?concept.
+  ?annotation dcterms:created ?date.
+  ?annotation crm:P140_assigned_attribute_to  ?entity.
+  ?e13 crm:P141_assigned ?entity.
+  ?e13 sherlock:has_document_context ?page.
+}
+`, P = "http://purl.org/ontology/bibo/", b = "http://www.cidoc-crm.org/lrmoo/", f = "http://www.cidoc-crm.org/cidoc-crm/", y = "http://www.ics.forth.gr/isl/CRMdig/", R = "http://purl.org/dc/elements/1.1/", I = "http://purl.org/dc/terms/", T = "http://xmlns.com/foaf/0.1/", O = "http://data-iremus.huma-num.fr/ns/hemef#", c = "http://data-iremus.huma-num.fr/id/", g = "http://data-iremus.huma-num.fr/id/", A = "http://data-iremus.huma-num.fr/ns/", w = "http://data-iremus.huma-num.fr/graph/", N = "http://data-iremus.huma-num.fr/ns/musrad30#", S = "http://www.w3.org/2002/07/owl#", L = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", F = "http://www.w3.org/2000/01/rdf-schema#", C = "http://schema.org/", $ = "http://www.w3.org/2004/02/skos/core#", G = {
+  [f]: "crm",
+  [y]: "crmdig",
+  [P]: "bibo",
+  [R]: "dc",
+  [I]: "dcterms",
+  [T]: "foaf",
+  [O]: "hemef",
   [g]: "",
   [A]: "",
-  [w]: "musrad30",
-  [p]: "lrmoo",
-  [N]: "owl",
-  [E]: "rdf",
-  [m]: "rdfs",
-  [F]: "schema",
-  [d]: "skos",
-  [S]: ""
-}, Y = Object.entries(h).sort(
-  (t, e) => t[0].length < e[0].length ? 1 : -1
-), L = [
-  s + "P1_is_identified_by",
-  b + "title",
-  l + "title",
-  i + "familyName",
-  i + "firstName",
-  i + "givenName",
-  i + "name",
-  m + "label",
-  d + "prefLabel"
-], z = [
-  ...L,
-  E + "type",
-  l + "creator",
-  d + "inScheme",
-  m + "subClassOf"
-], o = {
+  [N]: "musrad30",
+  [b]: "lrmoo",
+  [S]: "owl",
+  [L]: "rdf",
+  [F]: "rdfs",
+  [C]: "schema",
+  [$]: "skos",
+  [w]: ""
+};
+Object.entries(G).sort(
+  (t, r) => t[0].length < r[0].length ? 1 : -1
+);
+const o = {
   selection: c + "9d0388cb-a178-46b2-b047-b5a98f7bdf0b",
   analyticalEntity: c + "6d72746a-9f28-4739-8786-c6415d53c56d",
   score: c + "bf9dce29-8123-4e8e-b24d-0c7f134bbc8e",
@@ -49,163 +58,7 @@ const I = "http://purl.org/ontology/bibo/", p = "http://www.cidoc-crm.org/lrmoo/
   verticality: c + "90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86",
   fondamentaleIdentification: c + "003559fc-f033-4fc3-9c05-0d5f283123ed",
   orcidGeneratedName: c + "73ea8d74-3526-4f6a-8830-dd369795650d"
-}, V = {
-  de: "🇩🇪",
-  en: "🇬🇧",
-  es: "🇪🇸",
-  fr: "🇫🇷",
-  it: "🇮🇹"
-}, q = ["fr", "en", "it", "de", "es"];
-function K(t) {
-  return t.startsWith(s) || t.startsWith(u) || t.startsWith(p) ? t.split("/").slice(-1)[0].split("_")[0] : null;
-}
-function C(t) {
-  for (const [e, r] of Object.entries(h))
-    t = t.replace(e, r !== "" ? r + ":" : "");
-  return t;
-}
-function $(t) {
-  const e = t.find((r) => r.label);
-  return e ? e.label.value : "";
-}
-function J(t, e) {
-  return `${$(e)}   ${C(t)}`;
-}
-const Dt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  BIBO_BASE: I,
-  COUNTRY_FLAGS: V,
-  CRMDIG_BASE: u,
-  CRM_BASE: s,
-  DATA_IREMUS_FILES_BASE: W,
-  DATA_IREMUS_ID_BASE: c,
-  DCTERMS_BASE: l,
-  DC_BASE: b,
-  FOAF_BASE: i,
-  HEMEF_BASE: T,
-  IREMUS_GRAPH_BASE: S,
-  IREMUS_NS_BASE: A,
-  IREMUS_RESOURCE_BASE: g,
-  LABEL_PREDICATES: L,
-  LANGS_ORDER: q,
-  LRMOO_BASE: p,
-  MUSRAD30_BASE: w,
-  OWL_BASE: N,
-  PRIORITIZED_RDF_PREFIXES: Y,
-  RDFS_BASE: m,
-  RDF_BASE: E,
-  RDF_PREFIXES: h,
-  RESOURCE_IDENTITY_PREDICATES: z,
-  SCHEMAORG_BASE: F,
-  SHERLOCK_TYPE: o,
-  SKOS_BASE: d,
-  computeIdentity: $,
-  computeResourceLabel: J,
-  formatUri: C,
-  getCode: K
-}, Symbol.toStringTag, { value: "Module" })), Q = async (t) => {
-  let e = await fetch("https://data-iremus.huma-num.fr/sparql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
-    },
-    mode: "cors",
-    cache: "no-cache",
-    redirect: "follow",
-    body: `query=${encodeURIComponent(t)}`
-  });
-  return e = await e.json(), e;
-}, kt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  sparqlEndpoint: Q
-}, Symbol.toStringTag, { value: "Module" }));
-var f = /* @__PURE__ */ ((t) => (t.literal = "literal", t.uri = "uri", t))(f || {}), P = /* @__PURE__ */ ((t) => (t.NONE = "", t.DE = "de", t.EL = "el", t.EN = "en", t.ES = "es", t.FR = "fr", t.PT = "pt", t.RU = "ru", t.ZH = "zh", t))(P || {});
-const Xt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  Languages: P,
-  Type: f
-}, Symbol.toStringTag, { value: "Module" }));
-class Z {
-  constructor() {
-    a(this, "head");
-    a(this, "results");
-    this.head = new j(), this.results = new H();
-  }
-}
-class j {
-  constructor() {
-    a(this, "vars");
-    this.vars = [];
-  }
-}
-class H {
-  constructor() {
-    a(this, "bindings");
-    this.bindings = [];
-  }
-}
-class tt {
-}
-class et {
-  constructor() {
-    a(this, "lang");
-    a(this, "type");
-    a(this, "value");
-    this.lang = P.NONE, this.type = f.uri, this.value = "";
-  }
-}
-const xt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  SparqlResultObject: Z,
-  SparqlResultObject_Binding: tt,
-  SparqlResultObject_Head: j,
-  SparqlResultObject_Results: H,
-  SparqlResultObject_Variable: et
-}, Symbol.toStringTag, { value: "Module" })), rt = "http://data-iremus.huma-num.fr/id/d2a536eb-4a95-484f-b13d-f597ac8ea2fd", ot = "http://data-iremus.huma-num.fr/id/9d0388cb-a178-46b2-b047-b5a98f7bdf0b", nt = "http://data-iremus.huma-num.fr/id/689e148d-a97d-45b4-898d-c395a24884df", ct = "http://data-iremus.huma-num.fr/id/90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86", at = "http://data-iremus.huma-num.fr/id/6d72746a-9f28-4739-8786-c6415d53c56d", it = "http://data-iremus.huma-num.fr/id/bf9dce29-8123-4e8e-b24d-0c7f134bbc8e", _t = "http://data-iremus.huma-num.fr/id/29b00e39-75da-4945-b6c4-a0ca00f96f68", st = "http://data-iremus.huma-num.fr/id/82dbd157-20df-422c-88db-28d6075d99a1", U = "http://data-iremus.huma-num.fr/id/21816195-6708-4bbd-a758-ee354bb84900", G = "http://data-iremus.huma-num.fr/id/cabe46bf-23d4-4392-aa20-b3eb21ad7dfd", Bt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  ANALYTICAL_ENTITY: at,
-  ANALYTICAL_PROJECT: U,
-  ANNOTATION: st,
-  DRAFT_PROJECT: G,
-  NOTE: rt,
-  POSITIONNED_NOTE: nt,
-  SCORE: it,
-  SELECTION: ot,
-  SOFTWARE: _t,
-  VERTICALITY: ct
-}, Symbol.toStringTag, { value: "Module" })), lt = (t) => `
-PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
-SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
-WHERE {
-    VALUES ?project { <${t}> }
-    VALUES ?draft { <${G}> }
-    ?project crm:P2_has_type <${U}>.
-    ?project crm:P1_is_identified_by ?label.
-    ?project crm:P14_carried_out_by ?contributor.
-    OPTIONAL { ?project sherlock:has_privacy_type ?draft }.
-}
-LIMIT 1`, Wt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  getAnalyticalProject: lt
-}, Symbol.toStringTag, { value: "Module" })), mt = (t, e) => `
-PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
-PREFIX dcterms: <http://purl.org/dc/terms/>
-SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
-WHERE {
-  ?annotation sherlock:has_document_context <${t}>.
-  <${e}> crm:P9_consists_of ?annotation.
-  ?annotation crm:P141_assigned ?concept.
-  ?annotation dcterms:created ?date.
-  ?annotation crm:P140_assigned_attribute_to  ?entity.
-  ?e13 crm:P141_assigned ?entity.
-  ?e13 sherlock:has_document_context ?page.
-}
-`, Yt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  getAnnotations: mt
-}, Symbol.toStringTag, { value: "Module" })), dt = (t) => `
+}, nt = (t) => `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
@@ -260,10 +113,7 @@ WHERE {
     }
   }
 }
-`, zt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  contributions: dt
-}, Symbol.toStringTag, { value: "Module" })), pt = (t) => `
+`, ct = (t) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX analysis: <http://modality-tonality.huma-num.fr/analysisOntology#>
 SELECT ?contributor ?color ?emoji ?program
@@ -280,10 +130,7 @@ WHERE {
         ?hexcode crm:P2_has_type <http://data-iremus.huma-num.fr/id/5f1bb74f-6ea0-4073-8b68-086f98454f1c>.
         ?hexcode crm:P190_has_symbolic_content ?color.
     }
-}`, Vt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  getContributor: pt
-}, Symbol.toStringTag, { value: "Module" })), ut = () => `
+}`, at = () => `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
@@ -340,10 +187,7 @@ WHERE {
     }
   }
 }
-GROUP BY ?contributor ?name ?hex_color_code ?emoji ?orcid ?orcid_profile ?untyped_identifier ?contributor_type_label ?user_graph`, qt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  contributors: ut
-}, Symbol.toStringTag, { value: "Module" })), bt = (t) => `
+GROUP BY ?contributor ?name ?hex_color_code ?emoji ?orcid ?orcid_profile ?untyped_identifier ?contributor_type_label ?user_graph`, it = (t) => `
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX she: <http://data-iremus.huma-num.fr/ns/sherlock#>
@@ -431,10 +275,7 @@ WHERE
 } 
 GROUP BY ?e13_p140 ?e13_p177 ?e13_p177_label ?concept ?concept_description ?context ?creation_date ?creator ?creator_label ?analytical_project ?analytical_project_label
 
-`, Kt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  documentsByIndex: bt
-}, Symbol.toStringTag, { value: "Module" })), Et = (t) => `
+`, _t = (t) => `
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -445,7 +286,7 @@ PREFIX sherlockmei: <http://data-iremus.huma-num.fr/ns/sherlockmei#>
 SELECT DISTINCT ?score ?annotation ?verticality ?note_label ?measure_number 
 WHERE {
   GRAPH ?g {
-    ${ht(t)}
+    ${H(t)}
     ?score crm:P2_has_type <${o.score}>. #Score type
     ?verticality sherlock:has_document_context ?score.
     ?verticality crm:P2_has_type <${o.verticality}>. #MEI score offset
@@ -462,10 +303,7 @@ WHERE {
   }
 }
 ORDER BY ?score ?measure_number
-`, ht = (t) => t ? `BIND (<${t}> as ?score).` : "", Jt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  fondamentales: Et
-}, Symbol.toStringTag, { value: "Module" })), ft = () => `
+`, H = (t) => t ? `BIND (<${t}> as ?score).` : "", st = () => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -484,10 +322,7 @@ SELECT DISTINCT ?s
         VALUES ?p { crm:P1_is_identified_by crm:P102_has_title dcterms:title rdfs:label skos:prefLabel skos:altLabel crm:P190_has_symbolic_content }
     }
   }
-`, Qt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  getResources: ft
-}, Symbol.toStringTag, { value: "Module" })), Pt = () => `
+`, mt = () => `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -511,116 +346,113 @@ WHERE {
   }
 }
 GROUP BY ?ontology ?author ?comment
-`, Zt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  historicalModelsOntologies: Pt
-}, Symbol.toStringTag, { value: "Module" })), yt = [
+`, U = [
   "crm:P1_is_identified_by",
   "crm:P102_has_title dcterms:title",
   "rdfs:label",
   "skos:prefLabel",
   "skos:altLabel",
   "crm:P190_has_symbolic_content"
-], Rt = () => yt.join(" "), Ot = [
+], k = () => U.join(" "), X = [
   "crm:P1_is_identified_by",
   "crm:P102_has_title"
-], It = () => Ot.join(" "), Tt = [
+], x = () => X.join(" "), D = [
   "crm:E35_Title",
   "crm:E41_Appellation",
   "crm:E42_Identifier"
-], gt = () => Tt.join(" "), At = ["crm:P2_has_type", "rdf:type"], St = () => At.join(" "), wt = (t, e = !1, r = !1, n = !1, _ = "", X = "OUTGOING") => e ? Ft(
+], j = () => D.join(" "), v = ["crm:P2_has_type", "rdf:type"], M = () => v.join(" "), dt = (t, r = !1, e = !1, n = !1, a = "", u = "OUTGOING") => r ? W(
   t,
   n,
-  _,
-  X
-) : Nt(t, n, r), Nt = (t, e, r) => `
-  ${k()}
+  a,
+  u
+) : B(t, n, e), B = (t, r, e) => `
+  ${p()}
   SELECT *
   WHERE {
     GRAPH ?g {
-      ${y(
+      ${i(
   `<${t}>`,
   "?p",
   "?label",
-  r
+  e
 )}
-      ${R(
+      ${_(
   `<${t}>`,
   "?p",
   "?r",
   "?label",
-  r
+  e
 )}
-      ${M(`<${t}>`, r)}
-      ${v(`<${t}>`)}
-      ${D(`<${t}>`, e)}
+      ${m(`<${t}>`, e)}
+      ${d(`<${t}>`)}
+      ${l(`<${t}>`, r)}
     }
-  }`, Ft = (t, e, r, n) => {
-  const _ = r ? `<${r}>` : "?lp";
+  }`, W = (t, r, e, n) => {
+  const a = e ? `<${e}>` : "?lp";
   return `
-  ${k()}
+  ${p()}
   SELECT *
   WHERE {
     GRAPH ?lr_g {
-      ${Ct(
+      ${V(
     `<${t}>`,
-    _,
+    a,
     n
   )}
       OPTIONAL {
         GRAPH ?g {
-          ${y("?lr", "?p", "?label", !1)}
-          ${R("?lr", "?p", "?r", "?label", !1)}
-          ${M("?lr", !1)}
-          ${v("?lr")}
-          ${D("?lr", e)}
+          ${i("?lr", "?p", "?label", !1)}
+          ${_("?lr", "?p", "?r", "?label", !1)}
+          ${m("?lr", !1)}
+          ${d("?lr")}
+          ${l("?lr", r)}
         }
       }
     }
   }`;
-}, y = (t, e, r, n) => `
+}, i = (t, r, e, n) => `
 {
-  VALUES ${e} { ${Rt()} } .
-  ${O(
+  VALUES ${r} { ${k()} } .
+  ${s(
   t,
-  e,
   r,
+  e,
   n
 )}
-  FILTER(isLiteral(${r})) .  
+  FILTER(isLiteral(${e})) .  
 }
-`, R = (t, e, r, n, _) => `
+`, _ = (t, r, e, n, a) => `
   UNION
   {
-    VALUES ${e} { ${It()} }
-    ${O(
+    VALUES ${r} { ${x()} }
+    ${s(
   t,
-  e,
   r,
-  _
+  e,
+  a
 )}
-    GRAPH ${r}_types__g { 
-      VALUES ${r}_type { ${gt()} }
-      ${r} rdf:type ${r}_type .
-      ${r} crm:P190_has_symbolic_content ${n} .
+    GRAPH ${e}_types__g { 
+      VALUES ${e}_type { ${j()} }
+      ${e} rdf:type ${e}_type .
+      ${e} crm:P190_has_symbolic_content ${n} .
     }
     OPTIONAL {
-      GRAPH ${r}_types_types__graph {
-        ${r} crm:P2_has_type ${r}_type_type .
-        GRAPH ${r}_types_types_label_graph {
-          ${r}_type_type crm:P1_is_identified_by ${r}_type_type__label .
+      GRAPH ${e}_types_types__graph {
+        ${e} crm:P2_has_type ${e}_type_type .
+        GRAPH ${e}_types_types_label_graph {
+          ${e}_type_type crm:P1_is_identified_by ${e}_type_type__label .
         }
       }
     }
   }
-  `, M = (t, e) => `
+  `, m = (t, r) => `
   UNION {
     GRAPH ?e32_e55__g {
-      ${O(
+      ${s(
   "?e32",
   "crm:P71_lists",
   t,
-  e
+  r
 )}
     }
     OPTIONAL {
@@ -628,9 +460,9 @@ GROUP BY ?ontology ?author ?comment
         ?e32 crm:P1_is_identified_by ?e32__label .
       }
     }
-  }`, v = (t) => `
+  }`, d = (t) => `
 UNION {
-  VALUES ?p { ${St()} }
+  VALUES ?p { ${M()} }
   ${t} ?p ?r .
   OPTIONAL {
     GRAPH ?r_types__g {
@@ -647,7 +479,7 @@ UNION {
     }
   }
 }
-`, D = (t, e) => e ? `
+`, l = (t, r) => r ? `
     UNION {
       SELECT (COUNT(?r_out) AS ?c_out) ?lr
       WHERE { GRAPH ?g_out { ${t} ?p_out ?r_out } }
@@ -657,22 +489,22 @@ UNION {
       SELECT (COUNT(*) AS ?c_in) ?lr
       WHERE { GRAPH ?g_in { ?r_in ?p_in ${t} } }
       GROUP BY ?c_in ?lr
-    }` : "", Lt = (t, e, r, n) => n ? `
+    }` : "", Y = (t, r, e, n) => n ? `
     UNION 
     {
-      ?e13 crm:P177_assigned_property_of_type ${e} .
+      ?e13 crm:P177_assigned_property_of_type ${r} .
       ?e13 crm:P140_assigned_attribute_to ${t} .
-      ?e13 crm:P141_assigned ${r} .
+      ?e13 crm:P141_assigned ${e} .
       ?e13 crm:P14_carried_out_by ?e13_carrier .
       OPTIONAL {
         GRAPH ?e13_g {
-          ${y(
+          ${i(
   "?e13_carrier",
   "?e13_carrier_p",
   "?e13_carrier_label",
   !1
 )}
-          ${R(
+          ${_(
   "?e13_carrier",
   "?e13_carrier_p",
   "?e13_carrier_object",
@@ -681,31 +513,28 @@ UNION {
 )}
         }
       }
-    }` : "", O = (t, e, r, n) => `
+    }` : "", s = (t, r, e, n) => `
     {
-      ${t} ${e} ${r} .
+      ${t} ${r} ${e} .
     }
-    ${Lt(
+    ${Y(
   t,
-  e,
   r,
+  e,
   n
 )}
-  `, Ct = (t, e, r) => {
-  if (r === "INCOMING")
-    return `?lr ${e} ${t}`;
-  if (r === "OUTGOING")
-    return `${t} ${e} ?lr`;
-}, k = () => `
+  `, V = (t, r, e) => {
+  if (e === "INCOMING")
+    return `?lr ${r} ${t}`;
+  if (e === "OUTGOING")
+    return `${t} ${r} ?lr`;
+}, p = () => `
   PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
   PREFIX dcterms: <http://purl.org/dc/terms/>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  `, te = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  identity: wt
-}, Symbol.toStringTag, { value: "Module" })), $t = () => `
+  `, lt = () => `
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX lrmoo: <http://www.cidoc-crm.org/lrmoo/>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -752,10 +581,7 @@ UNION {
     }
     GROUP BY ?F2_livraison ?titre ?date ?reference_livraison
     ORDER BY ?date
-`, ee = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  mg_livraisons: $t
-}, Symbol.toStringTag, { value: "Module" })), jt = (t, e) => `
+`, pt = (t, r) => `
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -769,13 +595,10 @@ WHERE {
     ?note sherlock:has_document_context <${t}>.
     ?note crm:P2_has_type <${o.note}>. #NOTE
     ?note sherlockmei:pname ?note_pname.
-    ${e && `VALUES ?note_pname { "${e}" }`}
+    ${r && `VALUES ?note_pname { "${r}" }`}
   }
 }
-GROUP BY ?note_pname`, re = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  noteOccurences: jt
-}, Symbol.toStringTag, { value: "Module" })), Ht = (t) => `
+GROUP BY ?note_pname`, ut = (t) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 
 SELECT *
@@ -789,16 +612,10 @@ WHERE {
     }
   }
 }
-`, oe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  p127: Ht
-}, Symbol.toStringTag, { value: "Module" })), Ut = (t) => `
+`, ht = (t) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
-WHERE { <${t}> crm:P140_assigned_attribute_to ?p140 }`, ne = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  getP140: Ut
-}, Symbol.toStringTag, { value: "Module" })), Gt = () => `
+WHERE { <${t}> crm:P140_assigned_attribute_to ?p140 }`, Et = () => `
 BASE <http://data-iremus.huma-num.fr/id/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -852,10 +669,7 @@ WHERE {
     }
 }
 GROUP BY ?score
-`, ce = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  scores: Gt
-}, Symbol.toStringTag, { value: "Module" })), Mt = (t) => `
+`, Pt = (t) => `
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
@@ -927,36 +741,32 @@ WHERE {
 }
 
 GROUP BY ?selection ?contributor ?date ?analyticalEntity_type ?items_count ?min_measure_number
-`, ae = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  selections: Mt
-}, Symbol.toStringTag, { value: "Module" }));
-function ie(t, e) {
-  for (const r in e)
-    t = t.replaceAll("${" + r + "}", e[r]);
-  return t;
-}
+`;
 export {
-  Xt as MODEL_RDF,
-  xt as MODEL_SPARQL,
-  Dt as RDF,
-  kt as SPARQL,
-  Yt as annotations,
-  ie as bind,
-  Bt as constants,
-  zt as contributons,
-  Vt as contributor,
-  qt as contributors,
-  Kt as documentsByIndex,
-  Jt as fondamentales,
-  Wt as getAnalyticalProject,
-  ne as getP140,
-  Qt as getResources,
-  Zt as historicalModelsOntologies,
-  te as identity,
-  ee as mg_livraisons,
-  re as noteOccurences,
-  oe as p127,
-  ce as scores,
-  ae as selections
+  Q as ANALYTICAL_ENTITY,
+  h as ANALYTICAL_PROJECT,
+  et as ANNOTATION,
+  E as DRAFT_PROJECT,
+  J as NOTE,
+  q as POSITIONNED_NOTE,
+  Z as SCORE,
+  K as SELECTION,
+  tt as SOFTWARE,
+  z as VERTICALITY,
+  nt as contributions,
+  at as contributors,
+  it as documentsByIndex,
+  _t as fondamentales,
+  rt as getAnalyticalProject,
+  ot as getAnnotations,
+  ct as getContributor,
+  ht as getP140,
+  st as getResources,
+  mt as historicalModelsOntologies,
+  dt as identity,
+  lt as mg_livraisons,
+  pt as noteOccurences,
+  ut as p127,
+  Et as scores,
+  Pt as selections
 };
