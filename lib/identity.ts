@@ -52,13 +52,21 @@ const typeAttributionPredicates = () => {
  */
 export const identity = (
   resource: string,
-  getLinkedResourcesIdentity = false,
-  appendE13ifiedIdentity = false,
-  countLinkedResources = false,
-  linkingPredicate = '',
-  linkedResourcesDirection = LinkedResourcesDirectionEnum.OUTGOING
-) =>
-  getLinkedResourcesIdentity
+  getLinkedResourcesIdentity: boolean = false,
+  appendE13ifiedIdentity: boolean = false,
+  countLinkedResources: boolean = false,
+  linkingPredicate: string = '',
+  linkedResourcesDirection: LinkedResourcesDirectionEnum = LinkedResourcesDirectionEnum.OUTGOING
+) => {
+  console.log(`identity has been called with \n
+  resource : %s
+  getLinkedResourcesIdentity: %o
+  appendE13ifiedIdentity: %o
+  countLinkedResources: %o
+  linkingPredicate: %s
+  linkedResourcesDirection: %s`, resource, getLinkedResourcesIdentity, appendE13ifiedIdentity, countLinkedResources, linkingPredicate, linkedResourcesDirection)
+
+  return getLinkedResourcesIdentity
     ? linkedResourcesIdentity(
       resource,
       countLinkedResources,
@@ -67,6 +75,7 @@ export const identity = (
     )
     : resourceIdentity(resource, countLinkedResources, appendE13ifiedIdentity);
 
+}
 /**
  * @returns Resource identity (types / identifiers / number of resources linked / vocabularies)
  */

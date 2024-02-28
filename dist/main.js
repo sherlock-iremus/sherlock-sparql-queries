@@ -360,13 +360,20 @@ GROUP BY ?ontology ?author ?comment
   "crm:E35_Title",
   "crm:E41_Appellation",
   "crm:E42_Identifier"
-], j = () => D.join(" "), v = ["crm:P2_has_type", "rdf:type"], M = () => v.join(" "), dt = (t, r = !1, e = !1, n = !1, a = "", u = "OUTGOING") => r ? W(
+], j = () => D.join(" "), v = ["crm:P2_has_type", "rdf:type"], M = () => v.join(" "), dt = (t, r = !1, e = !1, n = !1, a = "", m = "OUTGOING") => (console.log(`identity has been called with 
+
+  resource : %s
+  getLinkedResourcesIdentity: %o
+  appendE13ifiedIdentity: %o
+  countLinkedResources: %o
+  linkingPredicate: %s
+  linkedResourcesDirection: %s`, t, r, e, n, a, m), r ? W(
   t,
   n,
   a,
-  u
-) : B(t, n, e), B = (t, r, e) => `
-  ${p()}
+  m
+) : B(t, n, e)), B = (t, r, e) => `
+  ${u()}
   SELECT *
   WHERE {
     GRAPH ?g {
@@ -383,14 +390,14 @@ GROUP BY ?ontology ?author ?comment
   "?label",
   e
 )}
-      ${m(`<${t}>`, e)}
-      ${d(`<${t}>`)}
-      ${l(`<${t}>`, r)}
+      ${d(`<${t}>`, e)}
+      ${l(`<${t}>`)}
+      ${p(`<${t}>`, r)}
     }
   }`, W = (t, r, e, n) => {
   const a = e ? `<${e}>` : "?lp";
   return `
-  ${p()}
+  ${u()}
   SELECT *
   WHERE {
     GRAPH ?lr_g {
@@ -403,9 +410,9 @@ GROUP BY ?ontology ?author ?comment
         GRAPH ?g {
           ${i("?lr", "?p", "?label", !1)}
           ${_("?lr", "?p", "?r", "?label", !1)}
-          ${m("?lr", !1)}
-          ${d("?lr")}
-          ${l("?lr", r)}
+          ${d("?lr", !1)}
+          ${l("?lr")}
+          ${p("?lr", r)}
         }
       }
     }
@@ -445,7 +452,7 @@ GROUP BY ?ontology ?author ?comment
       }
     }
   }
-  `, m = (t, r) => `
+  `, d = (t, r) => `
   UNION {
     GRAPH ?e32_e55__g {
       ${s(
@@ -460,7 +467,7 @@ GROUP BY ?ontology ?author ?comment
         ?e32 crm:P1_is_identified_by ?e32__label .
       }
     }
-  }`, d = (t) => `
+  }`, l = (t) => `
 UNION {
   VALUES ?p { ${M()} }
   ${t} ?p ?r .
@@ -479,7 +486,7 @@ UNION {
     }
   }
 }
-`, l = (t, r) => r ? `
+`, p = (t, r) => r ? `
     UNION {
       SELECT (COUNT(?r_out) AS ?c_out) ?lr
       WHERE { GRAPH ?g_out { ${t} ?p_out ?r_out } }
@@ -528,7 +535,7 @@ UNION {
     return `?lr ${r} ${t}`;
   if (e === "OUTGOING")
     return `${t} ${r} ?lr`;
-}, p = () => `
+}, u = () => `
   PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
   PREFIX dcterms: <http://purl.org/dc/terms/>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
