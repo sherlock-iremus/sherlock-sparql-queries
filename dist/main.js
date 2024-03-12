@@ -1,64 +1,179 @@
-const J = "http://data-iremus.huma-num.fr/id/d2a536eb-4a95-484f-b13d-f597ac8ea2fd", K = "http://data-iremus.huma-num.fr/id/9d0388cb-a178-46b2-b047-b5a98f7bdf0b", q = "http://data-iremus.huma-num.fr/id/689e148d-a97d-45b4-898d-c395a24884df", z = "http://data-iremus.huma-num.fr/id/90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86", Q = "http://data-iremus.huma-num.fr/id/6d72746a-9f28-4739-8786-c6415d53c56d", Z = "http://data-iremus.huma-num.fr/id/bf9dce29-8123-4e8e-b24d-0c7f134bbc8e", tt = "http://data-iremus.huma-num.fr/id/29b00e39-75da-4945-b6c4-a0ca00f96f68", et = "http://data-iremus.huma-num.fr/id/82dbd157-20df-422c-88db-28d6075d99a1", h = "http://data-iremus.huma-num.fr/id/21816195-6708-4bbd-a758-ee354bb84900", E = "http://data-iremus.huma-num.fr/id/cabe46bf-23d4-4392-aa20-b3eb21ad7dfd", rt = (t) => `
+const nt = "http://data-iremus.huma-num.fr/id/d2a536eb-4a95-484f-b13d-f597ac8ea2fd", at = "http://data-iremus.huma-num.fr/id/9d0388cb-a178-46b2-b047-b5a98f7bdf0b", ct = "http://data-iremus.huma-num.fr/id/689e148d-a97d-45b4-898d-c395a24884df", st = "http://data-iremus.huma-num.fr/id/90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86", _t = "http://data-iremus.huma-num.fr/id/6d72746a-9f28-4739-8786-c6415d53c56d", mt = "http://data-iremus.huma-num.fr/id/bf9dce29-8123-4e8e-b24d-0c7f134bbc8e", dt = "http://data-iremus.huma-num.fr/id/29b00e39-75da-4945-b6c4-a0ca00f96f68", lt = "http://data-iremus.huma-num.fr/id/82dbd157-20df-422c-88db-28d6075d99a1", I = "http://data-iremus.huma-num.fr/id/21816195-6708-4bbd-a758-ee354bb84900", O = "http://data-iremus.huma-num.fr/id/cabe46bf-23d4-4392-aa20-b3eb21ad7dfd", pt = (e) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
 SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
 WHERE {
-    VALUES ?project { <${t}> }
-    VALUES ?draft { <${E}> }
-    ?project crm:P2_has_type <${h}>.
+    VALUES ?project { <${e}> }
+    VALUES ?draft { <${O}> }
+    ?project crm:P2_has_type <${I}>.
     ?project crm:P1_is_identified_by ?label.
     ?project crm:P14_carried_out_by ?contributor.
     OPTIONAL { ?project sherlock:has_privacy_type ?draft }.
 }
-LIMIT 1`, ot = (t, r) => `
+LIMIT 1`, ht = (e, t) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
 WHERE {
-  ?annotation sherlock:has_document_context <${t}>.
-  <${r}> crm:P9_consists_of ?annotation.
+  ?annotation sherlock:has_document_context <${e}>.
+  <${t}> crm:P9_consists_of ?annotation.
   ?annotation crm:P141_assigned ?concept.
   ?annotation dcterms:created ?date.
   ?annotation crm:P140_assigned_attribute_to  ?entity.
   ?e13 crm:P141_assigned ?entity.
   ?e13 sherlock:has_document_context ?page.
 }
-`, P = "http://purl.org/ontology/bibo/", b = "http://www.cidoc-crm.org/lrmoo/", f = "http://www.cidoc-crm.org/cidoc-crm/", y = "http://www.ics.forth.gr/isl/CRMdig/", R = "http://purl.org/dc/elements/1.1/", I = "http://purl.org/dc/terms/", T = "http://xmlns.com/foaf/0.1/", O = "http://data-iremus.huma-num.fr/ns/hemef#", c = "http://data-iremus.huma-num.fr/id/", g = "http://data-iremus.huma-num.fr/id/", A = "http://data-iremus.huma-num.fr/ns/", w = "http://data-iremus.huma-num.fr/graph/", N = "http://data-iremus.huma-num.fr/ns/musrad30#", S = "http://www.w3.org/2002/07/owl#", L = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", F = "http://www.w3.org/2000/01/rdf-schema#", C = "http://schema.org/", $ = "http://www.w3.org/2004/02/skos/core#", G = {
-  [f]: "crm",
-  [y]: "crmdig",
-  [P]: "bibo",
-  [R]: "dc",
-  [I]: "dcterms",
-  [T]: "foaf",
-  [O]: "hemef",
-  [g]: "",
-  [A]: "",
-  [N]: "musrad30",
-  [b]: "lrmoo",
-  [S]: "owl",
-  [L]: "rdf",
-  [F]: "rdfs",
-  [C]: "schema",
-  [$]: "skos",
-  [w]: ""
+`;
+var T = Object.defineProperty, A = (e, t, r) => t in e ? T(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r, i = (e, t, r) => (A(e, typeof t != "symbol" ? t + "" : t, r), r);
+const w = "http://purl.org/ontology/bibo/", N = "http://www.cidoc-crm.org/lrmoo/", S = "http://www.cidoc-crm.org/cidoc-crm/", C = "http://www.ics.forth.gr/isl/CRMdig/", F = "http://purl.org/dc/elements/1.1/", L = "http://purl.org/dc/terms/", $ = "http://xmlns.com/foaf/0.1/", G = "http://data-iremus.huma-num.fr/ns/hemef#", a = "http://data-iremus.huma-num.fr/id/", H = "http://data-iremus.huma-num.fr/id/", U = "http://data-iremus.huma-num.fr/ns/", k = "http://data-iremus.huma-num.fr/graph/", X = "http://data-iremus.huma-num.fr/ns/musrad30#", x = "http://www.w3.org/2002/07/owl#", v = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", D = "http://www.w3.org/2000/01/rdf-schema#", j = "http://schema.org/", M = "http://www.w3.org/2004/02/skos/core#", B = {
+  [S]: "crm",
+  [C]: "crmdig",
+  [w]: "bibo",
+  [F]: "dc",
+  [L]: "dcterms",
+  [$]: "foaf",
+  [G]: "hemef",
+  [H]: "",
+  [U]: "",
+  [X]: "musrad30",
+  [N]: "lrmoo",
+  [x]: "owl",
+  [v]: "rdf",
+  [D]: "rdfs",
+  [j]: "schema",
+  [M]: "skos",
+  [k]: ""
 };
-Object.entries(G).sort(
-  (t, r) => t[0].length < r[0].length ? 1 : -1
+Object.entries(B).sort(
+  (e, t) => e[0].length < t[0].length ? 1 : -1
 );
-const o = {
-  selection: c + "9d0388cb-a178-46b2-b047-b5a98f7bdf0b",
-  analyticalEntity: c + "6d72746a-9f28-4739-8786-c6415d53c56d",
-  score: c + "bf9dce29-8123-4e8e-b24d-0c7f134bbc8e",
-  software: c + "29b00e39-75da-4945-b6c4-a0ca00f96f68",
-  hexColorCode: c + "5f1bb74f-6ea0-4073-8b68-086f98454f1c",
-  emoji: c + "04242f64-fbb3-4b5b-bb2e-3ddd59eeea18",
-  orcidId: c + "d7ef2583-ff31-4913-9ed3-bc3a1c664b21",
-  note: c + "d2a536eb-4a95-484f-b13d-f597ac8ea2fd",
-  verticality: c + "90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86",
-  fondamentaleIdentification: c + "003559fc-f033-4fc3-9c05-0d5f283123ed",
-  orcidGeneratedName: c + "73ea8d74-3526-4f6a-8830-dd369795650d"
-}, nt = (t) => `
+class W {
+  constructor(t = "") {
+    i(this, "_pog"), i(this, "_uri"), this._uri = t, this._pog = /* @__PURE__ */ new Map();
+  }
+  getValues(t) {
+    return this._pog.get(t);
+  }
+  addPOG(t, r) {
+    var o;
+    this._pog.has(t) ? (o = this._pog.get(t)) == null || o.push(r) : this._pog.set(t, [r]);
+  }
+  get uri() {
+    return this._uri;
+  }
+  get pog() {
+    return this._pog;
+  }
+}
+const s = class {
+  constructor(t) {
+    i(this, "_classesRegistry", /* @__PURE__ */ new Map()), i(this, "_name"), i(this, "_classes"), i(this, "_properties"), i(this, "_propertiesRegistry", /* @__PURE__ */ new Map()), this._name = t, this._classes = [], this._properties = [];
+  }
+  addClass(t) {
+    this._classes.push(t), this._classes = this._classes.sort(), this._classesRegistry.set(t.uri, t);
+  }
+  addProperty(t) {
+    this._properties.push(t), this._properties = this._properties.sort(), this._propertiesRegistry.set(t.uri, t);
+  }
+  get name() {
+    return this._name;
+  }
+  get classes() {
+    return this._classes;
+  }
+  get properties() {
+    return this._properties;
+  }
+  sortAll() {
+    this._classes = this._classes.sort((t, r) => t.intCodeForSorting - r.intCodeForSorting), this._properties = this._properties.sort((t, r) => t.intCodeForSorting - r.intCodeForSorting);
+  }
+};
+i(s, "void", new s(""));
+let P = s;
+class m extends W {
+  constructor(t, r, o) {
+    super(t), i(this, "_comment"), i(this, "_intCodeForSorting"), i(this, "_label"), i(this, "_name"), i(this, "_ontology"), this._comment = /* @__PURE__ */ new Map(), this._intCodeForSorting = -1, this._label = /* @__PURE__ */ new Map(), this._name = r, this._ontology = o;
+  }
+  get comment() {
+    return this._comment;
+  }
+  set comment(t) {
+    this._comment = t;
+  }
+  get intCodeForSorting() {
+    return this._intCodeForSorting;
+  }
+  set intCodeForSorting(t) {
+    this._intCodeForSorting = t;
+  }
+  set label(t) {
+    this._label = t;
+  }
+  get name() {
+    return this._name;
+  }
+  get ontology() {
+    return this._ontology;
+  }
+  getComment(t) {
+    return this._comment.get(t);
+  }
+  getLabel(t) {
+    return this._label.get(t);
+  }
+}
+i(m, "label", "");
+const _ = class extends m {
+  constructor(t, r, o) {
+    super(t, r, o), i(this, "_subClassOf"), this._subClassOf = new Array();
+  }
+  addSubClassOf(t) {
+    this._subClassOf.push(t);
+  }
+};
+i(_, "void", new _("", "", P.void));
+let h = _;
+const u = class E extends m {
+  constructor(t, r, o) {
+    super(t, r, o), i(this, "_domain", h.void), i(this, "_inverseOf", E.void), i(this, "_range", h.void), i(this, "_subPropertyOf"), this._subPropertyOf = new Array();
+  }
+  get domain() {
+    return this._domain;
+  }
+  set domain(t) {
+    this._domain = t;
+  }
+  get inverseOf() {
+    return this._inverseOf;
+  }
+  set inverseOf(t) {
+    this._inverseOf = t;
+  }
+  get range() {
+    return this._range;
+  }
+  set range(t) {
+    this._range = t;
+  }
+  addSubPropertyOf(t) {
+    this._subPropertyOf.push(t);
+  }
+};
+i(u, "void", new u("", "", P.void));
+const n = {
+  selection: a + "9d0388cb-a178-46b2-b047-b5a98f7bdf0b",
+  analyticalEntity: a + "6d72746a-9f28-4739-8786-c6415d53c56d",
+  score: a + "bf9dce29-8123-4e8e-b24d-0c7f134bbc8e",
+  software: a + "29b00e39-75da-4945-b6c4-a0ca00f96f68",
+  hexColorCode: a + "5f1bb74f-6ea0-4073-8b68-086f98454f1c",
+  emoji: a + "04242f64-fbb3-4b5b-bb2e-3ddd59eeea18",
+  orcidId: a + "d7ef2583-ff31-4913-9ed3-bc3a1c664b21",
+  note: a + "d2a536eb-4a95-484f-b13d-f597ac8ea2fd",
+  verticality: a + "90a2ae1e-0fbc-4357-ac8a-b4b3f2a06e86",
+  fondamentaleIdentification: a + "003559fc-f033-4fc3-9c05-0d5f283123ed",
+  orcidGeneratedName: a + "73ea8d74-3526-4f6a-8830-dd369795650d"
+}, Et = (e) => `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
@@ -70,8 +185,8 @@ WHERE {
   GRAPH <http://data-iremus.huma-num.fr/graph/sherlock> { #ALL CONTRIBUTIONS ARE SUPPOSED TO BE DONE IN SHERLOCK GRAPH
 	# CONTRIBUTIONS FROM DCTERMS:CREATOR
     {
-      ?contribution dcterms:creator <${t}>. #CONTRIBUTOR
-      VALUES ?contribution_type { <${o.selection}> } #SELECTION TYPE
+      ?contribution dcterms:creator <${e}>. #CONTRIBUTOR
+      VALUES ?contribution_type { <${n.selection}> } #SELECTION TYPE
       ?contribution crm:P2_has_type ?contribution_type.
       GRAPH ?g1 {
         ?contribution_type crm:P1_is_identified_by ?contribution_type_label
@@ -80,7 +195,7 @@ WHERE {
     UNION 
     # CONTRIBUTIONS FROM CRM:E13 --> CRM:P14
     {
-    	?contribution crm:P14_carried_out_by <${t}>. #CONTRIBUTOR
+    	?contribution crm:P14_carried_out_by <${e}>. #CONTRIBUTOR
       	?contribution rdf:type crm:E13_Attribute_Assignment.
       	?contribution crm:P140_assigned_attribute_to ?annotation_subject.
       	?contribution crm:P141_assigned ?annotation_object.
@@ -113,13 +228,13 @@ WHERE {
     }
   }
 }
-`, ct = (t) => `
+`, bt = (e) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX analysis: <http://modality-tonality.huma-num.fr/analysisOntology#>
 SELECT ?contributor ?color ?emoji ?program
 FROM <http://data-iremus.huma-num.fr/graph/users>
 WHERE {
-    VALUES ?contributor { <${t}> }
+    VALUES ?contributor { <${e}> }
     
     OPTIONAL { ?contributor analysis:hasPythonModuleName ?program }
     OPTIONAL {
@@ -130,7 +245,7 @@ WHERE {
         ?hexcode crm:P2_has_type <http://data-iremus.huma-num.fr/id/5f1bb74f-6ea0-4073-8b68-086f98454f1c>.
         ?hexcode crm:P190_has_symbolic_content ?color.
     }
-}`, at = () => `
+}`, ft = () => `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
@@ -142,11 +257,11 @@ SELECT ?contributor ?name (COUNT(?contribution) AS ?contributions) (CONCAT( "#",
 WHERE {
   GRAPH ?user_graph {  
     VALUES ?contributor_type_predicate {rdf:type crm:P2_has_type}. 
-    VALUES ?contributor_type {crm:E21_Person <${o.software}>}. #PERSON OR SOFTWARE
+    VALUES ?contributor_type {crm:E21_Person <${n.software}>}. #PERSON OR SOFTWARE
     ?contributor ?contributor_type_predicate ?contributor_type
     
     OPTIONAL {
-	    ?contributor crm:P2_has_type <${o.software}>. #SOFTWARE
+	    ?contributor crm:P2_has_type <${n.software}>. #SOFTWARE
       ?contributor crm:P2_has_type ?contributor_type
       GRAPH ?type_graph {
         ?contributor_type crm:P1_is_identified_by ?contributor_type_label
@@ -157,22 +272,22 @@ WHERE {
     }
     OPTIONAL {
 	    ?contributor crm:P1_is_identified_by ?hex_color_code_identifier.
-      ?hex_color_code_identifier crm:P2_has_type <${o.hexColorCode}>. #HEX COLOR CODE IDENTIFIER
+      ?hex_color_code_identifier crm:P2_has_type <${n.hexColorCode}>. #HEX COLOR CODE IDENTIFIER
       ?hex_color_code_identifier crm:P190_has_symbolic_content ?hex_color_code
     }
     OPTIONAL {
 	    ?contributor crm:P1_is_identified_by ?emoji_identifier.
-      ?emoji_identifier crm:P2_has_type <${o.emoji}>. #EMOJI IDENTIFIER
+      ?emoji_identifier crm:P2_has_type <${n.emoji}>. #EMOJI IDENTIFIER
       ?emoji_identifier crm:P190_has_symbolic_content ?emoji
     }
     OPTIONAL {
       ?contributor crm:P1_is_identified_by ?orcid_appellation.
-      ?orcid_appellation crm:P2_has_type <${o.orcidGeneratedName}>. #ORCID NAME IDENTIFIER
+      ?orcid_appellation crm:P2_has_type <${n.orcidGeneratedName}>. #ORCID NAME IDENTIFIER
       ?orcid_appellation crm:P190_has_symbolic_content ?name
     }
     OPTIONAL {
 	    ?contributor crm:P1_is_identified_by ?ORCID_identifier.
-      ?ORCID_identifier crm:P2_has_type <${o.orcidId}>. #ORCID IDENTIFIER
+      ?ORCID_identifier crm:P2_has_type <${n.orcidId}>. #ORCID IDENTIFIER
       ?ORCID_identifier crm:P190_has_symbolic_content ?orcid
     }
     OPTIONAL {
@@ -187,7 +302,7 @@ WHERE {
     }
   }
 }
-GROUP BY ?contributor ?name ?hex_color_code ?emoji ?orcid ?orcid_profile ?untyped_identifier ?contributor_type_label ?user_graph`, it = (t) => `
+GROUP BY ?contributor ?name ?hex_color_code ?emoji ?orcid ?orcid_profile ?untyped_identifier ?contributor_type_label ?user_graph`, yt = (e) => `
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX she: <http://data-iremus.huma-num.fr/ns/sherlock#>
@@ -198,7 +313,7 @@ SELECT ?e13_p140 (GROUP_CONCAT(DISTINCT ?e13_p140_label ; separator=" \\n~~\\n "
 WHERE 
 { 
     GRAPH <http://data-iremus.huma-num.fr/graph/opentheso> {
-        <${t}> skos:narrower* ?concept .
+        <${e}> skos:narrower* ?concept .
         OPTIONAL {
             ?concept dcterms:description ?concept_description .
         }
@@ -275,7 +390,7 @@ WHERE
 } 
 GROUP BY ?e13_p140 ?e13_p177 ?e13_p177_label ?concept ?concept_description ?context ?creation_date ?creator ?creator_label ?analytical_project ?analytical_project_label
 
-`, _t = (t) => `
+`, gt = (e) => `
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -286,15 +401,15 @@ PREFIX sherlockmei: <http://data-iremus.huma-num.fr/ns/sherlockmei#>
 SELECT DISTINCT ?score ?annotation ?verticality ?note_label ?measure_number 
 WHERE {
   GRAPH ?g {
-    ${H(t)}
-    ?score crm:P2_has_type <${o.score}>. #Score type
+    ${Y(e)}
+    ?score crm:P2_has_type <${n.score}>. #Score type
     ?verticality sherlock:has_document_context ?score.
-    ?verticality crm:P2_has_type <${o.verticality}>. #MEI score offset
+    ?verticality crm:P2_has_type <${n.verticality}>. #MEI score offset
     ?note_in_score sherlockmei:contains_beat ?verticality.
     ?note_in_score sherlockmei:measure_number ?measure_number.
     GRAPH ?sherlock_graph {
         ?annotation crm:P140_assigned_attribute_to ?verticality.
-        ?annotation crm:P177_assigned_property_of_type <${o.fondamentaleIdentification}>. #Identification de fondamentale
+        ?annotation crm:P177_assigned_property_of_type <${n.fondamentaleIdentification}>. #Identification de fondamentale
         ?annotation crm:P141_assigned ?note.
         GRAPH ?sherlock_data_graph {
             ?note crm:P1_is_identified_by ?note_label
@@ -303,7 +418,7 @@ WHERE {
   }
 }
 ORDER BY ?score ?measure_number
-`, H = (t) => t ? `BIND (<${t}> as ?score).` : "", st = () => `
+`, Y = (e) => e ? `BIND (<${e}> as ?score).` : "", Rt = () => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -322,7 +437,7 @@ SELECT DISTINCT ?s
         VALUES ?p { crm:P1_is_identified_by crm:P102_has_title dcterms:title rdfs:label skos:prefLabel skos:altLabel crm:P190_has_symbolic_content }
     }
   }
-`, mt = () => `
+`, It = () => `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -346,113 +461,113 @@ WHERE {
   }
 }
 GROUP BY ?ontology ?author ?comment
-`, U = [
+`, V = [
   "crm:P1_is_identified_by",
   "crm:P102_has_title dcterms:title",
   "rdfs:label",
   "skos:prefLabel",
   "skos:altLabel",
   "crm:P190_has_symbolic_content"
-], k = () => U.join(" "), X = [
+], J = () => V.join(" "), K = [
   "crm:P1_is_identified_by",
   "crm:P102_has_title"
-], x = () => X.join(" "), D = [
+], q = () => K.join(" "), z = [
   "crm:E35_Title",
   "crm:E41_Appellation",
   "crm:E42_Identifier"
-], j = () => D.join(" "), v = ["crm:P2_has_type", "rdf:type"], M = () => v.join(" "), dt = (t, r = !1, e = !1, n = !1, a = "", u = "OUTGOING") => r ? W(
-  t,
-  n,
-  a,
-  u
-) : B(t, n, e), B = (t, r, e) => `
-  ${p()}
+], Q = () => z.join(" "), Z = ["crm:P2_has_type", "rdf:type"], tt = () => Z.join(" "), Ot = (e, t = !1, r = !1, o = !1, c = "", R = "OUTGOING") => t ? rt(
+  e,
+  o,
+  c,
+  R
+) : et(e, o, r), et = (e, t, r) => `
+  ${g()}
   SELECT *
   WHERE {
     GRAPH ?g {
-      ${i(
-  `<${t}>`,
+      ${d(
+  `<${e}>`,
   "?p",
   "?label",
-  e
+  r
 )}
-      ${_(
-  `<${t}>`,
+      ${l(
+  `<${e}>`,
   "?p",
   "?r",
   "?label",
-  e
+  r
 )}
-      ${m(`<${t}>`, e)}
-      ${d(`<${t}>`)}
-      ${l(`<${t}>`, r)}
+      ${b(`<${e}>`, r)}
+      ${f(`<${e}>`)}
+      ${y(`<${e}>`, t)}
     }
-  }`, W = (t, r, e, n) => {
-  const a = e ? `<${e}>` : "?lp";
+  }`, rt = (e, t, r, o) => {
+  const c = r ? `<${r}>` : "?lp";
   return `
-  ${p()}
+  ${g()}
   SELECT *
   WHERE {
     GRAPH ?lr_g {
-      ${V(
-    `<${t}>`,
-    a,
-    n
+      ${it(
+    `<${e}>`,
+    c,
+    o
   )}
       OPTIONAL {
         GRAPH ?g {
-          ${i("?lr", "?p", "?label", !1)}
-          ${_("?lr", "?p", "?r", "?label", !1)}
-          ${m("?lr", !1)}
-          ${d("?lr")}
-          ${l("?lr", r)}
+          ${d("?lr", "?p", "?label", !1)}
+          ${l("?lr", "?p", "?r", "?label", !1)}
+          ${b("?lr", !1)}
+          ${f("?lr")}
+          ${y("?lr", t)}
         }
       }
     }
   }`;
-}, i = (t, r, e, n) => `
+}, d = (e, t, r, o) => `
 {
-  VALUES ${r} { ${k()} } .
-  ${s(
+  VALUES ${t} { ${J()} } .
+  ${p(
+  e,
   t,
   r,
-  e,
-  n
+  o
 )}
-  FILTER(isLiteral(${e})) .  
+  FILTER(isLiteral(${r})) .  
 }
-`, _ = (t, r, e, n, a) => `
+`, l = (e, t, r, o, c) => `
   UNION
   {
-    VALUES ${r} { ${x()} }
-    ${s(
+    VALUES ${t} { ${q()} }
+    ${p(
+  e,
   t,
   r,
-  e,
-  a
+  c
 )}
-    GRAPH ${e}_types__g { 
-      VALUES ${e}_type { ${j()} }
-      ${e} rdf:type ${e}_type .
-      ${e} crm:P190_has_symbolic_content ${n} .
+    GRAPH ${r}_types__g { 
+      VALUES ${r}_type { ${Q()} }
+      ${r} rdf:type ${r}_type .
+      ${r} crm:P190_has_symbolic_content ${o} .
     }
     OPTIONAL {
-      GRAPH ${e}_types_types__graph {
-        ${e} crm:P2_has_type ${e}_type_type .
-        GRAPH ${e}_types_types_label_graph {
-          ${e}_type_type crm:P1_is_identified_by ${e}_type_type__label .
+      GRAPH ${r}_types_types__graph {
+        ${r} crm:P2_has_type ${r}_type_type .
+        GRAPH ${r}_types_types_label_graph {
+          ${r}_type_type crm:P1_is_identified_by ${r}_type_type__label .
         }
       }
     }
   }
-  `, m = (t, r) => `
+  `, b = (e, t) => `
   UNION {
     GRAPH ?e32_e55__g {
-      ${s(
+      ${p(
   "?e32",
   "crm:P71_lists",
-  t,
-  r
+  e,
+  t
 )}
     }
     OPTIONAL {
@@ -460,10 +575,10 @@ GROUP BY ?ontology ?author ?comment
         ?e32 crm:P1_is_identified_by ?e32__label .
       }
     }
-  }`, d = (t) => `
+  }`, f = (e) => `
 UNION {
-  VALUES ?p { ${M()} }
-  ${t} ?p ?r .
+  VALUES ?p { ${tt()} }
+  ${e} ?p ?r .
   OPTIONAL {
     GRAPH ?r_types__g {
       VALUES ?r_type { crm:E55_Type } .
@@ -479,32 +594,32 @@ UNION {
     }
   }
 }
-`, l = (t, r) => r ? `
+`, y = (e, t) => t ? `
     UNION {
       SELECT (COUNT(?r_out) AS ?c_out) ?lr
-      WHERE { GRAPH ?g_out { ${t} ?p_out ?r_out } }
+      WHERE { GRAPH ?g_out { ${e} ?p_out ?r_out } }
       GROUP BY ?c_out ?lr
     }
     UNION {
       SELECT (COUNT(*) AS ?c_in) ?lr
-      WHERE { GRAPH ?g_in { ?r_in ?p_in ${t} } }
+      WHERE { GRAPH ?g_in { ?r_in ?p_in ${e} } }
       GROUP BY ?c_in ?lr
-    }` : "", Y = (t, r, e, n) => n ? `
+    }` : "", ot = (e, t, r, o) => o ? `
     UNION 
     {
-      ?e13 crm:P177_assigned_property_of_type ${r} .
-      ?e13 crm:P140_assigned_attribute_to ${t} .
-      ?e13 crm:P141_assigned ${e} .
+      ?e13 crm:P177_assigned_property_of_type ${t} .
+      ?e13 crm:P140_assigned_attribute_to ${e} .
+      ?e13 crm:P141_assigned ${r} .
       ?e13 crm:P14_carried_out_by ?e13_carrier .
       OPTIONAL {
         GRAPH ?e13_g {
-          ${i(
+          ${d(
   "?e13_carrier",
   "?e13_carrier_p",
   "?e13_carrier_label",
   !1
 )}
-          ${_(
+          ${l(
   "?e13_carrier",
   "?e13_carrier_p",
   "?e13_carrier_object",
@@ -513,28 +628,28 @@ UNION {
 )}
         }
       }
-    }` : "", s = (t, r, e, n) => `
+    }` : "", p = (e, t, r, o) => `
     {
-      ${t} ${r} ${e} .
+      ${e} ${t} ${r} .
     }
-    ${Y(
+    ${ot(
+  e,
   t,
   r,
-  e,
-  n
+  o
 )}
-  `, V = (t, r, e) => {
-  if (e === "INCOMING")
-    return `?lr ${r} ${t}`;
-  if (e === "OUTGOING")
-    return `${t} ${r} ?lr`;
-}, p = () => `
+  `, it = (e, t, r) => {
+  if (r === "INCOMING")
+    return `?lr ${t} ${e}`;
+  if (r === "OUTGOING")
+    return `${e} ${t} ?lr`;
+}, g = () => `
   PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
   PREFIX dcterms: <http://purl.org/dc/terms/>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
   PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
   PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  `, lt = () => `
+  `, Tt = () => `
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX lrmoo: <http://www.cidoc-crm.org/lrmoo/>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -581,7 +696,7 @@ UNION {
     }
     GROUP BY ?F2_livraison ?titre ?date ?reference_livraison
     ORDER BY ?date
-`, pt = (t, r) => `
+`, At = (e, t) => `
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -592,19 +707,19 @@ PREFIX sherlockmei: <http://data-iremus.huma-num.fr/ns/sherlockmei#>
 SELECT ?note_pname (count(?note) AS ?notes) 
 WHERE {
   GRAPH ?g {
-    ?note sherlock:has_document_context <${t}>.
-    ?note crm:P2_has_type <${o.note}>. #NOTE
+    ?note sherlock:has_document_context <${e}>.
+    ?note crm:P2_has_type <${n.note}>. #NOTE
     ?note sherlockmei:pname ?note_pname.
-    ${r && `VALUES ?note_pname { "${r}" }`}
+    ${t && `VALUES ?note_pname { "${t}" }`}
   }
 }
-GROUP BY ?note_pname`, ut = (t) => `
+GROUP BY ?note_pname`, wt = (e) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 
 SELECT *
 WHERE {
   GRAPH ?g {
-    <${t}> crm:P127_has_broader_term* ?bt .
+    <${e}> crm:P127_has_broader_term* ?bt .
     ?bt crm:P1_is_identified_by ?bt_label .
     OPTIONAL {
       ?bt crm:P127_has_broader_term ?btbt .
@@ -612,10 +727,10 @@ WHERE {
     }
   }
 }
-`, ht = (t) => `
+`, Nt = (e) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT * FROM <http://data-iremus.huma-num.fr/graph/sherlock>
-WHERE { <${t}> crm:P140_assigned_attribute_to ?p140 }`, Et = () => `
+WHERE { <${e}> crm:P140_assigned_attribute_to ?p140 }`, St = () => `
 BASE <http://data-iremus.huma-num.fr/id/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -632,7 +747,7 @@ SELECT
     (?count_direct_e13 + ?count_e13_on_fragment + ?count_e13_on_selection + ?count_e13_on_analytical_entity AS ?count_e13_total)
 WHERE {
     GRAPH <http://data-iremus.huma-num.fr/graph/catalogue> {
-        ?score crm:P2_has_type <${o.score}> .
+        ?score crm:P2_has_type <${n.score}> .
         {
             GRAPH <http://data-iremus.huma-num.fr/graph/sherlock> {
                 ?direct_e13 rdf:type crm:E13_Attribute_Assignment .
@@ -652,7 +767,7 @@ WHERE {
             GRAPH <http://data-iremus.huma-num.fr/graph/sherlock> {
                 ?e13_on_selection rdf:type crm:E13_Attribute_Assignment .
                 ?e13_on_selection crm:P140_assigned_attribute_to ?selection .
-                ?selection crm:P2_has_type <${o.selection}> .
+                ?selection crm:P2_has_type <${n.selection}> .
                 ?selection sherlock:has_document_context ?score .
             }
         }
@@ -661,7 +776,7 @@ WHERE {
                 ?e13_on_analytical_entity rdf:type crm:E13_Attribute_Assignment .
                 ?e13_on_analytical_entity crm:P141_assigned ?analytical_entity .
                 ?analytical_entity rdf:type crm:E28_Conceptual_Object .
-                ?analytical_entity crm:P2_has_type <${o.analyticalEntity}> .
+                ?analytical_entity crm:P2_has_type <${n.analyticalEntity}> .
                 ?e13_on_analytical_entity crm:P140_assigned_attribute_to ?analytical_selection .
                 ?analytical_selection sherlock:has_document_context ?score .
             }
@@ -669,7 +784,7 @@ WHERE {
     }
 }
 GROUP BY ?score
-`, Pt = (t) => `
+`, Ct = (e) => `
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
@@ -693,7 +808,7 @@ WHERE {
           ?e13_selection_analyticalEntity crm:P140_assigned_attribute_to ?selection.
           ?e13_selection_analyticalEntity rdf:type crm:E13_Attribute_Assignment.
           ?e13_selection_analyticalEntity crm:P141_assigned ?analyticalEntity.
-          ?analyticalEntity crm:P2_has_type <${o.analyticalEntity}>.
+          ?analyticalEntity crm:P2_has_type <${n.analyticalEntity}>.
           ?e13_analyticalEntity_types crm:P140_assigned_attribute_to ?analyticalEntity.
           ?e13_analyticalEntity_types crm:P177_assigned_property_of_type rdf:type.
           ?e13_analyticalEntity_types crm:P141_assigned ?analyticalEntity_type
@@ -707,8 +822,8 @@ WHERE {
         ######## GET SELECTIONS ITEMS #########
         #######################################
         ?selection dcterms:created ?date.
-        ?selection sherlock:has_document_context <${t}>.
-        ?selection crm:P2_has_type <${o.selection}>.
+        ?selection sherlock:has_document_context <${e}>.
+        ?selection crm:P2_has_type <${n.selection}>.
         ?selection crm:P106_is_composed_of* ?item.
 
         #######################################
@@ -743,30 +858,30 @@ WHERE {
 GROUP BY ?selection ?contributor ?date ?analyticalEntity_type ?items_count ?min_measure_number
 `;
 export {
-  Q as ANALYTICAL_ENTITY,
-  h as ANALYTICAL_PROJECT,
-  et as ANNOTATION,
-  E as DRAFT_PROJECT,
-  J as NOTE,
-  q as POSITIONNED_NOTE,
-  Z as SCORE,
-  K as SELECTION,
-  tt as SOFTWARE,
-  z as VERTICALITY,
-  nt as contributions,
-  at as contributors,
-  it as documentsByIndex,
-  _t as fondamentales,
-  rt as getAnalyticalProject,
-  ot as getAnnotations,
-  ct as getContributor,
-  ht as getP140,
-  st as getResources,
-  mt as historicalModelsOntologies,
-  dt as identity,
-  lt as mg_livraisons,
-  pt as noteOccurences,
-  ut as p127,
-  Et as scores,
-  Pt as selections
+  _t as ANALYTICAL_ENTITY,
+  I as ANALYTICAL_PROJECT,
+  lt as ANNOTATION,
+  O as DRAFT_PROJECT,
+  nt as NOTE,
+  ct as POSITIONNED_NOTE,
+  mt as SCORE,
+  at as SELECTION,
+  dt as SOFTWARE,
+  st as VERTICALITY,
+  Et as contributions,
+  ft as contributors,
+  yt as documentsByIndex,
+  gt as fondamentales,
+  pt as getAnalyticalProject,
+  ht as getAnnotations,
+  bt as getContributor,
+  Nt as getP140,
+  Rt as getResources,
+  It as historicalModelsOntologies,
+  Ot as identity,
+  Tt as mg_livraisons,
+  At as noteOccurences,
+  wt as p127,
+  St as scores,
+  Ct as selections
 };
