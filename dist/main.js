@@ -475,13 +475,20 @@ GROUP BY ?ontology ?author ?comment
   "crm:E35_Title",
   "crm:E41_Appellation",
   "crm:E42_Identifier"
-], Q = () => z.join(" "), Z = ["crm:P2_has_type", "rdf:type"], tt = () => Z.join(" "), Ot = (e, t = !1, r = !1, o = !1, c = "", R = "OUTGOING") => t ? rt(
-  e,
-  o,
-  c,
-  R
-) : et(e, o, r), et = (e, t, r) => `
-  ${g()}
+], j = () => D.join(" "), v = ["crm:P2_has_type", "rdf:type"], M = () => v.join(" "), dt = (t, r = !1, e = !1, n = !1, a = "", m = "OUTGOING") => (console.log(`identity has been called with 
+
+  resource : %s
+  getLinkedResourcesIdentity: %o
+  appendE13ifiedIdentity: %o
+  countLinkedResources: %o
+  linkingPredicate: %s
+  linkedResourcesDirection: %s`, t, r, e, n, a, m), r ? W(
+  t,
+  n,
+  a,
+  m
+) : B(t, n, e)), B = (t, r, e) => `
+  ${u()}
   SELECT *
   WHERE {
     GRAPH ?g {
@@ -498,14 +505,14 @@ GROUP BY ?ontology ?author ?comment
   "?label",
   r
 )}
-      ${b(`<${e}>`, r)}
-      ${f(`<${e}>`)}
-      ${y(`<${e}>`, t)}
+      ${d(`<${t}>`, e)}
+      ${l(`<${t}>`)}
+      ${p(`<${t}>`, r)}
     }
   }`, rt = (e, t, r, o) => {
   const c = r ? `<${r}>` : "?lp";
   return `
-  ${g()}
+  ${u()}
   SELECT *
   WHERE {
     GRAPH ?lr_g {
@@ -516,11 +523,11 @@ GROUP BY ?ontology ?author ?comment
   )}
       OPTIONAL {
         GRAPH ?g {
-          ${d("?lr", "?p", "?label", !1)}
-          ${l("?lr", "?p", "?r", "?label", !1)}
-          ${b("?lr", !1)}
-          ${f("?lr")}
-          ${y("?lr", t)}
+          ${i("?lr", "?p", "?label", !1)}
+          ${_("?lr", "?p", "?r", "?label", !1)}
+          ${d("?lr", !1)}
+          ${l("?lr")}
+          ${p("?lr", r)}
         }
       }
     }
@@ -560,7 +567,7 @@ GROUP BY ?ontology ?author ?comment
       }
     }
   }
-  `, b = (e, t) => `
+  `, d = (t, r) => `
   UNION {
     GRAPH ?e32_e55__g {
       ${p(
@@ -575,7 +582,7 @@ GROUP BY ?ontology ?author ?comment
         ?e32 crm:P1_is_identified_by ?e32__label .
       }
     }
-  }`, f = (e) => `
+  }`, l = (t) => `
 UNION {
   VALUES ?p { ${tt()} }
   ${e} ?p ?r .
@@ -594,7 +601,7 @@ UNION {
     }
   }
 }
-`, y = (e, t) => t ? `
+`, p = (t, r) => r ? `
     UNION {
       SELECT (COUNT(?r_out) AS ?c_out) ?lr
       WHERE { GRAPH ?g_out { ${e} ?p_out ?r_out } }
@@ -638,12 +645,12 @@ UNION {
   r,
   o
 )}
-  `, it = (e, t, r) => {
-  if (r === "INCOMING")
-    return `?lr ${t} ${e}`;
-  if (r === "OUTGOING")
-    return `${e} ${t} ?lr`;
-}, g = () => `
+  `, V = (t, r, e) => {
+  if (e === "INCOMING")
+    return `?lr ${r} ${t}`;
+  if (e === "OUTGOING")
+    return `${t} ${r} ?lr`;
+}, u = () => `
   PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
   PREFIX dcterms: <http://purl.org/dc/terms/>
   PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
