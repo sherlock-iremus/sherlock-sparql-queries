@@ -58,13 +58,13 @@ export const identity = (
   linkingPredicate: string = '',
   linkedResourcesDirection: LinkedResourcesDirectionEnum = LinkedResourcesDirectionEnum.OUTGOING
 ) => {
-  console.log(`identity has been called with \n
-  resource : %s
-  getLinkedResourcesIdentity: %o
-  appendE13ifiedIdentity: %o
-  countLinkedResources: %o
-  linkingPredicate: %s
-  linkedResourcesDirection: %s`, resource, getLinkedResourcesIdentity, appendE13ifiedIdentity, countLinkedResources, linkingPredicate, linkedResourcesDirection)
+  // console.log(`identity has been called with \n
+  // resource : %s
+  // getLinkedResourcesIdentity: %o
+  // appendE13ifiedIdentity: %o
+  // countLinkedResources: %o
+  // linkingPredicate: %s
+  // linkedResourcesDirection: %s`, resource, getLinkedResourcesIdentity, appendE13ifiedIdentity, countLinkedResources, linkingPredicate, linkedResourcesDirection)
 
   return getLinkedResourcesIdentity
     ? linkedResourcesIdentity(
