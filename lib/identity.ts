@@ -3,43 +3,30 @@ enum LinkedResourcesDirectionEnum {
   OUTGOING = 'OUTGOING'
 };
 
-const LITERAL_IDENTIFIERS_PREDICATES = [
+const literalIdentifiersPredicates = () => [
   "crm:P1_is_identified_by",
   "crm:P102_has_title dcterms:title",
+  "crm:P190_has_symbolic_content",
   "rdfs:label",
   "skos:prefLabel",
   "skos:altLabel",
-  "crm:P190_has_symbolic_content",
-];
+].join(" ")
 
-const literalIdentifiersPredicates = () => {
-  return LITERAL_IDENTIFIERS_PREDICATES.join(" ");
-};
-
-const IDENTIFIERS_PREDICATES = [
+const identifiersPredicates = () => [
   "crm:P1_is_identified_by",
   "crm:P102_has_title",
-];
+].join(" ")
 
-const identifiersPredicates = () => {
-  return IDENTIFIERS_PREDICATES.join(" ");
-};
-
-const IDENTIFIERS_CRM_CLASSES = [
+const identifiersCrmClasses = () => [
   "crm:E35_Title",
   "crm:E41_Appellation",
   "crm:E42_Identifier",
-];
+].join(" ")
 
-const identifiersCrmClasses = () => {
-  return IDENTIFIERS_CRM_CLASSES.join(" ");
-};
-
-const TYPE_ATTRIBUTION_PREDICATES = ["crm:P2_has_type", "rdf:type"];
-
-const typeAttributionPredicates = () => {
-  return TYPE_ATTRIBUTION_PREDICATES.join(" ");
-};
+const typeAttributionPredicates = () => [
+  "crm:P2_has_type",
+  "rdf:type"
+].join(" ")
 
 /**
  * @param {string} resource IRI of the targeted resource
@@ -91,15 +78,15 @@ const resourceIdentity = (
   appendE13ifiedIdentity: boolean
 ) => {
   let q = `${prefixesFragment()}  
-  SELECT *
-  WHERE {
-    GRAPH ?g {
-    ${literalIdentifiersFragment(`<${resource}>`, "?p", "?label", appendE13ifiedIdentity)}
-    ${identifiersFragment(`<${resource}>`, "?p", "?r", "?label", appendE13ifiedIdentity)}
-    ${authorityDocumentFragment(`<${resource}>`, appendE13ifiedIdentity)}
-    ${typesDocumentationFragment(`<${resource}>`)}
-    }
-  }`
+SELECT *
+WHERE {
+  GRAPH ?g {
+  ${literalIdentifiersFragment(`<${resource}>`, "?p", "?label", appendE13ifiedIdentity)}
+  ${identifiersFragment(`<${resource}>`, "?p", "?r", "?label", appendE13ifiedIdentity)}
+  ${authorityDocumentFragment(`<${resource}>`, appendE13ifiedIdentity)}
+  ${typesDocumentationFragment(`<${resource}>`)}
+  }
+}`
   if (countLinkedResources)
     q += countLinkedResourcesFragment(`<${resource}>`, countLinkedResources)
   return q
@@ -117,102 +104,95 @@ const linkedResourcesIdentity = (
   const p = linkingPredicate ? `<${linkingPredicate}>` : "?lp";
 
   return `
-  ${prefixesFragment()}
-  SELECT *
-  WHERE {
-    GRAPH ?lr_g {
-      ${resourceDeclarationFragment(
-    `<${resource}>`,
-    p,
-    linkedResourcesDirection
-  )}
-      OPTIONAL {
-        GRAPH ?g {
-          ${literalIdentifiersFragment(`?lr`, "?p", "?label", false)}
-          ${identifiersFragment(`?lr`, "?p", "?r", "?label", false)}
-          ${authorityDocumentFragment("?lr", false)}
-          ${typesDocumentationFragment("?lr")}
-          ${countLinkedResourcesFragment("?lr", countLinkedResources)}
-        }
+${prefixesFragment()}
+SELECT *
+WHERE {
+  GRAPH ?lr_graph {
+    ${resourceDeclarationFragment(
+  `<${resource}>`,
+  p,
+  linkedResourcesDirection
+)}
+    OPTIONAL {
+      GRAPH ?g {
+        ${literalIdentifiersFragment(`?lr`, "?p", "?label", false)}
+        ${identifiersFragment(`?lr`, "?p", "?r", "?label", false)}
+        ${authorityDocumentFragment("?lr", false)}
+        ${typesDocumentationFragment("?lr")}
+        ${countLinkedResourcesFragment("?lr", countLinkedResources)}
       }
     }
-  }`;
+  }
+}`;
 };
 
 const literalIdentifiersFragment = (resource: string, predicate: string, label: string, appendE13ifiedIdentity: boolean): string => `  {
-        VALUES ${predicate} { ${literalIdentifiersPredicates()} } .
-        ${resourcePredicateObjectFragment(resource, predicate, label, appendE13ifiedIdentity)}
-        FILTER(isLiteral(${label})) .  
-      }`;
+      VALUES ${predicate} { ${literalIdentifiersPredicates()} } .
+      ${resourcePredicateObjectFragment(resource, predicate, label, appendE13ifiedIdentity)}
+      FILTER(isLiteral(${label})) .  
+    }`;
 
 /**
  *
  * @param {string} resource IRI of the resource
  */
-const identifiersFragment = (
-  resource: string,
-  predicate: string,
-  object: string,
-  label: string,
-  appendE13ifiedIdentity: boolean
-): string => {
-  console.log('identifiersFragment', resource, predicate, object, label)
+const identifiersFragment = (resource: string, predicate: string, object: string, label: string, appendE13ifiedIdentity: boolean): string => {
   return `  UNION
-      {
-        VALUES ${predicate} { ${identifiersPredicates()} }
-        ${resourcePredicateObjectFragment(resource, predicate, object, appendE13ifiedIdentity)}
-        GRAPH ${object}_types__g { 
-          VALUES ${object}_type { ${identifiersCrmClasses()} }
-          ${object} rdf:type ${object}_type .
-          ${object} crm:P190_has_symbolic_content ${label} .
-        }
-        OPTIONAL {
-          GRAPH ${object}_types_types__graph {
-            ${object} crm:P2_has_type ${object}_type_type .
-            GRAPH ${object}_types_types_label_graph {
-              ${object}_type_type crm:P1_is_identified_by ${object}_type_type__label .
-            }
+    {
+      VALUES ${predicate} { ${identifiersPredicates()} }
+      ${resourcePredicateObjectFragment(resource, predicate, object, appendE13ifiedIdentity)}
+      GRAPH ${object}_types_graph { 
+        VALUES ${object}_type { ${identifiersCrmClasses()} }
+        ${object} rdf:type ${object}_type .
+        ${object} crm:P190_has_symbolic_content ${label} .
+      }
+      OPTIONAL {
+        GRAPH ${object}_types_types_graph {
+          ${object} crm:P2_has_type ${object}_type_type .
+          GRAPH ${object}_types_types_label_graph {
+            ${object}_type_type crm:P1_is_identified_by ${object}_type_type_label .
           }
         }
-      }`};
+      }
+    }`};
 
 /**
  * @param {string} resource IRI of the resource
  */
 const authorityDocumentFragment = (resource: string, appendE13ifiedIdentity: boolean): string => `  UNION
-      {
-        GRAPH ?e32_e55__g {
-          ${resourcePredicateObjectFragment("?e32", "crm:P71_lists", resource, appendE13ifiedIdentity)}
+    {
+      GRAPH ?e32_e55_graph {
+        ${resourcePredicateObjectFragment("?e32", "crm:P71_lists", resource, appendE13ifiedIdentity)}
+      }
+      OPTIONAL {
+        GRAPH ?e32_graph {
+          ?e32 crm:P1_is_identified_by ?e32_label .
         }
-        OPTIONAL {
-          GRAPH ?e32__g {
-            ?e32 crm:P1_is_identified_by ?e32__label .
-          }
-        }
-      }`;
+      }
+    }`;
 
 /**
  * @param {string} resource IRI of the resource
  */
 const typesDocumentationFragment = (resource: string) => `  UNION
-      {
-        VALUES ?p { ${typeAttributionPredicates()} }
-        ${resource} ?p ?r .
-        OPTIONAL {
-          GRAPH ?r_types__g {
-            VALUES ?r_type { crm:E55_Type } .
-            ?r rdf:type ?r_type .
-            ?r crm:P1_is_identified_by ?label .
+    {
+      VALUES ?p { ${typeAttributionPredicates()} }
+      ${resource} ?p ?r .
+      OPTIONAL {
+        GRAPH ?r_types_graph {
+          VALUES ?r_type { crm:E55_Type } .
+          ?r rdf:type ?r_type .
+          ?r crm:P1_is_identified_by ?label .
+          FILTER(isLiteral(?label)) .
+          OPTIONAL {
             ?type_e32 crm:P71_lists ?r .
-            FILTER(isLiteral(?label)) .
-            OPTIONAL {
-              GRAPH ?type_e32__g {
-                ?type_e32 crm:P1_is_identified_by ?type_e32__label .
-              }
+            GRAPH ?type_e32_graph {
+              ?type_e32 crm:P1_is_identified_by ?type_e32_label .
             }
           }
         }
-      }`
+      }
+    }`
 
 /**
  * @param {string} resource IRI of the resource
@@ -251,7 +231,7 @@ const resourcePredicateObjectFragmentE13ified = (
       ?e13 crm:P141_assigned ${object} .
       ?e13 crm:P14_carried_out_by ?e13_carrier .
       OPTIONAL {
-        GRAPH ?e13_g {
+        GRAPH ?e13_graph {
           ${literalIdentifiersFragment(
       "?e13_carrier",
       "?e13_carrier_p",
@@ -290,10 +270,9 @@ const resourceDeclarationFragment = (resource: string, p: string, linkedResource
     return `${resource} ${p} ?lr`;
 };
 
-const prefixesFragment = () => `
-  PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-  PREFIX dcterms: <http://purl.org/dc/terms/>
-  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-  `;
+const prefixesFragment = () => `PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+`;
