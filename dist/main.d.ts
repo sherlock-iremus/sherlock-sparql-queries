@@ -2,6 +2,7 @@ export * from './analyticalProject';
 export * from './annotations';
 export * from './constants';
 export * from './contributions';
+export * from './tonalitiesContributions';
 export * from './contributor';
 export * from './contributors';
 export * from './countLinkingPredicates';
