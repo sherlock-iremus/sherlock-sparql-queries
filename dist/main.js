@@ -26,7 +26,7 @@ WHERE {
 }
 `;
 var Gg = Object.defineProperty, Ug = (i, d, e) => d in i ? Gg(i, d, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[d] = e, X = (i, d, e) => Ug(i, typeof d != "symbol" ? d + "" : d, e);
-const Hg = "http://purl.org/ontology/bibo/", kg = "http://www.cidoc-crm.org/lrmoo/", Bg = "http://www.cidoc-crm.org/cidoc-crm/", Mg = "http://www.ics.forth.gr/isl/CRMdig/", jg = "http://dbpedia.org/resource/", Xg = "http://purl.org/dc/elements/1.1/", Vg = "http://purl.org/dc/terms/", Wg = "http://xmlns.com/foaf/0.1/", Yg = "http://data-iremus.huma-num.fr/ns/hemef#", oe = "http://data-iremus.huma-num.fr/id/", Qg = "http://data-iremus.huma-num.fr/id/", zg = "http://data-iremus.huma-num.fr/ns/", Zg = "http://data-iremus.huma-num.fr/graph/", Kg = "http://www.mimo-db.eu/", Jg = "http://data-iremus.huma-num.fr/ns/musrad30#", qg = "http://www.w3.org/2002/07/owl#", ed = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", sd = "http://www.w3.org/2000/01/rdf-schema#", rd = "http://schema.org/", td = "http://www.w3.org/2004/02/skos/core#", id = /* @__PURE__ */ new Map([
+const Hg = "http://purl.org/ontology/bibo/", kg = "http://iflastandards.info/ns/lrm/lrmoo/", Bg = "http://www.cidoc-crm.org/cidoc-crm/", Mg = "http://www.ics.forth.gr/isl/CRMdig/", jg = "http://dbpedia.org/resource/", Xg = "http://purl.org/dc/elements/1.1/", Vg = "http://purl.org/dc/terms/", Wg = "http://xmlns.com/foaf/0.1/", Yg = "http://data-iremus.huma-num.fr/ns/hemef#", oe = "http://data-iremus.huma-num.fr/id/", Qg = "http://data-iremus.huma-num.fr/id/", zg = "http://data-iremus.huma-num.fr/ns/", Zg = "http://data-iremus.huma-num.fr/graph/", Kg = "http://www.mimo-db.eu/", Jg = "http://data-iremus.huma-num.fr/ns/musrad30#", qg = "http://www.w3.org/2002/07/owl#", ed = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", sd = "http://www.w3.org/2000/01/rdf-schema#", rd = "http://schema.org/", td = "http://www.w3.org/2004/02/skos/core#", id = /* @__PURE__ */ new Map([
   [Bg, "crm"],
   [Mg, "crmdig"],
   [Hg, "bibo"],
@@ -98,7 +98,7 @@ const Xr = class {
   }
 };
 X(Xr, "void", new Xr(""));
-let Di = Xr;
+let Gi = Xr;
 class Yr extends ad {
   constructor(d, e, A) {
     super(d), X(this, "_comment"), X(this, "_intCodeForSorting"), X(this, "_label"), X(this, "_name"), X(this, "_ontology"), this._comment = /* @__PURE__ */ new Map(), this._intCodeForSorting = -1, this._label = /* @__PURE__ */ new Map(), this._name = e, this._ontology = A;
@@ -140,11 +140,11 @@ const Vr = class extends Yr {
     this._subClassOf.push(d);
   }
 };
-X(Vr, "void", new Vr("", "", Di.void));
-let Ni = Vr;
-const Si = class Gi extends Yr {
+X(Vr, "void", new Vr("", "", Gi.void));
+let Si = Vr;
+const Fi = class Ui extends Yr {
   constructor(d, e, A) {
-    super(d, e, A), X(this, "_domain", Ni.void), X(this, "_inverseOf", Gi.void), X(this, "_range", Ni.void), X(this, "_subPropertyOf"), this._subPropertyOf = new Array();
+    super(d, e, A), X(this, "_domain", Si.void), X(this, "_inverseOf", Ui.void), X(this, "_range", Si.void), X(this, "_subPropertyOf"), this._subPropertyOf = new Array();
   }
   get domain() {
     return this._domain;
@@ -168,7 +168,7 @@ const Si = class Gi extends Yr {
     this._subPropertyOf.push(d);
   }
 };
-X(Si, "void", new Si("", "", Di.void));
+X(Fi, "void", new Fi("", "", Gi.void));
 const K = {
   selection: oe + "9d0388cb-a178-46b2-b047-b5a98f7bdf0b",
   analyticalEntity: oe + "6d72746a-9f28-4739-8786-c6415d53c56d",
@@ -587,17 +587,17 @@ Ze.buildMessage = function(i, d) {
 };
 function od(i, d) {
   d = d !== void 0 ? d : {};
-  var e = {}, A = d.grammarSource, L = { DOCUMENT: Jt }, Q = Jt, J = "base", W = "prefix", ne = "select", O = "distinct", D = "reduced", m = "(", $e = "as", E = ")", ae = "*", qr = "construct", ls = "where", Pe = "{", Te = "}", Wi = "describe", Yi = "ask", Qi = "from", js = "named", zi = "group", et = "by", Zi = "having", Ki = "order", Ji = "asc", qi = "desc", ea = "limit", sa = "offset", st = "values", Ue = ";", ra = "load", Re = "silent", ta = "into", ia = "clear", aa = "drop", la = "create", fa = "add", Xs = "to", oa = "move", ca = "copy", rt = "insert", tt = "data", Vs = "delete", na = "with", ha = "using", it = "default", fs = "graph", ua = "all", z = ".", pa = "optional", ga = "service", da = "bind", at = "UNDEF", wa = "minus", lt = "union", _a = "filter", U = ",", os = "a", cs = "|", be = "/", ft = "^", Ws = "?", Le = "+", Ys = "!", Qs = "[", zs = "]", ns = "||", hs = "&&", us = "=", ps = "!=", Zs = "<", Ks = ">", gs = "<=", ds = ">=", ws = "in", Js = "not", he = "-", $a = "str", ba = "lang", va = "langmatches", ma = "datatype", Aa = "bound", Ca = "iri", Ea = "uri", ya = "bnode", Pa = "rand", Ta = "abs", Ra = "ceil", La = "floor", Ia = "round", Oa = "concat", Na = "strlen", Sa = "ucase", Fa = "lcase", xa = "encode_for_uri", Da = "contains", Ga = "strbefore", Ua = "strstarts", Ha = "strends", ka = "strafter", Ba = "year", Ma = "month", ja = "day", Xa = "hours", Va = "minutes", Wa = "seconds", Ya = "timezone", Qa = "tz", za = "now", Za = "uuid", Ka = "struuid", Ja = "md5", qa = "sha1", el = "sha256", sl = "sha384", rl = "sha512", tl = "coalesce", il = "if", al = "strlang", ll = "strdt", fl = "sameterm", ol = "isuri", cl = "isiri", nl = "isblank", hl = "isliteral", ul = "isnumeric", pl = "regex", gl = "substr", dl = "replace", ot = "exists", wl = "count", _l = "sum", $l = "min", bl = "max", vl = "avg", ml = "sample", Al = "group_concat", Cl = "separator", ct = "^^", El = "true", yl = "false", He = ":", nt = "_:", ht = "$", ut = "@", Ke = "'", _s = '"', $s = "'''", bs = "''", vs = '"""', ms = '""', pt = "\\", qs = "#", gt = "_", dt = "%", Pl = "~", Tl = "&", wt = /^[^<>"{}|\^`\\\0- ]/, M = /^[0-9]/, _t = /^[a-zA-Z]/, As = /^[a-zA-Z0-9]/, Rl = /^[eE]/, Ll = /^[+\-]/, $t = /^[^'\\\n\r]/, bt = /^[^"\\\n\r]/, vt = /^[^'\\]/, mt = /^[^"\\]/, Il = /^[tbnrf\\"']/, Ol = /^[ \t]/, Nl = /^[\r\n]/, Sl = /^[^\r\n]/, Fl = /^[A-Z]/, xl = /^[a-z]/, Dl = /^[\xC0-\xD6]/, Gl = /^[\xD8-\xF6]/, Ul = /^[\xF8-\u02FF]/, Hl = /^[\u0370-\u037D]/, kl = /^[\u037F-\u1FFF]/, Bl = /^[\u200C-\u200D]/, Ml = /^[\u2070-\u218F]/, jl = /^[\u2C00-\u2FEF]/, Xl = /^[\u3001-\uD7FF]/, Vl = /^[\uF900-\uFDCF]/, Wl = /^[\uFDF0-\uFFFD]/, er = /^[\xB7]/, sr = /^[\u0300-\u036F]/, rr = /^[\u203F-\u2040]/, Yl = /^[A-F]/, Ql = /^[a-f]/, zl = b("BASE", !0), Zl = b("PREFIX", !0), Kl = b("SELECT", !0), ve = b("DISTINCT", !0), Jl = b("REDUCED", !0), y = b("(", !1), Cs = b("AS", !0), P = b(")", !1), le = b("*", !1), At = b("CONSTRUCT", !0), Es = b("WHERE", !0), Ie = b("{", !1), Oe = b("}", !1), ql = b("DESCRIBE", !0), ef = b("ASK", !0), sf = b("FROM", !0), tr = b("NAMED", !0), rf = b("GROUP", !0), Ct = b("BY", !0), tf = b("HAVING", !0), af = b("ORDER", !0), lf = b("ASC", !0), ff = b("DESC", !0), of = b("LIMIT", !0), cf = b("OFFSET", !0), Et = b("VALUES", !0), ke = b(";", !1), nf = b("LOAD", !0), Ne = b("SILENT", !0), hf = b("INTO", !0), uf = b("CLEAR", !0), pf = b("DROP", !0), gf = b("CREATE", !0), df = b("ADD", !0), ir = b("TO", !0), wf = b("MOVE", !0), _f = b("COPY", !0), yt = b("INSERT", !0), Pt = b("DATA", !0), ar = b("DELETE", !0), $f = b("WITH", !0), bf = b("USING", !0), Tt = b("DEFAULT", !0), ys = b("GRAPH", !0), vf = b("ALL", !0), Z = b(".", !1), mf = b("OPTIONAL", !0), Af = b("SERVICE", !0), Cf = b("BIND", !0), Ef = b("UNDEF", !1), yf = b("MINUS", !0), Rt = b("UNION", !0), Pf = b("FILTER", !0), H = b(",", !1), Ps = b("a", !1), Ts = b("|", !1), me = b("/", !1), Lt = b("^", !1), lr = b("?", !1), Se = b("+", !1), fr = b("!", !1), or = b("[", !1), cr = b("]", !1), It = b("||", !1), Ot = b("&&", !1), Rs = b("=", !1), Nt = b("!=", !1), nr = b("<", !1), hr = b(">", !1), St = b("<=", !1), Ft = b(">=", !1), Ls = b("IN", !0), ur = b("NOT", !0), ue = b("-", !1), Tf = b("STR", !0), Rf = b("LANG", !0), Lf = b("LANGMATCHES", !0), If = b("DATATYPE", !0), Of = b("BOUND", !0), Nf = b("IRI", !0), Sf = b("URI", !0), Ff = b("BNODE", !0), xf = b("RAND", !0), Df = b("ABS", !0), Gf = b("CEIL", !0), Uf = b("FLOOR", !0), Hf = b("ROUND", !0), kf = b("CONCAT", !0), Bf = b("STRLEN", !0), Mf = b("UCASE", !0), jf = b("LCASE", !0), Xf = b("ENCODE_FOR_URI", !0), Vf = b("CONTAINS", !0), Wf = b("STRBEFORE", !0), Yf = b("STRSTARTS", !0), Qf = b("STRENDS", !0), zf = b("STRAFTER", !0), Zf = b("YEAR", !0), Kf = b("MONTH", !0), Jf = b("DAY", !0), qf = b("HOURS", !0), eo = b("MINUTES", !0), so = b("SECONDS", !0), ro = b("TIMEZONE", !0), to = b("TZ", !0), io = b("NOW", !0), ao = b("UUID", !0), lo = b("STRUUID", !0), fo = b("MD5", !0), oo = b("SHA1", !0), co = b("SHA256", !0), no = b("SHA384", !0), ho = b("SHA512", !0), uo = b("COALESCE", !0), po = b("IF", !0), go = b("STRLANG", !0), wo = b("STRDT", !0), _o = b("sameTerm", !0), $o = b("isURI", !0), bo = b("isIRI", !0), vo = b("isBLANK", !0), mo = b("isLITERAL", !0), Ao = b("isNUMERIC", !0), Co = b("REGEX", !0), Eo = b("SUBSTR", !0), yo = b("REPLACE", !0), xt = b("EXISTS", !0), Po = b("COUNT", !0), To = b("SUM", !0), Ro = b("MIN", !0), Lo = b("MAX", !0), Io = b("AVG", !0), Oo = b("SAMPLE", !0), No = b("GROUP_CONCAT", !0), So = b("SEPARATOR", !0), Fo = b("^^", !1), xo = b("true", !0), Do = b("false", !0), Dt = F(["<", ">", '"', "{", "}", "|", "^", "`", "\\", ["\0", " "]], !0, !1), Be = b(":", !1), Go = b("_:", !1), j = F([["0", "9"]], !1, !1), Gt = b("$", !1), Ut = b("@", !1), Ht = F([["a", "z"], ["A", "Z"]], !1, !1), Is = F([["a", "z"], ["A", "Z"], ["0", "9"]], !1, !1), Uo = F(["e", "E"], !1, !1), Ho = F(["+", "-"], !1, !1), Je = b("'", !1), kt = F(["'", "\\", `
-`, "\r"], !0, !1), Os = b('"', !1), Bt = F(['"', "\\", `
-`, "\r"], !0, !1), Mt = b("'''", !1), jt = b("''", !1), Xt = F(["'", "\\"], !0, !1), Vt = b('"""', !1), Wt = b('""', !1), Yt = F(['"', "\\"], !0, !1), Qt = b("\\", !1), ko = F(["t", "b", "n", "r", "f", "\\", '"', "'"], !1, !1), Bo = F([" ", "	"], !1, !1), Mo = F(["\r", `
+  var e = {}, A = d.grammarSource, L = { DOCUMENT: qt }, Q = qt, J = "base", W = "prefix", ne = "select", O = "distinct", D = "reduced", m = "(", $e = "as", E = ")", ae = "*", et = "construct", ls = "where", Pe = "{", Te = "}", Wi = "describe", Yi = "ask", Qi = "from", js = "named", zi = "group", st = "by", Zi = "having", Ki = "order", Ji = "asc", qi = "desc", ea = "limit", sa = "offset", rt = "values", Ue = ";", ra = "load", Re = "silent", ta = "into", ia = "clear", aa = "drop", la = "create", fa = "add", Xs = "to", oa = "move", ca = "copy", tt = "insert", it = "data", Vs = "delete", na = "with", ha = "using", at = "default", fs = "graph", ua = "all", z = ".", pa = "optional", ga = "service", da = "bind", lt = "UNDEF", wa = "minus", ft = "union", _a = "filter", U = ",", os = "a", cs = "|", be = "/", ot = "^", Ws = "?", Le = "+", Ys = "!", Qs = "[", zs = "]", ns = "||", hs = "&&", us = "=", ps = "!=", Zs = "<", Ks = ">", gs = "<=", ds = ">=", ws = "in", Js = "not", he = "-", $a = "str", ba = "lang", va = "langmatches", ma = "datatype", Aa = "bound", Ca = "iri", Ea = "uri", ya = "bnode", Pa = "rand", Ta = "abs", Ra = "ceil", La = "floor", Ia = "round", Oa = "concat", Na = "strlen", Sa = "ucase", Fa = "lcase", xa = "encode_for_uri", Da = "contains", Ga = "strbefore", Ua = "strstarts", Ha = "strends", ka = "strafter", Ba = "year", Ma = "month", ja = "day", Xa = "hours", Va = "minutes", Wa = "seconds", Ya = "timezone", Qa = "tz", za = "now", Za = "uuid", Ka = "struuid", Ja = "md5", qa = "sha1", el = "sha256", sl = "sha384", rl = "sha512", tl = "coalesce", il = "if", al = "strlang", ll = "strdt", fl = "sameterm", ol = "isuri", cl = "isiri", nl = "isblank", hl = "isliteral", ul = "isnumeric", pl = "regex", gl = "substr", dl = "replace", ct = "exists", wl = "count", _l = "sum", $l = "min", bl = "max", vl = "avg", ml = "sample", Al = "group_concat", Cl = "separator", nt = "^^", El = "true", yl = "false", He = ":", ht = "_:", ut = "$", pt = "@", Ke = "'", _s = '"', $s = "'''", bs = "''", vs = '"""', ms = '""', gt = "\\", qs = "#", dt = "_", wt = "%", Pl = "~", Tl = "&", _t = /^[^<>"{}|\^`\\\0- ]/, M = /^[0-9]/, $t = /^[a-zA-Z]/, As = /^[a-zA-Z0-9]/, Rl = /^[eE]/, Ll = /^[+\-]/, bt = /^[^'\\\n\r]/, vt = /^[^"\\\n\r]/, mt = /^[^'\\]/, At = /^[^"\\]/, Il = /^[tbnrf\\"']/, Ol = /^[ \t]/, Nl = /^[\r\n]/, Sl = /^[^\r\n]/, Fl = /^[A-Z]/, xl = /^[a-z]/, Dl = /^[\xC0-\xD6]/, Gl = /^[\xD8-\xF6]/, Ul = /^[\xF8-\u02FF]/, Hl = /^[\u0370-\u037D]/, kl = /^[\u037F-\u1FFF]/, Bl = /^[\u200C-\u200D]/, Ml = /^[\u2070-\u218F]/, jl = /^[\u2C00-\u2FEF]/, Xl = /^[\u3001-\uD7FF]/, Vl = /^[\uF900-\uFDCF]/, Wl = /^[\uFDF0-\uFFFD]/, er = /^[\xB7]/, sr = /^[\u0300-\u036F]/, rr = /^[\u203F-\u2040]/, Yl = /^[A-F]/, Ql = /^[a-f]/, zl = b("BASE", !0), Zl = b("PREFIX", !0), Kl = b("SELECT", !0), ve = b("DISTINCT", !0), Jl = b("REDUCED", !0), y = b("(", !1), Cs = b("AS", !0), P = b(")", !1), le = b("*", !1), Ct = b("CONSTRUCT", !0), Es = b("WHERE", !0), Ie = b("{", !1), Oe = b("}", !1), ql = b("DESCRIBE", !0), ef = b("ASK", !0), sf = b("FROM", !0), tr = b("NAMED", !0), rf = b("GROUP", !0), Et = b("BY", !0), tf = b("HAVING", !0), af = b("ORDER", !0), lf = b("ASC", !0), ff = b("DESC", !0), of = b("LIMIT", !0), cf = b("OFFSET", !0), yt = b("VALUES", !0), ke = b(";", !1), nf = b("LOAD", !0), Ne = b("SILENT", !0), hf = b("INTO", !0), uf = b("CLEAR", !0), pf = b("DROP", !0), gf = b("CREATE", !0), df = b("ADD", !0), ir = b("TO", !0), wf = b("MOVE", !0), _f = b("COPY", !0), Pt = b("INSERT", !0), Tt = b("DATA", !0), ar = b("DELETE", !0), $f = b("WITH", !0), bf = b("USING", !0), Rt = b("DEFAULT", !0), ys = b("GRAPH", !0), vf = b("ALL", !0), Z = b(".", !1), mf = b("OPTIONAL", !0), Af = b("SERVICE", !0), Cf = b("BIND", !0), Ef = b("UNDEF", !1), yf = b("MINUS", !0), Lt = b("UNION", !0), Pf = b("FILTER", !0), H = b(",", !1), Ps = b("a", !1), Ts = b("|", !1), me = b("/", !1), It = b("^", !1), lr = b("?", !1), Se = b("+", !1), fr = b("!", !1), or = b("[", !1), cr = b("]", !1), Ot = b("||", !1), Nt = b("&&", !1), Rs = b("=", !1), St = b("!=", !1), nr = b("<", !1), hr = b(">", !1), Ft = b("<=", !1), xt = b(">=", !1), Ls = b("IN", !0), ur = b("NOT", !0), ue = b("-", !1), Tf = b("STR", !0), Rf = b("LANG", !0), Lf = b("LANGMATCHES", !0), If = b("DATATYPE", !0), Of = b("BOUND", !0), Nf = b("IRI", !0), Sf = b("URI", !0), Ff = b("BNODE", !0), xf = b("RAND", !0), Df = b("ABS", !0), Gf = b("CEIL", !0), Uf = b("FLOOR", !0), Hf = b("ROUND", !0), kf = b("CONCAT", !0), Bf = b("STRLEN", !0), Mf = b("UCASE", !0), jf = b("LCASE", !0), Xf = b("ENCODE_FOR_URI", !0), Vf = b("CONTAINS", !0), Wf = b("STRBEFORE", !0), Yf = b("STRSTARTS", !0), Qf = b("STRENDS", !0), zf = b("STRAFTER", !0), Zf = b("YEAR", !0), Kf = b("MONTH", !0), Jf = b("DAY", !0), qf = b("HOURS", !0), eo = b("MINUTES", !0), so = b("SECONDS", !0), ro = b("TIMEZONE", !0), to = b("TZ", !0), io = b("NOW", !0), ao = b("UUID", !0), lo = b("STRUUID", !0), fo = b("MD5", !0), oo = b("SHA1", !0), co = b("SHA256", !0), no = b("SHA384", !0), ho = b("SHA512", !0), uo = b("COALESCE", !0), po = b("IF", !0), go = b("STRLANG", !0), wo = b("STRDT", !0), _o = b("sameTerm", !0), $o = b("isURI", !0), bo = b("isIRI", !0), vo = b("isBLANK", !0), mo = b("isLITERAL", !0), Ao = b("isNUMERIC", !0), Co = b("REGEX", !0), Eo = b("SUBSTR", !0), yo = b("REPLACE", !0), Dt = b("EXISTS", !0), Po = b("COUNT", !0), To = b("SUM", !0), Ro = b("MIN", !0), Lo = b("MAX", !0), Io = b("AVG", !0), Oo = b("SAMPLE", !0), No = b("GROUP_CONCAT", !0), So = b("SEPARATOR", !0), Fo = b("^^", !1), xo = b("true", !0), Do = b("false", !0), Gt = F(["<", ">", '"', "{", "}", "|", "^", "`", "\\", ["\0", " "]], !0, !1), Be = b(":", !1), Go = b("_:", !1), j = F([["0", "9"]], !1, !1), Ut = b("$", !1), Ht = b("@", !1), kt = F([["a", "z"], ["A", "Z"]], !1, !1), Is = F([["a", "z"], ["A", "Z"], ["0", "9"]], !1, !1), Uo = F(["e", "E"], !1, !1), Ho = F(["+", "-"], !1, !1), Je = b("'", !1), Bt = F(["'", "\\", `
+`, "\r"], !0, !1), Os = b('"', !1), Mt = F(['"', "\\", `
+`, "\r"], !0, !1), jt = b("'''", !1), Xt = b("''", !1), Vt = F(["'", "\\"], !0, !1), Wt = b('"""', !1), Yt = b('""', !1), Qt = F(['"', "\\"], !0, !1), zt = b("\\", !1), ko = F(["t", "b", "n", "r", "f", "\\", '"', "'"], !1, !1), Bo = F([" ", "	"], !1, !1), Mo = F(["\r", `
 `], !1, !1), jo = F(["\r", `
-`], !0, !1), pr = b("#", !1), Xo = F([["A", "Z"]], !1, !1), Vo = F([["a", "z"]], !1, !1), Wo = F([["À", "Ö"]], !1, !1), Yo = F([["Ø", "ö"]], !1, !1), Qo = F([["ø", "˿"]], !1, !1), zo = F([["Ͱ", "ͽ"]], !1, !1), Zo = F([["Ϳ", "῿"]], !1, !1), Ko = F([["‌", "‍"]], !1, !1), Jo = F([["⁰", "↏"]], !1, !1), qo = F([["Ⰰ", "⿯"]], !1, !1), ec = F([["、", "퟿"]], !1, !1), sc = F([["豈", "﷏"]], !1, !1), rc = F([["ﷰ", "�"]], !1, !1), zt = b("_", !1), gr = F(["·"], !1, !1), dr = F([["̀", "ͯ"]], !1, !1), wr = F([["‿", "⁀"]], !1, !1), Zt = b("%", !1), tc = F([["A", "F"]], !1, !1), ic = F([["a", "f"]], !1, !1), ac = b("~", !1), lc = b("&", !1), fc = function(s, l) {
+`], !0, !1), pr = b("#", !1), Xo = F([["A", "Z"]], !1, !1), Vo = F([["a", "z"]], !1, !1), Wo = F([["À", "Ö"]], !1, !1), Yo = F([["Ø", "ö"]], !1, !1), Qo = F([["ø", "˿"]], !1, !1), zo = F([["Ͱ", "ͽ"]], !1, !1), Zo = F([["Ϳ", "῿"]], !1, !1), Ko = F([["‌", "‍"]], !1, !1), Jo = F([["⁰", "↏"]], !1, !1), qo = F([["Ⰰ", "⿯"]], !1, !1), ec = F([["、", "퟿"]], !1, !1), sc = F([["豈", "﷏"]], !1, !1), rc = F([["ﷰ", "�"]], !1, !1), Zt = b("_", !1), gr = F(["·"], !1, !1), dr = F([["̀", "ͯ"]], !1, !1), wr = F([["‿", "⁀"]], !1, !1), Kt = b("%", !1), tc = F([["A", "F"]], !1, !1), ic = F([["a", "f"]], !1, !1), ac = b("~", !1), lc = b("&", !1), fc = function(s, l) {
     let o = {};
     s.length ? o = {
       headers: s,
       ...l
     } : o = l;
-    const t = Object.entries(Oi).map(([n, a]) => ({
+    const t = Object.entries(Ni).map(([n, a]) => ({
       pos: parseInt(n),
       text: a
     }));
@@ -1646,7 +1646,7 @@ function od(i, d) {
   }, sp = function() {
     return te();
   }, rp = function() {
-    return Oi[N().start.offset] = te(), "";
+    return Ni[N().start.offset] = te(), "";
   }, tp = function() {
     return te();
   }, ip = function() {
@@ -1674,7 +1674,7 @@ function od(i, d) {
   function lp() {
     return { type: "end" };
   }
-  function Kt(s) {
+  function Jt(s) {
     var l = Ns[s], o;
     if (l)
       return l;
@@ -1688,7 +1688,7 @@ function od(i, d) {
     return Ns[s] = l, l;
   }
   function $r(s, l, o) {
-    var t = Kt(s), n = Kt(l), a = {
+    var t = Jt(s), n = Jt(l), a = {
       source: A,
       start: {
         offset: s,
@@ -1714,10 +1714,10 @@ function od(i, d) {
       o
     );
   }
-  function Jt() {
+  function qt() {
     var s, l, o, t, n, a;
-    for (s = r, l = [], o = Ti(); o !== e; )
-      l.push(o), o = Ti();
+    for (s = r, l = [], o = Ri(); o !== e; )
+      l.push(o), o = Ri();
     for (o = [], t = f(); t !== e; )
       o.push(t), t = f();
     if (t = op(), t !== e) {
@@ -1730,21 +1730,21 @@ function od(i, d) {
   }
   function op() {
     var s;
-    return s = cp(), s === e && (s = ci()), s;
+    return s = cp(), s === e && (s = ni()), s;
   }
   function cp() {
     var s, l, o, t, n;
-    for (s = r, l = qt(), o = [], t = f(); t !== e; )
+    for (s = r, l = ei(), o = [], t = f(); t !== e; )
       o.push(t), t = f();
-    return t = np(), t === e && (t = up(), t === e && (t = pp(), t === e && (t = gp()))), t !== e ? (n = oi(), w = s, s = oc(l, t, n)) : (r = s, s = e), s;
-  }
-  function qt() {
-    var s, l;
-    for (s = [], l = ei(), l === e && (l = si()); l !== e; )
-      s.push(l), l = ei(), l === e && (l = si());
-    return s;
+    return t = np(), t === e && (t = up(), t === e && (t = pp(), t === e && (t = gp()))), t !== e ? (n = ci(), w = s, s = oc(l, t, n)) : (r = s, s = e), s;
   }
   function ei() {
+    var s, l;
+    for (s = [], l = si(), l === e && (l = ri()); l !== e; )
+      s.push(l), l = si(), l === e && (l = ri());
+    return s;
+  }
+  function si() {
     var s, l, o, t, n;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
@@ -1756,7 +1756,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function si() {
+  function ri() {
     var s, l, o, t, n, a, h;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
@@ -1775,7 +1775,7 @@ function od(i, d) {
   }
   function np() {
     var s, l, o, t, n, a, h, c;
-    if (s = r, l = ri(), l !== e) {
+    if (s = r, l = ti(), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
       for (t = [], n = ge(); n !== e; )
@@ -1794,20 +1794,20 @@ function od(i, d) {
   }
   function hp() {
     var s, l, o, t, n, a, h;
-    if (s = r, l = ri(), l !== e) {
+    if (s = r, l = ti(), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
       if (t = qe(), t !== e) {
         for (n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        a = je(), h = oi(), w = s, s = uc(l, t, a, h);
+        a = je(), h = ci(), w = s, s = uc(l, t, a, h);
       } else
         r = s, s = e;
     } else
       r = s, s = e;
     return s;
   }
-  function ri() {
+  function ti() {
     var s, l, o, t, n, a, h, c, g, p, _, $, v, T, I, x, S;
     if (s = r, i.substr(r, 6).toLowerCase() === ne ? (l = i.substr(r, 6), r += 6) : (l = e, u(Kl)), l !== e) {
       for (o = [], t = f(); t !== e; )
@@ -1880,7 +1880,7 @@ function od(i, d) {
   }
   function up() {
     var s, l, o, t, n, a, h, c, g, p, _, $, v, T;
-    if (s = r, i.substr(r, 9).toLowerCase() === qr ? (l = i.substr(r, 9), r += 9) : (l = e, u(At)), l !== e) {
+    if (s = r, i.substr(r, 9).toLowerCase() === et ? (l = i.substr(r, 9), r += 9) : (l = e, u(Ct)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
       if (t = Vp(), t !== e) {
@@ -1901,7 +1901,7 @@ function od(i, d) {
     } else
       r = s, s = e;
     if (s === e)
-      if (s = r, i.substr(r, 9).toLowerCase() === qr ? (l = i.substr(r, 9), r += 9) : (l = e, u(At)), l !== e) {
+      if (s = r, i.substr(r, 9).toLowerCase() === et ? (l = i.substr(r, 9), r += 9) : (l = e, u(Ct)), l !== e) {
         for (o = [], t = f(); t !== e; )
           o.push(t), t = f();
         for (t = [], n = ge(); n !== e; )
@@ -2023,12 +2023,12 @@ function od(i, d) {
     if (s = r, i.substr(r, 5).toLowerCase() === zi ? (l = i.substr(r, 5), r += 5) : (l = e, u(rf)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      if (i.substr(r, 2).toLowerCase() === et ? (t = i.substr(r, 2), r += 2) : (t = e, u(Ct)), t !== e) {
+      if (i.substr(r, 2).toLowerCase() === st ? (t = i.substr(r, 2), r += 2) : (t = e, u(Et)), t !== e) {
         for (n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        if (a = [], h = ti(), h !== e)
+        if (a = [], h = ii(), h !== e)
           for (; h !== e; )
-            a.push(h), h = ti();
+            a.push(h), h = ii();
         else
           a = e;
         a !== e ? (w = s, s = Cc(a)) : (r = s, s = e);
@@ -2038,7 +2038,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function ti() {
+  function ii() {
     var s, l, o, t, n, a, h, c, g, p, _;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
@@ -2051,7 +2051,7 @@ function od(i, d) {
     if (s === e) {
       for (s = r, l = [], o = f(); o !== e; )
         l.push(o), o = f();
-      if (o = bi(), o !== e) {
+      if (o = vi(), o !== e) {
         for (t = [], n = f(); n !== e; )
           t.push(n), n = f();
         w = s, s = yc(o);
@@ -2103,9 +2103,9 @@ function od(i, d) {
     if (s = r, i.substr(r, 6).toLowerCase() === Zi ? (l = i.substr(r, 6), r += 6) : (l = e, u(tf)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      if (t = [], n = ii(), n !== e)
+      if (t = [], n = ai(), n !== e)
         for (; n !== e; )
-          t.push(n), n = ii();
+          t.push(n), n = ai();
       else
         t = e;
       t !== e ? (w = s, s = Rc(t)) : (r = s, s = e);
@@ -2113,7 +2113,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function ii() {
+  function ai() {
     var s, l, o, t;
     if (s = r, l = mr(), l !== e) {
       for (o = [], t = f(); t !== e; )
@@ -2128,12 +2128,12 @@ function od(i, d) {
     if (s = r, i.substr(r, 5).toLowerCase() === Ki ? (l = i.substr(r, 5), r += 5) : (l = e, u(af)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      if (i.substr(r, 2).toLowerCase() === et ? (t = i.substr(r, 2), r += 2) : (t = e, u(Ct)), t !== e) {
+      if (i.substr(r, 2).toLowerCase() === st ? (t = i.substr(r, 2), r += 2) : (t = e, u(Et)), t !== e) {
         for (n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        if (a = [], h = ai(), h !== e)
+        if (a = [], h = li(), h !== e)
           for (; h !== e; )
-            a.push(h), h = ai();
+            a.push(h), h = li();
         else
           a = e;
         if (a !== e) {
@@ -2148,7 +2148,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function ai() {
+  function li() {
     var s, l, o, t, n, a;
     if (s = r, i.substr(r, 3).toLowerCase() === Ji ? (l = i.substr(r, 3), r += 3) : (l = e, u(lf)), l === e && (i.substr(r, 4).toLowerCase() === qi ? (l = i.substr(r, 4), r += 4) : (l = e, u(ff))), l !== e) {
       for (o = [], t = f(); t !== e; )
@@ -2172,9 +2172,9 @@ function od(i, d) {
   }
   function vp() {
     var s, l, o, t;
-    return s = r, l = r, o = li(), o !== e ? (t = fi(), t === e && (t = null), o = [o, t], l = o) : (r = l, l = e), l === e && (l = r, o = fi(), o !== e ? (t = li(), t === e && (t = null), o = [o, t], l = o) : (r = l, l = e)), l !== e && (w = s, l = Sc(l)), s = l, s;
+    return s = r, l = r, o = fi(), o !== e ? (t = oi(), t === e && (t = null), o = [o, t], l = o) : (r = l, l = e), l === e && (l = r, o = oi(), o !== e ? (t = fi(), t === e && (t = null), o = [o, t], l = o) : (r = l, l = e)), l !== e && (w = s, l = Sc(l)), s = l, s;
   }
-  function li() {
+  function fi() {
     var s, l, o, t, n, a;
     if (s = r, i.substr(r, 5).toLowerCase() === ea ? (l = i.substr(r, 5), r += 5) : (l = e, u(of)), l !== e) {
       for (o = [], t = f(); t !== e; )
@@ -2189,7 +2189,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function fi() {
+  function oi() {
     var s, l, o, t, n, a;
     if (s = r, i.substr(r, 6).toLowerCase() === sa ? (l = i.substr(r, 6), r += 6) : (l = e, u(cf)), l !== e) {
       for (o = [], t = f(); t !== e; )
@@ -2204,13 +2204,13 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function oi() {
-    var s, l, o, t;
-    return s = r, l = r, i.substr(r, 6).toLowerCase() === st ? (o = i.substr(r, 6), r += 6) : (o = e, u(Et)), o !== e ? (t = _i(), t !== e ? (o = [o, t], l = o) : (r = l, l = e)) : (r = l, l = e), l === e && (l = null), w = s, l = Dc(l), s = l, s;
-  }
   function ci() {
+    var s, l, o, t;
+    return s = r, l = r, i.substr(r, 6).toLowerCase() === rt ? (o = i.substr(r, 6), r += 6) : (o = e, u(yt)), o !== e ? (t = $i(), t !== e ? (o = [o, t], l = o) : (r = l, l = e)) : (r = l, l = e), l === e && (l = null), w = s, l = Dc(l), s = l, s;
+  }
+  function ni() {
     var s, l, o, t, n, a, h, c, g, p;
-    for (s = r, l = qt(), o = r, t = [], n = f(); n !== e; )
+    for (s = r, l = ei(), o = r, t = [], n = f(); n !== e; )
       t.push(n), n = f();
     if (n = mp(), n !== e) {
       for (a = r, h = [], c = f(); c !== e; )
@@ -2218,7 +2218,7 @@ function od(i, d) {
       if (i.charCodeAt(r) === 59 ? (c = Ue, r++) : (c = e, u(ke)), c !== e) {
         for (g = [], p = f(); p !== e; )
           g.push(p), p = f();
-        p = ci(), h = [h, c, g, p], a = h;
+        p = ni(), h = [h, c, g, p], a = h;
       } else
         r = a, a = e;
       a === e && (a = null), t = [t, n, a], o = t;
@@ -2262,7 +2262,7 @@ function od(i, d) {
         o.push(t), t = f();
       for (i.substr(r, 6).toLowerCase() === Re ? (t = i.substr(r, 6), r += 6) : (t = e, u(Ne)), t === e && (t = null), n = [], a = f(); a !== e; )
         n.push(a), a = f();
-      a = ui(), a !== e ? (w = s, s = Hc(t, a)) : (r = s, s = e);
+      a = pi(), a !== e ? (w = s, s = Hc(t, a)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
@@ -2274,7 +2274,7 @@ function od(i, d) {
         o.push(t), t = f();
       for (i.substr(r, 6).toLowerCase() === Re ? (t = i.substr(r, 6), r += 6) : (t = e, u(Ne)), t === e && (t = null), n = [], a = f(); a !== e; )
         n.push(a), a = f();
-      a = ui(), a !== e ? (w = s, s = kc(t, a)) : (r = s, s = e);
+      a = pi(), a !== e ? (w = s, s = kc(t, a)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
@@ -2359,13 +2359,13 @@ function od(i, d) {
   }
   function Lp() {
     var s, l, o, t, n, a;
-    if (s = r, i.substr(r, 6).toLowerCase() === rt ? (l = i.substr(r, 6), r += 6) : (l = e, u(yt)), l !== e) {
+    if (s = r, i.substr(r, 6).toLowerCase() === tt ? (l = i.substr(r, 6), r += 6) : (l = e, u(Pt)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      if (i.substr(r, 4).toLowerCase() === tt ? (t = i.substr(r, 4), r += 4) : (t = e, u(Pt)), t !== e) {
+      if (i.substr(r, 4).toLowerCase() === it ? (t = i.substr(r, 4), r += 4) : (t = e, u(Tt)), t !== e) {
         for (n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        a = pi(), a !== e ? (w = s, s = Vc(a)) : (r = s, s = e);
+        a = gi(), a !== e ? (w = s, s = Vc(a)) : (r = s, s = e);
       } else
         r = s, s = e;
     } else
@@ -2377,7 +2377,7 @@ function od(i, d) {
     if (s = r, i.substr(r, 6).toLowerCase() === Vs ? (l = i.substr(r, 6), r += 6) : (l = e, u(ar)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      i.substr(r, 4).toLowerCase() === tt ? (t = i.substr(r, 4), r += 4) : (t = e, u(Pt)), t !== e ? (n = pi(), n !== e ? (w = s, s = Wc(n)) : (r = s, s = e)) : (r = s, s = e);
+      i.substr(r, 4).toLowerCase() === it ? (t = i.substr(r, 4), r += 4) : (t = e, u(Tt)), t !== e ? (n = gi(), n !== e ? (w = s, s = Wc(n)) : (r = s, s = e)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
@@ -2413,14 +2413,14 @@ function od(i, d) {
     if (l === e && (l = null), o = r, t = Sp(), t !== e) {
       for (n = [], a = f(); a !== e; )
         n.push(a), a = f();
-      a = ni(), a === e && (a = null), t = [t, n, a], o = t;
+      a = hi(), a === e && (a = null), t = [t, n, a], o = t;
     } else
       r = o, o = e;
-    if (o === e && (o = ni()), o !== e) {
+    if (o === e && (o = hi()), o !== e) {
       for (t = [], n = f(); n !== e; )
         t.push(n), n = f();
-      for (n = [], a = hi(); a !== e; )
-        n.push(a), a = hi();
+      for (n = [], a = ui(); a !== e; )
+        n.push(a), a = ui();
       for (a = [], h = f(); h !== e; )
         a.push(h), h = f();
       if (i.substr(r, 5).toLowerCase() === ls ? (h = i.substr(r, 5), r += 5) : (h = e, u(Es)), h !== e) {
@@ -2442,11 +2442,11 @@ function od(i, d) {
     var s, l, o;
     return s = r, i.substr(r, 6).toLowerCase() === Vs ? (l = i.substr(r, 6), r += 6) : (l = e, u(ar)), l !== e ? (o = vr(), o !== e ? (w = s, s = zc(o)) : (r = s, s = e)) : (r = s, s = e), s;
   }
-  function ni() {
-    var s, l, o;
-    return s = r, i.substr(r, 6).toLowerCase() === rt ? (l = i.substr(r, 6), r += 6) : (l = e, u(yt)), l !== e ? (o = vr(), o !== e ? (w = s, s = Zc(o)) : (r = s, s = e)) : (r = s, s = e), s;
-  }
   function hi() {
+    var s, l, o;
+    return s = r, i.substr(r, 6).toLowerCase() === tt ? (l = i.substr(r, 6), r += 6) : (l = e, u(Pt)), l !== e ? (o = vr(), o !== e ? (w = s, s = Zc(o)) : (r = s, s = e)) : (r = s, s = e), s;
+  }
+  function ui() {
     var s, l, o, t, n, a, h, c;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
@@ -2467,7 +2467,7 @@ function od(i, d) {
   }
   function Xe() {
     var s, l, o, t;
-    if (s = r, i.substr(r, 7).toLowerCase() === it ? (l = i.substr(r, 7), r += 7) : (l = e, u(Tt)), l !== e && (w = s, l = Jc()), s = l, s === e) {
+    if (s = r, i.substr(r, 7).toLowerCase() === at ? (l = i.substr(r, 7), r += 7) : (l = e, u(Rt)), l !== e && (w = s, l = Jc()), s = l, s === e) {
       for (s = r, i.substr(r, 5).toLowerCase() === fs ? (l = i.substr(r, 5), r += 5) : (l = e, u(ys)), l === e && (l = null), o = [], t = f(); t !== e; )
         o.push(t), t = f();
       t = V(), t !== e ? (w = s, s = qc(t)) : (r = s, s = e);
@@ -2484,9 +2484,9 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function ui() {
+  function pi() {
     var s, l;
-    return s = r, l = br(), l !== e && (w = s, l = sn(l)), s = l, s === e && (s = r, i.substr(r, 7).toLowerCase() === it ? (l = i.substr(r, 7), r += 7) : (l = e, u(Tt)), l !== e && (w = s, l = rn()), s = l, s === e && (s = r, i.substr(r, 5).toLowerCase() === js ? (l = i.substr(r, 5), r += 5) : (l = e, u(tr)), l !== e && (w = s, l = tn()), s = l, s === e && (s = r, i.substr(r, 3).toLowerCase() === ua ? (l = i.substr(r, 3), r += 3) : (l = e, u(vf)), l !== e && (w = s, l = an()), s = l))), s;
+    return s = r, l = br(), l !== e && (w = s, l = sn(l)), s = l, s === e && (s = r, i.substr(r, 7).toLowerCase() === at ? (l = i.substr(r, 7), r += 7) : (l = e, u(Rt)), l !== e && (w = s, l = rn()), s = l, s === e && (s = r, i.substr(r, 5).toLowerCase() === js ? (l = i.substr(r, 5), r += 5) : (l = e, u(tr)), l !== e && (w = s, l = tn()), s = l, s === e && (s = r, i.substr(r, 3).toLowerCase() === ua ? (l = i.substr(r, 3), r += 3) : (l = e, u(vf)), l !== e && (w = s, l = an()), s = l))), s;
   }
   function vr() {
     var s, l, o, t, n, a, h, c, g;
@@ -2495,7 +2495,7 @@ function od(i, d) {
     if (i.charCodeAt(r) === 123 ? (o = Pe, r++) : (o = e, u(Ie)), o !== e) {
       for (t = [], n = f(); n !== e; )
         t.push(n), n = f();
-      for (n = gi(), a = [], h = f(); h !== e; )
+      for (n = di(), a = [], h = f(); h !== e; )
         a.push(h), h = f();
       if (i.charCodeAt(r) === 125 ? (h = Te, r++) : (h = e, u(Oe)), h !== e) {
         for (c = [], g = f(); g !== e; )
@@ -2507,14 +2507,14 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function pi() {
+  function gi() {
     var s, l, o, t, n, a, h, c, g;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
     if (i.charCodeAt(r) === 123 ? (o = Pe, r++) : (o = e, u(Ie)), o !== e) {
       for (t = [], n = f(); n !== e; )
         t.push(n), n = f();
-      for (n = gi(), a = [], h = f(); h !== e; )
+      for (n = di(), a = [], h = f(); h !== e; )
         a.push(h), h = f();
       if (i.charCodeAt(r) === 125 ? (h = Te, r++) : (h = e, u(Oe)), h !== e) {
         for (c = [], g = f(); g !== e; )
@@ -2526,13 +2526,13 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function gi() {
+  function di() {
     var s, l, o, t, n, a, h;
-    for (s = r, l = Ve(), l === e && (l = null), o = [], t = r, n = di(), n !== e ? (i.charCodeAt(r) === 46 ? (a = z, r++) : (a = e, u(Z)), a === e && (a = null), h = Ve(), h === e && (h = null), n = [n, a, h], t = n) : (r = t, t = e); t !== e; )
-      o.push(t), t = r, n = di(), n !== e ? (i.charCodeAt(r) === 46 ? (a = z, r++) : (a = e, u(Z)), a === e && (a = null), h = Ve(), h === e && (h = null), n = [n, a, h], t = n) : (r = t, t = e);
+    for (s = r, l = Ve(), l === e && (l = null), o = [], t = r, n = wi(), n !== e ? (i.charCodeAt(r) === 46 ? (a = z, r++) : (a = e, u(Z)), a === e && (a = null), h = Ve(), h === e && (h = null), n = [n, a, h], t = n) : (r = t, t = e); t !== e; )
+      o.push(t), t = r, n = wi(), n !== e ? (i.charCodeAt(r) === 46 ? (a = z, r++) : (a = e, u(Z)), a === e && (a = null), h = Ve(), h === e && (h = null), n = [n, a, h], t = n) : (r = t, t = e);
     return w = s, s = on(l, o), s;
   }
-  function di() {
+  function wi() {
     var s, l, o, t, n, a, h, c, g, p, _, $, v;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
@@ -2563,7 +2563,7 @@ function od(i, d) {
   }
   function Ve() {
     var s, l, o, t, n, a, h;
-    if (s = r, l = Ai(), l !== e) {
+    if (s = r, l = Ci(), l !== e) {
       for (o = r, t = [], n = f(); n !== e; )
         t.push(n), n = f();
       if (i.charCodeAt(r) === 46 ? (n = z, r++) : (n = e, u(Z)), n !== e) {
@@ -2596,7 +2596,7 @@ function od(i, d) {
     var s, l, o, t, n, a, h, c, g, p;
     for (s = r, l = Fs(), l === e && (l = null), o = [], t = f(); t !== e; )
       o.push(t), t = f();
-    if (t = [], n = r, a = wi(), a !== e) {
+    if (t = [], n = r, a = _i(), a !== e) {
       for (h = [], c = f(); c !== e; )
         h.push(c), c = f();
       for (i.charCodeAt(r) === 46 ? (c = z, r++) : (c = e, u(Z)), c === e && (c = null), g = [], p = f(); p !== e; )
@@ -2605,7 +2605,7 @@ function od(i, d) {
     } else
       r = n, n = e;
     for (; n !== e; )
-      if (t.push(n), n = r, a = wi(), a !== e) {
+      if (t.push(n), n = r, a = _i(), a !== e) {
         for (h = [], c = f(); c !== e; )
           h.push(c), c = f();
         for (i.charCodeAt(r) === 46 ? (c = z, r++) : (c = e, u(Z)), c === e && (c = null), g = [], p = f(); p !== e; )
@@ -2631,7 +2631,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function wi() {
+  function _i() {
     var s;
     return s = jp(), s === e && (s = xp(), s === e && (s = Mp(), s === e && (s = Dp(), s === e && (s = Gp(), s === e && (s = Xp(), s === e && (s = Up(), s === e && (s = Hp()))))))), s;
   }
@@ -2717,15 +2717,15 @@ function od(i, d) {
     var s, l, o, t, n;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
-    if (i.substr(r, 6).toLowerCase() === st ? (o = i.substr(r, 6), r += 6) : (o = e, u(Et)), o !== e) {
+    if (i.substr(r, 6).toLowerCase() === rt ? (o = i.substr(r, 6), r += 6) : (o = e, u(yt)), o !== e) {
       for (t = [], n = f(); n !== e; )
         t.push(n), n = f();
-      n = _i(), n !== e ? (w = s, s = $n(n)) : (r = s, s = e);
+      n = $i(), n !== e ? (w = s, s = $n(n)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
   }
-  function _i() {
+  function $i() {
     var s;
     return s = kp(), s === e && (s = Bp()), s;
   }
@@ -2763,8 +2763,8 @@ function od(i, d) {
         if (i.charCodeAt(r) === 123 ? (c = Pe, r++) : (c = e, u(Ie)), c !== e) {
           for (g = [], p = f(); p !== e; )
             g.push(p), p = f();
-          for (p = [], _ = $i(); _ !== e; )
-            p.push(_), _ = $i();
+          for (p = [], _ = bi(); _ !== e; )
+            p.push(_), _ = bi();
           i.charCodeAt(r) === 125 ? (_ = Te, r++) : (_ = e, u(Oe)), _ !== e ? (w = s, s = vn(n, p)) : (r = s, s = e);
         } else
           r = s, s = e;
@@ -2774,7 +2774,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function $i() {
+  function bi() {
     var s, l, o, t, n, a, h;
     if (s = r, i.charCodeAt(r) === 40 ? (l = m, r++) : (l = e, u(y)), l !== e) {
       for (o = [], t = f(); t !== e; )
@@ -2793,7 +2793,7 @@ function od(i, d) {
   }
   function xs() {
     var s, l, o, t;
-    if (s = r, l = V(), l === e && (l = Or(), l === e && (l = Nr(), l === e && (l = xr(), l === e && (i.substr(r, 5) === at ? (l = at, r += 5) : (l = e, u(Ef)))))), l !== e) {
+    if (s = r, l = V(), l === e && (l = Or(), l === e && (l = Nr(), l === e && (l = xr(), l === e && (i.substr(r, 5) === lt ? (l = lt, r += 5) : (l = e, u(Ef)))))), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
       w = s, s = An(l);
@@ -2816,7 +2816,7 @@ function od(i, d) {
     if (s = r, l = fe(), l !== e) {
       for (o = [], t = r, n = [], a = f(); a !== e; )
         n.push(a), a = f();
-      if (i.substr(r, 5).toLowerCase() === lt ? (a = i.substr(r, 5), r += 5) : (a = e, u(Rt)), a !== e) {
+      if (i.substr(r, 5).toLowerCase() === ft ? (a = i.substr(r, 5), r += 5) : (a = e, u(Lt)), a !== e) {
         for (h = [], c = f(); c !== e; )
           h.push(c), c = f();
         c = fe(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -2825,7 +2825,7 @@ function od(i, d) {
       for (; t !== e; ) {
         for (o.push(t), t = r, n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        if (i.substr(r, 5).toLowerCase() === lt ? (a = i.substr(r, 5), r += 5) : (a = e, u(Rt)), a !== e) {
+        if (i.substr(r, 5).toLowerCase() === ft ? (a = i.substr(r, 5), r += 5) : (a = e, u(Lt)), a !== e) {
           for (h = [], c = f(); c !== e; )
             h.push(c), c = f();
           c = fe(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -2851,19 +2851,19 @@ function od(i, d) {
   }
   function mr() {
     var s;
-    return s = Lr(), s === e && (s = Ir(), s === e && (s = bi())), s;
+    return s = Lr(), s === e && (s = Ir(), s === e && (s = vi())), s;
   }
-  function bi() {
+  function vi() {
     var s, l, o, t;
     if (s = r, l = V(), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      t = vi(), t !== e ? (w = s, s = Pn(l, t)) : (r = s, s = e);
+      t = mi(), t !== e ? (w = s, s = Pn(l, t)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
   }
-  function vi() {
+  function mi() {
     var s, l, o, t, n, a, h, c, g, p, _, $;
     if (s = r, l = xe(), l !== e && (w = s, l = Tn()), s = l, s === e)
       if (s = r, i.charCodeAt(r) === 40 ? (l = m, r++) : (l = e, u(y)), l !== e) {
@@ -2928,22 +2928,22 @@ function od(i, d) {
     if (s = r, i.charCodeAt(r) === 123 ? (l = Pe, r++) : (l = e, u(Ie)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      for (t = mi(), t === e && (t = null), n = [], a = f(); a !== e; )
+      for (t = Ai(), t === e && (t = null), n = [], a = f(); a !== e; )
         n.push(a), a = f();
       i.charCodeAt(r) === 125 ? (a = Te, r++) : (a = e, u(Oe)), a !== e ? (w = s, s = On(t)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
   }
-  function mi() {
+  function Ai() {
     var s, l, o, t, n, a, h;
-    if (s = r, l = Ai(), l !== e) {
+    if (s = r, l = Ci(), l !== e) {
       for (o = r, t = [], n = f(); n !== e; )
         t.push(n), n = f();
       if (i.charCodeAt(r) === 46 ? (n = z, r++) : (n = e, u(Z)), n !== e) {
         for (a = [], h = f(); h !== e; )
           a.push(h), h = f();
-        h = mi(), h === e && (h = null), t = [t, n, a, h], o = t;
+        h = Ai(), h === e && (h = null), t = [t, n, a, h], o = t;
       } else
         r = o, o = e;
       o === e && (o = null), w = s, s = Nn(l, o);
@@ -2951,7 +2951,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function Ai() {
+  function Ci() {
     var s, l, o, t, n;
     if (s = r, l = Us(), l !== e) {
       for (o = [], t = f(); t !== e; )
@@ -2962,7 +2962,7 @@ function od(i, d) {
     if (s === e) {
       for (s = r, l = [], o = f(); o !== e; )
         l.push(o), o = f();
-      if (o = Ei(), o !== e) {
+      if (o = yi(), o !== e) {
         for (t = [], n = f(); n !== e; )
           t.push(n), n = f();
         n = Wp(), w = s, s = Fn(o, n);
@@ -3059,7 +3059,7 @@ function od(i, d) {
     if (s === e) {
       for (s = r, l = [], o = f(); o !== e; )
         l.push(o), o = f();
-      if (o = yi(), o !== e) {
+      if (o = Pi(), o !== e) {
         for (t = [], n = f(); n !== e; )
           t.push(n), n = f();
         n = Qp(), w = s, s = Hn(o, n);
@@ -3193,13 +3193,13 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function Ci() {
+  function Ei() {
     var s, l, o;
     return s = r, l = Kp(), l !== e ? (o = Zp(), o === e && (o = null), w = s, s = Xn(l, o)) : (r = s, s = e), s;
   }
   function Pr() {
     var s, l, o;
-    return s = Ci(), s === e && (s = r, i.charCodeAt(r) === 94 ? (l = ft, r++) : (l = e, u(Lt)), l !== e ? (o = Ci(), o !== e ? (w = s, s = Vn(o)) : (r = s, s = e)) : (r = s, s = e)), s;
+    return s = Ei(), s === e && (s = r, i.charCodeAt(r) === 94 ? (l = ot, r++) : (l = e, u(It)), l !== e ? (o = Ei(), o !== e ? (w = s, s = Vn(o)) : (r = s, s = e)) : (r = s, s = e)), s;
   }
   function Zp() {
     var s;
@@ -3226,9 +3226,9 @@ function od(i, d) {
   }
   function Gs() {
     var s, l, o;
-    return s = V(), s === e && (i.charCodeAt(r) === 97 ? (s = os, r++) : (s = e, u(Ps)), s === e && (s = r, i.charCodeAt(r) === 94 ? (l = ft, r++) : (l = e, u(Lt)), l !== e ? (o = V(), o === e && (i.charCodeAt(r) === 97 ? (o = os, r++) : (o = e, u(Ps))), o !== e ? (l = [l, o], s = l) : (r = s, s = e)) : (r = s, s = e))), s;
+    return s = V(), s === e && (i.charCodeAt(r) === 97 ? (s = os, r++) : (s = e, u(Ps)), s === e && (s = r, i.charCodeAt(r) === 94 ? (l = ot, r++) : (l = e, u(It)), l !== e ? (o = V(), o === e && (i.charCodeAt(r) === 97 ? (o = os, r++) : (o = e, u(Ps))), o !== e ? (l = [l, o], s = l) : (r = s, s = e)) : (r = s, s = e))), s;
   }
-  function Ei() {
+  function yi() {
     var s, l;
     return s = r, l = sg(), l !== e && (w = s, l = Qn(l)), s = l, s === e && (s = qp()), s;
   }
@@ -3254,7 +3254,7 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function yi() {
+  function Pi() {
     var s, l;
     return s = r, l = rg(), l !== e && (w = s, l = Zn(l)), s = l, s === e && (s = eg()), s;
   }
@@ -3338,13 +3338,13 @@ function od(i, d) {
     var s, l, o;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
-    return o = Us(), o === e && (o = Ei()), o !== e ? (w = s, s = eh(o)) : (r = s, s = e), s;
+    return o = Us(), o === e && (o = yi()), o !== e ? (w = s, s = eh(o)) : (r = s, s = e), s;
   }
   function rs() {
     var s, l, o;
     for (s = r, l = [], o = f(); o !== e; )
       l.push(o), o = f();
-    return o = Us(), o === e && (o = yi()), o !== e ? (w = s, s = sh(o)) : (r = s, s = e), s;
+    return o = Us(), o === e && (o = Pi()), o !== e ? (w = s, s = sh(o)) : (r = s, s = e), s;
   }
   function Us() {
     var s;
@@ -3375,7 +3375,7 @@ function od(i, d) {
     if (s = r, l = Tr(), l !== e) {
       for (o = [], t = r, n = [], a = f(); a !== e; )
         n.push(a), a = f();
-      if (i.substr(r, 2) === ns ? (a = ns, r += 2) : (a = e, u(It)), a !== e) {
+      if (i.substr(r, 2) === ns ? (a = ns, r += 2) : (a = e, u(Ot)), a !== e) {
         for (h = [], c = f(); c !== e; )
           h.push(c), c = f();
         c = Tr(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3384,7 +3384,7 @@ function od(i, d) {
       for (; t !== e; ) {
         for (o.push(t), t = r, n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        if (i.substr(r, 2) === ns ? (a = ns, r += 2) : (a = e, u(It)), a !== e) {
+        if (i.substr(r, 2) === ns ? (a = ns, r += 2) : (a = e, u(Ot)), a !== e) {
           for (h = [], c = f(); c !== e; )
             h.push(c), c = f();
           c = Tr(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3401,7 +3401,7 @@ function od(i, d) {
     if (s = r, l = Rr(), l !== e) {
       for (o = [], t = r, n = [], a = f(); a !== e; )
         n.push(a), a = f();
-      if (i.substr(r, 2) === hs ? (a = hs, r += 2) : (a = e, u(Ot)), a !== e) {
+      if (i.substr(r, 2) === hs ? (a = hs, r += 2) : (a = e, u(Nt)), a !== e) {
         for (h = [], c = f(); c !== e; )
           h.push(c), c = f();
         c = Rr(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3410,7 +3410,7 @@ function od(i, d) {
       for (; t !== e; ) {
         for (o.push(t), t = r, n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        if (i.substr(r, 2) === hs ? (a = hs, r += 2) : (a = e, u(Ot)), a !== e) {
+        if (i.substr(r, 2) === hs ? (a = hs, r += 2) : (a = e, u(Nt)), a !== e) {
           for (h = [], c = f(); c !== e; )
             h.push(c), c = f();
           c = Rr(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3436,7 +3436,7 @@ function od(i, d) {
       if (t === e) {
         for (t = r, n = [], a = f(); a !== e; )
           n.push(a), a = f();
-        if (i.substr(r, 2) === ps ? (a = ps, r += 2) : (a = e, u(Nt)), a !== e) {
+        if (i.substr(r, 2) === ps ? (a = ps, r += 2) : (a = e, u(St)), a !== e) {
           for (h = [], c = f(); c !== e; )
             h.push(c), c = f();
           c = q(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3463,7 +3463,7 @@ function od(i, d) {
             if (t === e) {
               for (t = r, n = [], a = f(); a !== e; )
                 n.push(a), a = f();
-              if (i.substr(r, 2) === gs ? (a = gs, r += 2) : (a = e, u(St)), a !== e) {
+              if (i.substr(r, 2) === gs ? (a = gs, r += 2) : (a = e, u(Ft)), a !== e) {
                 for (h = [], c = f(); c !== e; )
                   h.push(c), c = f();
                 c = q(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3472,7 +3472,7 @@ function od(i, d) {
               if (t === e) {
                 for (t = r, n = [], a = f(); a !== e; )
                   n.push(a), a = f();
-                if (i.substr(r, 2) === ds ? (a = ds, r += 2) : (a = e, u(Ft)), a !== e) {
+                if (i.substr(r, 2) === ds ? (a = ds, r += 2) : (a = e, u(xt)), a !== e) {
                   for (h = [], c = f(); c !== e; )
                     h.push(c), c = f();
                   c = q(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3520,7 +3520,7 @@ function od(i, d) {
         if (t === e) {
           for (t = r, n = [], a = f(); a !== e; )
             n.push(a), a = f();
-          if (i.substr(r, 2) === ps ? (a = ps, r += 2) : (a = e, u(Nt)), a !== e) {
+          if (i.substr(r, 2) === ps ? (a = ps, r += 2) : (a = e, u(St)), a !== e) {
             for (h = [], c = f(); c !== e; )
               h.push(c), c = f();
             c = q(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3547,7 +3547,7 @@ function od(i, d) {
               if (t === e) {
                 for (t = r, n = [], a = f(); a !== e; )
                   n.push(a), a = f();
-                if (i.substr(r, 2) === gs ? (a = gs, r += 2) : (a = e, u(St)), a !== e) {
+                if (i.substr(r, 2) === gs ? (a = gs, r += 2) : (a = e, u(Ft)), a !== e) {
                   for (h = [], c = f(); c !== e; )
                     h.push(c), c = f();
                   c = q(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -3556,7 +3556,7 @@ function od(i, d) {
                 if (t === e) {
                   for (t = r, n = [], a = f(); a !== e; )
                     n.push(a), a = f();
-                  if (i.substr(r, 2) === ds ? (a = ds, r += 2) : (a = e, u(Ft)), a !== e) {
+                  if (i.substr(r, 2) === ds ? (a = ds, r += 2) : (a = e, u(xt)), a !== e) {
                     for (h = [], c = f(); c !== e; )
                       h.push(c), c = f();
                     c = q(), c !== e ? (n = [n, a, h, c], t = n) : (r = t, t = e);
@@ -4868,7 +4868,7 @@ function od(i, d) {
   }
   function fg() {
     var s, l, o, t;
-    if (s = r, i.substr(r, 6).toLowerCase() === ot ? (l = i.substr(r, 6), r += 6) : (l = e, u(xt)), l !== e) {
+    if (s = r, i.substr(r, 6).toLowerCase() === ct ? (l = i.substr(r, 6), r += 6) : (l = e, u(Dt)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
       t = fe(), t !== e ? (w = s, s = pu(t)) : (r = s, s = e);
@@ -4881,7 +4881,7 @@ function od(i, d) {
     if (s = r, i.substr(r, 3).toLowerCase() === Js ? (l = i.substr(r, 3), r += 3) : (l = e, u(ur)), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      if (i.substr(r, 6).toLowerCase() === ot ? (t = i.substr(r, 6), r += 6) : (t = e, u(xt)), t !== e) {
+      if (i.substr(r, 6).toLowerCase() === ct ? (t = i.substr(r, 6), r += 6) : (t = e, u(Dt)), t !== e) {
         for (n = [], a = f(); a !== e; )
           n.push(a), a = f();
         a = fe(), a !== e ? (w = s, s = gu(a)) : (r = s, s = e);
@@ -5057,7 +5057,7 @@ function od(i, d) {
                           if (i.charCodeAt(r) === 61 ? (I = us, r++) : (I = e, u(Rs)), I !== e) {
                             for (x = [], S = f(); S !== e; )
                               x.push(S), S = f();
-                            S = Pi(), S !== e ? (p = [p, _, $, v, T, I, x, S], g = p) : (r = g, g = e);
+                            S = Ti(), S !== e ? (p = [p, _, $, v, T, I, x, S], g = p) : (r = g, g = e);
                           } else
                             r = g, g = e;
                         } else
@@ -5090,14 +5090,14 @@ function od(i, d) {
     if (s = r, l = V(), l !== e) {
       for (o = [], t = f(); t !== e; )
         o.push(t), t = f();
-      t = vi(), t === e && (t = null), w = s, s = Au(l, t);
+      t = mi(), t === e && (t = null), w = s, s = Au(l, t);
     } else
       r = s, s = e;
     return s;
   }
   function Or() {
     var s, l, o, t, n;
-    return s = r, l = Pi(), l !== e ? (o = $g(), o === e && (o = r, i.substr(r, 2) === ct ? (t = ct, r += 2) : (t = e, u(Fo)), t !== e ? (n = V(), n !== e ? (t = [t, n], o = t) : (r = o, o = e)) : (r = o, o = e)), o === e && (o = null), w = s, s = Cu(l, o)) : (r = s, s = e), s;
+    return s = r, l = Ti(), l !== e ? (o = $g(), o === e && (o = r, i.substr(r, 2) === nt ? (t = nt, r += 2) : (t = e, u(Fo)), t !== e ? (n = V(), n !== e ? (t = [t, n], o = t) : (r = o, o = e)) : (r = o, o = e)), o === e && (o = null), w = s, s = Cu(l, o)) : (r = s, s = e), s;
   }
   function Nr() {
     var s;
@@ -5119,7 +5119,7 @@ function od(i, d) {
     var s, l;
     return s = r, i.substr(r, 4).toLowerCase() === El ? (l = i.substr(r, 4), r += 4) : (l = e, u(xo)), l !== e && (w = s, l = Eu()), s = l, s === e && (s = r, i.substr(r, 5).toLowerCase() === yl ? (l = i.substr(r, 5), r += 5) : (l = e, u(Do)), l !== e && (w = s, l = yu()), s = l), s;
   }
-  function Pi() {
+  function Ti() {
     var s;
     return s = Tg(), s === e && (s = Rg(), s === e && (s = yg(), s === e && (s = Pg()))), s;
   }
@@ -5138,8 +5138,8 @@ function od(i, d) {
   function Dr() {
     var s, l, o, t;
     if (s = r, i.charCodeAt(r) === 60 ? (l = Zs, r++) : (l = e, u(nr)), l !== e) {
-      for (o = [], wt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Dt)); t !== e; )
-        o.push(t), wt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Dt));
+      for (o = [], _t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Gt)); t !== e; )
+        o.push(t), _t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Gt));
       i.charCodeAt(r) === 62 ? (t = Ks, r++) : (t = e, u(hr)), t !== e ? (w = s, s = Nu(o)) : (r = s, s = e);
     } else
       r = s, s = e;
@@ -5155,7 +5155,7 @@ function od(i, d) {
   }
   function dg() {
     var s, l, o, t, n, a, h;
-    if (s = r, i.substr(r, 2) === nt ? (l = nt, r += 2) : (l = e, u(Go)), l !== e)
+    if (s = r, i.substr(r, 2) === ht ? (l = ht, r += 2) : (l = e, u(Go)), l !== e)
       if (o = Qe(), o === e && (M.test(i.charAt(r)) ? (o = i.charAt(r), r++) : (o = e, u(j))), o !== e) {
         for (t = [], n = ie(), n === e && (n = r, i.charCodeAt(r) === 46 ? (a = z, r++) : (a = e, u(Z)), a !== e ? (h = ie(), h !== e ? (a = [a, h], n = a) : (r = n, n = e)) : (r = n, n = e)); n !== e; )
           t.push(n), n = ie(), n === e && (n = r, i.charCodeAt(r) === 46 ? (a = z, r++) : (a = e, u(Z)), a !== e ? (h = ie(), h !== e ? (a = [a, h], n = a) : (r = n, n = e)) : (r = n, n = e));
@@ -5168,18 +5168,18 @@ function od(i, d) {
   }
   function wg() {
     var s, l, o;
-    return s = r, i.charCodeAt(r) === 63 ? (l = Ws, r++) : (l = e, u(lr)), l !== e ? (o = Li(), o !== e ? (w = s, s = Du(o)) : (r = s, s = e)) : (r = s, s = e), s;
+    return s = r, i.charCodeAt(r) === 63 ? (l = Ws, r++) : (l = e, u(lr)), l !== e ? (o = Ii(), o !== e ? (w = s, s = Du(o)) : (r = s, s = e)) : (r = s, s = e), s;
   }
   function _g() {
     var s, l, o;
-    return s = r, i.charCodeAt(r) === 36 ? (l = ht, r++) : (l = e, u(Gt)), l !== e ? (o = Li(), o !== e ? (w = s, s = Gu(o)) : (r = s, s = e)) : (r = s, s = e), s;
+    return s = r, i.charCodeAt(r) === 36 ? (l = ut, r++) : (l = e, u(Ut)), l !== e ? (o = Ii(), o !== e ? (w = s, s = Gu(o)) : (r = s, s = e)) : (r = s, s = e), s;
   }
   function $g() {
     var s, l, o, t, n, a, h, c;
-    if (s = r, i.charCodeAt(r) === 64 ? (l = ut, r++) : (l = e, u(Ut)), l !== e) {
-      if (o = [], _t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Ht)), t !== e)
+    if (s = r, i.charCodeAt(r) === 64 ? (l = pt, r++) : (l = e, u(Ht)), l !== e) {
+      if (o = [], $t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(kt)), t !== e)
         for (; t !== e; )
-          o.push(t), _t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Ht));
+          o.push(t), $t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(kt));
       else
         o = e;
       if (o !== e) {
@@ -5310,8 +5310,8 @@ function od(i, d) {
   function yg() {
     var s, l, o, t;
     if (s = r, i.charCodeAt(r) === 39 ? (l = Ke, r++) : (l = e, u(Je)), l !== e) {
-      for (o = [], $t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(kt)), t === e && (t = Fe()); t !== e; )
-        o.push(t), $t.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(kt)), t === e && (t = Fe());
+      for (o = [], bt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Bt)), t === e && (t = Fe()); t !== e; )
+        o.push(t), bt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Bt)), t === e && (t = Fe());
       i.charCodeAt(r) === 39 ? (t = Ke, r++) : (t = e, u(Je)), t !== e ? (w = s, s = Zu(o)) : (r = s, s = e);
     } else
       r = s, s = e;
@@ -5320,8 +5320,8 @@ function od(i, d) {
   function Pg() {
     var s, l, o, t;
     if (s = r, i.charCodeAt(r) === 34 ? (l = _s, r++) : (l = e, u(Os)), l !== e) {
-      for (o = [], bt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Bt)), t === e && (t = Fe()); t !== e; )
-        o.push(t), bt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Bt)), t === e && (t = Fe());
+      for (o = [], vt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Mt)), t === e && (t = Fe()); t !== e; )
+        o.push(t), vt.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(Mt)), t === e && (t = Fe());
       i.charCodeAt(r) === 34 ? (t = _s, r++) : (t = e, u(Os)), t !== e ? (w = s, s = Ku(o)) : (r = s, s = e);
     } else
       r = s, s = e;
@@ -5329,27 +5329,27 @@ function od(i, d) {
   }
   function Tg() {
     var s, l, o, t, n, a;
-    if (s = r, i.substr(r, 3) === $s ? (l = $s, r += 3) : (l = e, u(Mt)), l !== e) {
-      for (o = [], t = r, i.substr(r, 2) === bs ? (n = bs, r += 2) : (n = e, u(jt)), n === e && (i.charCodeAt(r) === 39 ? (n = Ke, r++) : (n = e, u(Je))), n === e && (n = null), vt.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Xt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e); t !== e; )
-        o.push(t), t = r, i.substr(r, 2) === bs ? (n = bs, r += 2) : (n = e, u(jt)), n === e && (i.charCodeAt(r) === 39 ? (n = Ke, r++) : (n = e, u(Je))), n === e && (n = null), vt.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Xt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e);
-      i.substr(r, 3) === $s ? (t = $s, r += 3) : (t = e, u(Mt)), t !== e ? (w = s, s = Ju(o)) : (r = s, s = e);
+    if (s = r, i.substr(r, 3) === $s ? (l = $s, r += 3) : (l = e, u(jt)), l !== e) {
+      for (o = [], t = r, i.substr(r, 2) === bs ? (n = bs, r += 2) : (n = e, u(Xt)), n === e && (i.charCodeAt(r) === 39 ? (n = Ke, r++) : (n = e, u(Je))), n === e && (n = null), mt.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Vt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e); t !== e; )
+        o.push(t), t = r, i.substr(r, 2) === bs ? (n = bs, r += 2) : (n = e, u(Xt)), n === e && (i.charCodeAt(r) === 39 ? (n = Ke, r++) : (n = e, u(Je))), n === e && (n = null), mt.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Vt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e);
+      i.substr(r, 3) === $s ? (t = $s, r += 3) : (t = e, u(jt)), t !== e ? (w = s, s = Ju(o)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
   }
   function Rg() {
     var s, l, o, t, n, a;
-    if (s = r, i.substr(r, 3) === vs ? (l = vs, r += 3) : (l = e, u(Vt)), l !== e) {
-      for (o = [], t = r, i.substr(r, 2) === ms ? (n = ms, r += 2) : (n = e, u(Wt)), n === e && (i.charCodeAt(r) === 34 ? (n = _s, r++) : (n = e, u(Os))), n === e && (n = null), mt.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Yt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e); t !== e; )
-        o.push(t), t = r, i.substr(r, 2) === ms ? (n = ms, r += 2) : (n = e, u(Wt)), n === e && (i.charCodeAt(r) === 34 ? (n = _s, r++) : (n = e, u(Os))), n === e && (n = null), mt.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Yt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e);
-      i.substr(r, 3) === vs ? (t = vs, r += 3) : (t = e, u(Vt)), t !== e ? (w = s, s = qu(o)) : (r = s, s = e);
+    if (s = r, i.substr(r, 3) === vs ? (l = vs, r += 3) : (l = e, u(Wt)), l !== e) {
+      for (o = [], t = r, i.substr(r, 2) === ms ? (n = ms, r += 2) : (n = e, u(Yt)), n === e && (i.charCodeAt(r) === 34 ? (n = _s, r++) : (n = e, u(Os))), n === e && (n = null), At.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Qt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e); t !== e; )
+        o.push(t), t = r, i.substr(r, 2) === ms ? (n = ms, r += 2) : (n = e, u(Yt)), n === e && (i.charCodeAt(r) === 34 ? (n = _s, r++) : (n = e, u(Os))), n === e && (n = null), At.test(i.charAt(r)) ? (a = i.charAt(r), r++) : (a = e, u(Qt)), a === e && (a = Fe()), a !== e ? (n = [n, a], t = n) : (r = t, t = e);
+      i.substr(r, 3) === vs ? (t = vs, r += 3) : (t = e, u(Wt)), t !== e ? (w = s, s = qu(o)) : (r = s, s = e);
     } else
       r = s, s = e;
     return s;
   }
   function Fe() {
     var s, l, o;
-    return s = r, i.charCodeAt(r) === 92 ? (l = pt, r++) : (l = e, u(Qt)), l !== e ? (Il.test(i.charAt(r)) ? (o = i.charAt(r), r++) : (o = e, u(ko)), o !== e ? (w = s, s = ep()) : (r = s, s = e)) : (r = s, s = e), s;
+    return s = r, i.charCodeAt(r) === 92 ? (l = gt, r++) : (l = e, u(zt)), l !== e ? (Il.test(i.charAt(r)) ? (o = i.charAt(r), r++) : (o = e, u(ko)), o !== e ? (w = s, s = ep()) : (r = s, s = e)) : (r = s, s = e), s;
   }
   function xe() {
     var s, l, o, t;
@@ -5377,7 +5377,7 @@ function od(i, d) {
     var s;
     return Sl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(jo)), s;
   }
-  function Ti() {
+  function Ri() {
     var s, l, o, t;
     if (s = r, i.charCodeAt(r) === 35 ? (l = qs, r++) : (l = e, u(pr)), l !== e) {
       for (o = [], t = ks(); t !== e; )
@@ -5409,15 +5409,15 @@ function od(i, d) {
       r = s, s = e;
     return s;
   }
-  function Ri() {
+  function Li() {
     var s;
     return Fl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Xo)), s === e && (xl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Vo)), s === e && (Dl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Wo)), s === e && (Gl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Yo)), s === e && (Ul.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Qo)), s === e && (Hl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(zo)), s === e && (kl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Zo)), s === e && (Bl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Ko)), s === e && (Ml.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(Jo)), s === e && (jl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(qo)), s === e && (Xl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(ec)), s === e && (Vl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(sc)), s === e && (Wl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(rc)))))))))))))), s;
   }
   function Qe() {
     var s;
-    return s = Ri(), s === e && (i.charCodeAt(r) === 95 ? (s = gt, r++) : (s = e, u(zt))), s;
+    return s = Li(), s === e && (i.charCodeAt(r) === 95 ? (s = dt, r++) : (s = e, u(Zt))), s;
   }
-  function Li() {
+  function Ii() {
     var s, l, o, t;
     if (s = r, l = Qe(), l === e && (M.test(i.charAt(r)) ? (l = i.charAt(r), r++) : (l = e, u(j))), l !== e) {
       for (o = [], t = Qe(), t === e && (M.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(j)), t === e && (er.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(gr)), t === e && (sr.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(dr)), t === e && (rr.test(i.charAt(r)) ? (t = i.charAt(r), r++) : (t = e, u(wr)))))); t !== e; )
@@ -5433,7 +5433,7 @@ function od(i, d) {
   }
   function Og() {
     var s, l, o, t, n, a;
-    if (s = r, l = Ri(), l !== e) {
+    if (s = r, l = Li(), l !== e) {
       for (o = [], t = ie(), t === e && (t = r, i.charCodeAt(r) === 46 ? (n = z, r++) : (n = e, u(Z)), n !== e ? (a = ie(), a !== e ? (n = [n, a], t = n) : (r = t, t = e)) : (r = t, t = e)); t !== e; )
         o.push(t), t = ie(), t === e && (t = r, i.charCodeAt(r) === 46 ? (n = z, r++) : (n = e, u(Z)), n !== e ? (a = ie(), a !== e ? (n = [n, a], t = n) : (r = t, t = e)) : (r = t, t = e));
       w = s, s = ip();
@@ -5457,17 +5457,17 @@ function od(i, d) {
   }
   function Sg() {
     var s, l, o, t;
-    return s = r, i.charCodeAt(r) === 37 ? (l = dt, r++) : (l = e, u(Zt)), l !== e ? (o = Ii(), o !== e ? (t = Ii(), t !== e ? (l = [l, o, t], s = l) : (r = s, s = e)) : (r = s, s = e)) : (r = s, s = e), s;
+    return s = r, i.charCodeAt(r) === 37 ? (l = wt, r++) : (l = e, u(Kt)), l !== e ? (o = Oi(), o !== e ? (t = Oi(), t !== e ? (l = [l, o, t], s = l) : (r = s, s = e)) : (r = s, s = e)) : (r = s, s = e), s;
   }
-  function Ii() {
+  function Oi() {
     var s;
     return M.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(j)), s === e && (Yl.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(tc)), s === e && (Ql.test(i.charAt(r)) ? (s = i.charAt(r), r++) : (s = e, u(ic)))), s;
   }
   function Fg() {
     var s, l, o;
-    return s = r, i.charCodeAt(r) === 92 ? (l = pt, r++) : (l = e, u(Qt)), l !== e ? (i.charCodeAt(r) === 95 ? (o = gt, r++) : (o = e, u(zt)), o === e && (i.charCodeAt(r) === 126 ? (o = Pl, r++) : (o = e, u(ac)), o === e && (i.charCodeAt(r) === 46 ? (o = z, r++) : (o = e, u(Z)), o === e && (i.charCodeAt(r) === 45 ? (o = he, r++) : (o = e, u(ue)), o === e && (i.charCodeAt(r) === 33 ? (o = Ys, r++) : (o = e, u(fr)), o === e && (i.charCodeAt(r) === 36 ? (o = ht, r++) : (o = e, u(Gt)), o === e && (i.charCodeAt(r) === 38 ? (o = Tl, r++) : (o = e, u(lc)), o === e && (i.charCodeAt(r) === 39 ? (o = Ke, r++) : (o = e, u(Je)), o === e && (i.charCodeAt(r) === 40 ? (o = m, r++) : (o = e, u(y)), o === e && (i.charCodeAt(r) === 41 ? (o = E, r++) : (o = e, u(P)), o === e && (i.charCodeAt(r) === 42 ? (o = ae, r++) : (o = e, u(le)), o === e && (i.charCodeAt(r) === 43 ? (o = Le, r++) : (o = e, u(Se)), o === e && (i.charCodeAt(r) === 44 ? (o = U, r++) : (o = e, u(H)), o === e && (i.charCodeAt(r) === 59 ? (o = Ue, r++) : (o = e, u(ke)), o === e && (i.charCodeAt(r) === 58 ? (o = He, r++) : (o = e, u(Be)), o === e && (i.charCodeAt(r) === 61 ? (o = us, r++) : (o = e, u(Rs)), o === e && (i.charCodeAt(r) === 47 ? (o = be, r++) : (o = e, u(me)), o === e && (i.charCodeAt(r) === 63 ? (o = Ws, r++) : (o = e, u(lr)), o === e && (i.charCodeAt(r) === 35 ? (o = qs, r++) : (o = e, u(pr)), o === e && (i.charCodeAt(r) === 64 ? (o = ut, r++) : (o = e, u(Ut)), o === e && (i.charCodeAt(r) === 37 ? (o = dt, r++) : (o = e, u(Zt)))))))))))))))))))))), o !== e ? (l = [l, o], s = l) : (r = s, s = e)) : (r = s, s = e), s;
+    return s = r, i.charCodeAt(r) === 92 ? (l = gt, r++) : (l = e, u(zt)), l !== e ? (i.charCodeAt(r) === 95 ? (o = dt, r++) : (o = e, u(Zt)), o === e && (i.charCodeAt(r) === 126 ? (o = Pl, r++) : (o = e, u(ac)), o === e && (i.charCodeAt(r) === 46 ? (o = z, r++) : (o = e, u(Z)), o === e && (i.charCodeAt(r) === 45 ? (o = he, r++) : (o = e, u(ue)), o === e && (i.charCodeAt(r) === 33 ? (o = Ys, r++) : (o = e, u(fr)), o === e && (i.charCodeAt(r) === 36 ? (o = ut, r++) : (o = e, u(Ut)), o === e && (i.charCodeAt(r) === 38 ? (o = Tl, r++) : (o = e, u(lc)), o === e && (i.charCodeAt(r) === 39 ? (o = Ke, r++) : (o = e, u(Je)), o === e && (i.charCodeAt(r) === 40 ? (o = m, r++) : (o = e, u(y)), o === e && (i.charCodeAt(r) === 41 ? (o = E, r++) : (o = e, u(P)), o === e && (i.charCodeAt(r) === 42 ? (o = ae, r++) : (o = e, u(le)), o === e && (i.charCodeAt(r) === 43 ? (o = Le, r++) : (o = e, u(Se)), o === e && (i.charCodeAt(r) === 44 ? (o = U, r++) : (o = e, u(H)), o === e && (i.charCodeAt(r) === 59 ? (o = Ue, r++) : (o = e, u(ke)), o === e && (i.charCodeAt(r) === 58 ? (o = He, r++) : (o = e, u(Be)), o === e && (i.charCodeAt(r) === 61 ? (o = us, r++) : (o = e, u(Rs)), o === e && (i.charCodeAt(r) === 47 ? (o = be, r++) : (o = e, u(me)), o === e && (i.charCodeAt(r) === 63 ? (o = Ws, r++) : (o = e, u(lr)), o === e && (i.charCodeAt(r) === 35 ? (o = qs, r++) : (o = e, u(pr)), o === e && (i.charCodeAt(r) === 64 ? (o = pt, r++) : (o = e, u(Ht)), o === e && (i.charCodeAt(r) === 37 ? (o = wt, r++) : (o = e, u(Kt)))))))))))))))))))))), o !== e ? (l = [l, o], s = l) : (r = s, s = e)) : (r = s, s = e), s;
   }
-  let Oi = {};
+  let Ni = {};
   if (Ss = Q(), Ss !== e && r === i.length)
     return Ss;
   throw Ss !== e && r < i.length && u(lp()), fp(
@@ -5482,7 +5482,7 @@ function cd(i, d = 2) {
   if (Qr = " ".repeat(d), Ee = [], De = i.comments, Ge = "", i.headers && R(i.headers.join("")), (e = i.prologue) != null && e.length && (i.prologue.forEach((W) => {
     W.base ? R(`BASE <${W.base}>`) : R(`PREFIX ${W.prefix || ""}: <${W.iri}>`);
   }), R("")), (A = i.queryBody) != null && A.select)
-    Ui(i.queryBody);
+    Hi(i.queryBody);
   else if (((L = i.queryBody) == null ? void 0 : L.type) === "construct")
     gd(i.queryBody);
   else if (((Q = i.queryBody) == null ? void 0 : Q.type) === "ask")
@@ -5550,19 +5550,19 @@ const we = (i = 1) => {
     i.silent && (d = " SILENT "), R(`LOAD${d}${re(i.sourceGraph)}`);
   } else if (i.type === "clear") {
     let d = " ";
-    i.silent && (d = " SILENT "), R(`CLEAR${d}${Fi(i.destinyGraph)}`);
+    i.silent && (d = " SILENT "), R(`CLEAR${d}${xi(i.destinyGraph)}`);
   } else if (i.type === "drop") {
     let d = " ";
-    i.silent && (d = " SILENT "), R(`DROP${d}${Fi(i.destinyGraph)}`);
+    i.silent && (d = " SILENT "), R(`DROP${d}${xi(i.destinyGraph)}`);
   } else if (i.type === "create") {
     let d = " ";
     i.silent && (d = " SILENT "), R(`CREATE${d}GRAPH ${re(i.destinyGraph)}`);
   }
-}, pd = (i) => i.named ? `NAMED ${re(i.iri)}` : re(i.iri), ze = (i) => i === "default" ? "DEFAULT" : re(i), Fi = (i) => i === "default" ? "DEFAULT" : i === "named" ? "NAMED" : i === "all" ? "ALL" : `GRAPH ${re(i)}`, se = (i, d = 0) => (we(), i.select ? (Ui(i), i.values && (Zr(i.values), d = i.location.end.offset)) : i.graphPattern ? i.graphPattern.forEach((e) => {
-  xi(e), d = e.location.end.offset;
+}, pd = (i) => i.named ? `NAMED ${re(i.iri)}` : re(i.iri), ze = (i) => i === "default" ? "DEFAULT" : re(i), xi = (i) => i === "default" ? "DEFAULT" : i === "named" ? "NAMED" : i === "all" ? "ALL" : `GRAPH ${re(i)}`, se = (i, d = 0) => (we(), i.select ? (Hi(i), i.values && (Zr(i.values), d = i.location.end.offset)) : i.graphPattern ? i.graphPattern.forEach((e) => {
+  Di(e), d = e.location.end.offset;
 }) : i.forEach((e) => {
-  xi(e), d = e.location.end.offset;
-}), _e(), d), Ui = (i) => {
+  Di(e), d = e.location.end.offset;
+}), _e(), d), Hi = (i) => {
   i.select;
   const d = i.location.start.offset;
   let e = i.location.end.offset;
@@ -5597,7 +5597,7 @@ const we = (i = 1) => {
     const e = i.location.start.offset, A = i.location.end.offset;
     return B("FROM NAMED " + d, e), A;
   }
-}, xi = (i) => {
+}, Di = (i) => {
   if (Bs = i.location.start.offset, i.graphPattern && i.graph) {
     B(`GRAPH ${G(i.graph)} {`, Bs);
     const d = se(i);
@@ -5733,7 +5733,7 @@ ${Ge}`, _e(), e;
       return `SAMPLE(${ce(i.expression.value)})`;
     if (i.aggregateType === "group_concat") {
       let d = i.distinct ? "DISTINCT " : "", e = "";
-      return i.separator && (e = `; SEPARATOR = ${Hi(i.separator)}`), `GROUP_CONCAT(${d}${k(i.expression)}${e})`;
+      return i.separator && (e = `; SEPARATOR = ${ki(i.separator)}`), `GROUP_CONCAT(${d}${k(i.expression)}${e})`;
     }
   }
 }, k = (i) => {
@@ -5801,7 +5801,7 @@ ${Ge}`, _e(), e;
   if (i.collection)
     return `( ${i.collection.map((L) => G(L)).join(" ")} )`;
   if (i.hasOwnProperty("literal"))
-    return Hi(i);
+    return ki(i);
   if (i.blankNode)
     return i.blankNode;
   if (i.expressionType)
@@ -5810,7 +5810,7 @@ ${Ge}`, _e(), e;
     return `[${Cd(i.blankNodeProperties, d)} ]`;
   let e = "";
   return i.inverse && (e += "^"), (i.iriPrefix || i.iriLocal || i.iri || i.a) && (e += re(i)), i.alternative ? e += i.alternative.map((A) => G(A)).join("|") : i.sequence && (e += i.sequence.map((A) => G(A)).join("/")), i.bracketted && (e = `(${e})`), i.modifier && (e += i.modifier), e;
-}, Hi = (i) => {
+}, ki = (i) => {
   if (i.dataType === "http://www.w3.org/2001/XMLSchema#decimal")
     return i.literal;
   if (i.dataType === "http://www.w3.org/2001/XMLSchema#double")
@@ -5832,15 +5832,15 @@ ${Ge}`, _e(), e;
     return `:${i.iriLocal}`;
   if (i.a)
     return "a";
-}, ce = (i) => i.varType === "$" ? "$" + i.variable : "?" + i.variable, ki = (i, d = 2) => cd(od(i), d);
-typeof window < "u" && (window.spfmt = ki);
-const yd = "http://purl.org/ontology/bibo/", Pd = "http://iflastandards.info/ns/lrm/lrmoo/", Ce = "http://www.cidoc-crm.org/cidoc-crm/", Td = "http://www.ics.forth.gr/isl/CRMdig/", Rd = "http://dbpedia.org/resource/", Ld = "http://purl.org/dc/elements/1.1/", Bi = "http://purl.org/dc/terms/", Id = "http://xmlns.com/foaf/0.1/", Od = "http://data-iremus.huma-num.fr/ns/hemef#", Nd = "http://data-iremus.huma-num.fr/id/", Sd = "http://data-iremus.huma-num.fr/ns/", Fd = "http://data-iremus.huma-num.fr/graph/", xd = "http://www.mimo-db.eu/", Dd = "http://data-iremus.huma-num.fr/ns/musrad30#", Gd = "http://www.w3.org/2002/07/owl#", Mi = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", ji = "http://www.w3.org/2000/01/rdf-schema#", Ud = "http://schema.org/", Wr = "http://www.w3.org/2004/02/skos/core#", Hd = /* @__PURE__ */ new Map([
+}, ce = (i) => i.varType === "$" ? "$" + i.variable : "?" + i.variable, Bi = (i, d = 2) => cd(od(i), d);
+typeof window < "u" && (window.spfmt = Bi);
+const yd = "http://purl.org/ontology/bibo/", Pd = "http://iflastandards.info/ns/lrm/lrmoo/", Ce = "http://www.cidoc-crm.org/cidoc-crm/", Td = "http://www.ics.forth.gr/isl/CRMdig/", Rd = "http://dbpedia.org/resource/", Ld = "http://purl.org/dc/elements/1.1/", Mi = "http://purl.org/dc/terms/", Id = "http://xmlns.com/foaf/0.1/", Od = "http://data-iremus.huma-num.fr/ns/hemef#", Nd = "http://data-iremus.huma-num.fr/id/", Sd = "http://data-iremus.huma-num.fr/ns/", Fd = "http://data-iremus.huma-num.fr/graph/", xd = "http://www.mimo-db.eu/", Dd = "http://data-iremus.huma-num.fr/ns/musrad30#", Gd = "http://www.w3.org/2002/07/owl#", ji = "http://www.w3.org/1999/02/22-rdf-syntax-ns#", Xi = "http://www.w3.org/2000/01/rdf-schema#", Ud = "http://schema.org/", Wr = "http://www.w3.org/2004/02/skos/core#", Hd = /* @__PURE__ */ new Map([
   [Ce, "crm"],
   [Td, "crmdig"],
   [yd, "bibo"],
   [Rd, "dbpedia"],
   [Ld, "dc"],
-  [Bi, "dcterms"],
+  [Mi, "dcterms"],
   [Id, "foaf"],
   [Od, "hemef"],
   [Fd, "iremus-graph"],
@@ -5850,8 +5850,8 @@ const yd = "http://purl.org/ontology/bibo/", Pd = "http://iflastandards.info/ns/
   [xd, "mimo"],
   [Dd, "musrad30"],
   [Gd, "owl"],
-  [Mi, "rdf"],
-  [ji, "rdfs"],
+  [ji, "rdf"],
+  [Xi, "rdfs"],
   [Ud, "schema"],
   [Wr, "skos"]
 ]);
@@ -5867,9 +5867,9 @@ const _1 = [
   Ce + "E41_Appellation",
   Ce + "E42_Identifier",
   Ce + "P2_has_type",
-  Bi + "title",
-  Mi + "type",
-  ji + "label",
+  Mi + "title",
+  ji + "type",
+  Xi + "label",
   Wr + "prefLabel",
   Wr + "altLabel"
 ];
@@ -5883,11 +5883,11 @@ const Bd = () => [
   "rdfs:label",
   "skos:prefLabel",
   "skos:altLabel"
-].join(" "), Xi = () => [
+].join(" "), Vi = () => [
   "crm:P1_is_identified_by",
   "crm:P48_has_preferred_identifier",
   "crm:P102_has_title"
-].join(" "), Md = () => ["crm:E35_Title", "crm:E41_Appellation", "crm:E42_Identifier"].join(" "), $1 = (i, d = !1, e = [], A = "OUTGOING") => ki(
+].join(" "), Md = () => ["crm:E35_Title", "crm:E41_Appellation", "crm:E42_Identifier"].join(" "), $1 = (i, d = !1, e = [], A = "OUTGOING") => Bi(
   Vd() + (d ? Xd(
     i,
     e,
@@ -5897,11 +5897,11 @@ const Bd = () => [
 SELECT *
 WHERE {
   GRAPH ?g {
-    ${Kr(`<${i}>`)}
-    UNION
     ${Jr(`<${i}>`)}
     UNION
-    ${Vi(`<${i}>`)}
+    ${qr(`<${i}>`)}
+    UNION
+    ${Kr(`<${i}>`)}
     UNION
     ${Wd(`<${i}>`)}
   }
@@ -5916,11 +5916,11 @@ WHERE {
     ${e === "INCOMING" ? `?lr ?lp <${i}>` : `<${i}> ?lp ?lr`}
     OPTIONAL {
       GRAPH ?r_g {
-        ${Kr("?lr")}
-        UNION
         ${Jr("?lr")}
         UNION
-        ${Vi("?lr")} 
+        ${qr("?lr")}
+        UNION
+        ${Kr("?lr")} 
       }
     }
   }
@@ -5936,7 +5936,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX sherlock-ns: <http://data-iremus.huma-num.fr/ns/sherlock#>
-`, Vi = (i) => `
+`, Kr = (i) => `
 { ######## get types (rdf:type)
   ${i} ?p ?r .
   VALUES ?p { rdf:type }
@@ -5973,16 +5973,16 @@ UNION
     }
   }
 }
-`, Kr = (i) => `
+`, Jr = (i) => `
 { ######## get direct literal label
 ${i} ?p ?label .
 VALUES ?p { ${Bd()} } .
 FILTER(isLiteral(?label)) .
 }
-`, Jr = (i) => `
+`, qr = (i) => `
 { ######## get identifiers linked resources
   ${i} ?p ?r .
-  VALUES ?p { ${Xi()} }
+  VALUES ?p { ${Vi()} }
   GRAPH ?r_types_g {
     ?r rdf:type ?r_type .
     ?r crm:P190_has_symbolic_content ?label .
@@ -6028,9 +6028,11 @@ UNION
   WHERE {
     ${Yd(i, d)}
     GRAPH ?g {
-    ${Kr("?s")}
-    UNION
     ${Jr("?s")}
+    UNION
+    ${qr("?s")}
+    UNION
+    ${Kr("?s")}
     }
   }`, Yd = (i, d) => `
 {
@@ -6040,7 +6042,7 @@ UNION
     {
       { (?x ?score) text:query ("${i}")}
       GRAPH ?g_x {
-        VALUES ?identifier_predicate {${Xi()}} .
+        VALUES ?identifier_predicate {${Vi()}} .
         ?s ?identifier_predicate ?x 
       }
     }
@@ -6461,9 +6463,9 @@ export {
   T1 as getResourceByUrlFragment,
   d1 as getResources,
   w1 as historicalModelsOntologies,
-  Xi as identifiersPredicates,
-  Jr as identifiersResources,
-  Kr as identitiersLiterals,
+  Vi as identifiersPredicates,
+  qr as identifiersResources,
+  Jr as identitiersLiterals,
   b1 as identitiesByTextQuery,
   $1 as identity,
   v1 as mg_livraisons,
@@ -6472,6 +6474,6 @@ export {
   E1 as scores,
   y1 as selections,
   P1 as tonalitiesContributions,
-  Vi as types,
+  Kr as types,
   R1 as wemi
 };

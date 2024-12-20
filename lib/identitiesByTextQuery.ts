@@ -1,4 +1,4 @@
-import { identitiersLiterals, identifiersResources, identifiersPredicates } from "./identity"
+import { identitiersLiterals, identifiersResources, identifiersPredicates, types } from "./identity"
 
 /**
  * @param {string} queryString queryString
@@ -14,6 +14,8 @@ export const identitiesByTextQuery = (queryString: string, limit: number) => {
     ${identitiersLiterals(`?s`)}
     UNION
     ${identifiersResources(`?s`)}
+    UNION
+    ${types(`?s`)}
     }
   }`
 }
