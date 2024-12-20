@@ -1,6 +1,6 @@
 export const mg_livraisons = () => `
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-    PREFIX lrmoo: <http://www.cidoc-crm.org/lrmoo/>
+    PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
            
