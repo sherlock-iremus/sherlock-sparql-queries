@@ -1,12 +1,6 @@
 // @ts-ignore
 import { spfmt } from 'sparql-formatter'
-import {
-  CRM_BASE,
-  DCTERMS_BASE,
-  RDF_BASE,
-  RDFS_BASE,
-  SKOS_BASE
-} from 'sherlock-rdf/lib/rdf-prefixes'
+import { CRM_BASE, DCTERMS_BASE, RDF_BASE, RDFS_BASE, SKOS_BASE } from 'sherlock-rdf/lib/rdf-prefixes'
 
 export const IDENTITY_PREDICATES = [
   CRM_BASE + 'P1_is_identified_by',
@@ -41,7 +35,7 @@ const literalIdentifiersPredicates = () =>
     'skos:altLabel'
   ].join(' ')
 
-const identifiersPredicates = () =>
+export const identifiersPredicates = () =>
   [
     'crm:P1_is_identified_by',
     'crm:P48_has_preferred_identifier',
@@ -143,7 +137,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX sherlock-ns: <http://data-iremus.huma-num.fr/ns/sherlock#>
 `
 
-const types = (resource: string) => `
+export const types = (resource: string) => `
 { ######## get types (rdf:type)
   ${resource} ?p ?r .
   VALUES ?p { rdf:type }
@@ -182,7 +176,7 @@ UNION
 }
 `
 
-const identitiersLiterals = (resource: string): string => `
+export const identitiersLiterals = (resource: string): string => `
 { ######## get direct literal label
 ${resource} ?p ?label .
 VALUES ?p { ${literalIdentifiersPredicates()} } .
@@ -190,7 +184,7 @@ FILTER(isLiteral(?label)) .
 }
 `
 
-const identifiersResources = (resource: string): string => `
+export const identifiersResources = (resource: string): string => `
 { ######## get identifiers linked resources
   ${resource} ?p ?r .
   VALUES ?p { ${identifiersPredicates()} }
@@ -211,7 +205,7 @@ const identifiersResources = (resource: string): string => `
 }
 `
 
-const authorityDocument = (resource: string): string => `
+export const authorityDocument = (resource: string): string => `
 { ######## if the base resource is part of a E32
   GRAPH ?authdoc_g {
     ?authdoc crm:P71_lists ${resource} .
