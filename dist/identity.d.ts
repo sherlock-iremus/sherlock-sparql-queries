@@ -1,4 +1,5 @@
 export declare const IDENTITY_PREDICATES: string[];
+export declare const IDENTITY_PREDICATES_PREFIXED: string[];
 export declare enum LinkedResourcesDirectionEnum {
     INCOMING = "INCOMING",
     OUTGOING = "OUTGOING"

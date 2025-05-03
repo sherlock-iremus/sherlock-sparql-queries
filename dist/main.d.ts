@@ -20,3 +20,4 @@ export * from './selections';
 export * from './tonalitiesContributions';
 export * from './urlFragment';
 export * from './wemi';
+export * from './yasgui';

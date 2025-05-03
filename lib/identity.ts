@@ -1,6 +1,6 @@
 // @ts-ignore
 import { spfmt } from 'sparql-formatter'
-import { CRM_BASE, DCTERMS_BASE, RDF_BASE, RDFS_BASE, SKOS_BASE } from 'sherlock-rdf/lib/rdf-prefixes'
+import { makePrefixedUri, CRM_BASE, DCTERMS_BASE, RDF_BASE, RDFS_BASE, SKOS_BASE } from 'sherlock-rdf/lib/rdf-prefixes'
 
 export const IDENTITY_PREDICATES = [
   CRM_BASE + 'P1_is_identified_by',
@@ -17,6 +17,8 @@ export const IDENTITY_PREDICATES = [
   SKOS_BASE + 'prefLabel',
   SKOS_BASE + 'altLabel'
 ]
+
+export const IDENTITY_PREDICATES_PREFIXED = IDENTITY_PREDICATES.map(makePrefixedUri).map(puri => puri.toString())
 
 export enum LinkedResourcesDirectionEnum {
   INCOMING = 'INCOMING',
@@ -39,7 +41,7 @@ export const identifiersPredicates = () =>
   [
     'crm:P1_is_identified_by',
     'crm:P48_has_preferred_identifier',
-    'crm:P102_has_title'
+    'crm:P102_has_title',
   ].join(' ')
 
 const identifiersCrmClasses = () =>
@@ -57,16 +59,18 @@ export const identity = (
   linkingPredicates: string[] = [],
   linkedResourcesDirection: LinkedResourcesDirectionEnum = LinkedResourcesDirectionEnum.OUTGOING
 ) =>
-  spfmt(
-    prefixes() +
-    (!getLinkedResourcesIdentity
-      ? resourceIdentity(resource)
-      : linkedResourcesIdentity(
-        resource,
-        linkingPredicates,
-        linkedResourcesDirection
-      ))
-  )
+  getLinkedResourcesIdentity && linkingPredicates.length == 0
+    ? []
+    : spfmt(
+      prefixes() +
+      (!getLinkedResourcesIdentity
+        ? resourceIdentity(resource)
+        : linkedResourcesIdentity(
+          resource,
+          linkingPredicates,
+          linkedResourcesDirection
+        ))
+    )
 
 const resourceIdentity = (resource: string) => `
 SELECT *
@@ -112,6 +116,7 @@ WHERE {
         ${types('?lr')} 
       }
     }
+    FILTER (?lp NOT IN (${IDENTITY_PREDICATES_PREFIXED}))
   }
 }
 ORDER BY ?lp ?lr
