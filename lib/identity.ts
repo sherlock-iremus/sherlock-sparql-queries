@@ -58,9 +58,9 @@ export const identity = (
   getLinkedResourcesIdentity: boolean = false,
   linkingPredicates: string[] = [],
   linkedResourcesDirection: LinkedResourcesDirectionEnum = LinkedResourcesDirectionEnum.OUTGOING
-) =>
+): string =>
   getLinkedResourcesIdentity && linkingPredicates.length == 0
-    ? []
+    ? ''
     : spfmt(
       prefixes() +
       (!getLinkedResourcesIdentity

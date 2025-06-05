@@ -1,4 +1,4 @@
-export const countOutgoingPredicates = (resource: string) => `
+export const countOutgoingPredicates = (resource: string): string => `
 SELECT (COUNT(*) AS ?c) ?lp
 WHERE {
   GRAPH ?g {
@@ -8,7 +8,7 @@ WHERE {
 GROUP BY ?lp
 `;
 
-export const countIncomingPredicates = (resource: string) => `
+export const countIncomingPredicates = (resource: string): string => `
 SELECT (COUNT(*) AS ?c) ?lp
 WHERE {
   GRAPH ?g {

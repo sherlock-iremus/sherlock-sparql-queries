@@ -1,5 +1,5 @@
 export function getResourceByUrlFragment(id: string): string {
-    return `
+  return `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX iremus: <http://data-iremus.huma-num.fr/id/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
