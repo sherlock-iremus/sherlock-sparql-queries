@@ -6,6 +6,8 @@ export * from './contributor';
 export * from './contributors';
 export * from './countLinkingPredicates';
 export * from './documentsByIndex';
+export * from './dotOne';
+export * from './e13WithLiteralP141';
 export * from './fondamentales';
 export * from './getResources';
 export * from './historicalModelsOntologies';

@@ -4,9 +4,10 @@
 * displayNotIndexedE13: true if you want the query to return all E13 assigned to the same resource than the matched one.
 */
 export const f = (projectCode: string, collectionUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
+  console.log(projectCode)
   // Format search query to approximate each word
   search = search.split(" ").map(word => `${word}~`).join(" ");
- return `PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+  return `PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX iremus: <http://data-iremus.huma-num.fr/id/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
@@ -28,6 +29,7 @@ UNION
 
 // rdfs:label (il faut récupérer l'identité light)
 const itemsDirectlyIndexed = (projectCode: string, collectionUri: string, search: string) => {
+  console.log(projectCode)
   return `
 
 SELECT *
@@ -44,7 +46,7 @@ WHERE {
   LIMIT 50
   `
 
-  
+
 }
 
 const itemsFromE13Fragment = (projectCode: string, collectionUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
@@ -81,7 +83,7 @@ const itemsFromE13Fragment = (projectCode: string, collectionUri: string, search
       FILTER(STRSTARTS(?project_code, "${projectCode}::"))
     }
   }`
-  : ``;
+    : ``;
 }
 
 
@@ -104,14 +106,14 @@ WHERE {
         {
           SELECT DISTINCT ?e13_indexed ?resource ?score ?lit ?gr ?prop
           WHERE {
-        	(?e13_indexed ?score ?lit ?gr ?prop) text:query ("p141:CHARON") .
-        	GRAPH ?g {
-			    ?e13_indexed crm:P140_assigned_attribute_to ?resource .
-    			<http://data-iremus.huma-num.fr/id/c583a908-30da-4d05-b0b1-dec8d3401a1e> sherlock:has_member ?resource .
-        	}
-    	}
-      	ORDER BY DESC(?score)
-      	LIMIT 200
+          (?e13_indexed ?score ?lit ?gr ?prop) text:query ("p141:CHARON") .
+          GRAPH ?g {
+          ?e13_indexed crm:P140_assigned_attribute_to ?resource .
+          <http://data-iremus.huma-num.fr/id/c583a908-30da-4d05-b0b1-dec8d3401a1e> sherlock:has_member ?resource .
+          }
+      }
+        ORDER BY DESC(?score)
+        LIMIT 200
       }
     ?e13 crm:P140_assigned_attribute_to ?resource .
     ?e13 crm:P177_assigned_property_of_type ?p177 .
