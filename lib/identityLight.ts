@@ -8,7 +8,7 @@ PREFIX text: <http://jena.apache.org/text#>
 const SELECT = 'SELECT ?linked_resource ?label (COALESCE(?_internal_id, "") AS ?internal_id)'
 const LABEL = `
     ?linked_resource crm:P1_is_identified_by|crm:P102_has_title|skos:prefLabel|crm:P48_has_preferred_identifier|rdfs:label ?label .
-    FILTER(isLiteral($label))
+    FILTER(isLiteral(?label))
 `
 const INTERNAL_ID = `
     OPTIONAL {
