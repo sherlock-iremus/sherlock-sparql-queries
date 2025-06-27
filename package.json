@@ -22,7 +22,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "sparql-formatter": "^1.0.2"
+    "sparql-formatter": "0.9.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

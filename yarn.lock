@@ -1157,10 +1157,10 @@ source-map@~0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sparql-formatter@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/sparql-formatter/-/sparql-formatter-1.0.2.tgz#44142b420520747e11af0525aa3e1e4c266dc2b1"
-  integrity sha512-fQfPg2FUz9akEA/EzNGEEskQfnKVVWA36Ex/FXelKG6o4OFrzRggz3/Qp1QSvR2vgfPd5eOWXAyhv2H2o2PemQ==
+sparql-formatter@0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/sparql-formatter/-/sparql-formatter-0.9.3.tgz#de0ad311928d23d0e50827efe339cc1d9a91ec72"
+  integrity sha512-lnglxbUPKuJrWsUo/feZnWSJYooTYUUKmORiCDAcGf9o/tToSzykWdAPP0dcrvZ3o1GpmNoq5JgLt9KUHZdlMg==
   dependencies:
     commander "^8.0.0"
     csv-write-stream "^2.0.0"
