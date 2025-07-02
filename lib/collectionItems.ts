@@ -3,7 +3,7 @@
 * includeE13: true if you want the search engine to run on P141_assigned literals.
 * displayNotIndexedE13: true if you want the query to return all E13 assigned to the same resource than the matched one.
 */
-export const f = (projectCode: string, collectionUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
+export const f = (projectCode: string, collectionUris: string[], projectGraphUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
   console.log(projectCode)
   // Format search query to approximate each word
   search = search.split(" ").map(word => `${word}~`).join(" ");
@@ -17,28 +17,73 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT *
 WHERE {
-{
-  ${itemsFromE13Fragment(projectCode, collectionUri, search, includeE13, displayNotIndexedE13)}
-}
-UNION
-{
-  ${itemsDirectlyIndexed(collectionUri, search)}
-}
+  {
+    ${itemsFromE13Fragment(projectCode, collectionUris, projectGraphUri, search, includeE13, displayNotIndexedE13)}
+  }
+  UNION
+  {
+    ${itemsDirectlyIndexed(collectionUris, projectGraphUri, search)}
+  }
+  UNION
+  {
+    ${itemsFromIdentifierFragment(collectionUris, projectGraphUri, search)}
+  }
+  ${lightIdentityFragment()}
 }`
 }
 
+const lightIdentityFragment = () => {
+  return `
+  OPTIONAL {
+    GRAPH ?g_item_identity {
+      OPTIONAL {
+        VALUES ?item_label_p { crm:P1_is_identified_by crm:P102_has_title skos:prefLabel crm:P48_has_preferred_identifier rdfs:label } .
+	      ?item ?item_label_p ?item_label .
+        FILTER(isLiteral(?item_label))
+      }
+    }
+  }
+  `
+}
 
+const itemsFromIdentifierFragment = (collectionUris: string[], projectGraphUri: string, search: string) => {
+  return `
+  SELECT DISTINCT *
+  WHERE {
+    GRAPH <${projectGraphUri}> {
+      (?identifier ?score ?lit ?g ?prop) text:query ("texte:${search}") .
+      
+          VALUES ?p { crm:P1_is_identified_by } .
+          VALUES ?type { crm:E41_Appellation crm:E42_Identifier } .
+          ?item ?p ?identifier .
+          ?identifier crm:P190_has_symbolic_content ?label .
+          ?identifier rdf:type ?type .
+          ?collection_uri sherlock:has_member ?item .
+          VALUES ?collection_uri { ${collectionUris.map(uri => `<${uri}>`).join(' ')} }
+      ?identifier crm:P2_has_type ?E55_Type .
+      
+      GRAPH ?g_item_identifiers {
+        ?E55_Type rdf:type crm:E55_Type .
+        ?E55_Type crm:P1_is_identified_by ?type_label .
+      }
+    }
+  }
+  ORDER BY DESC(?score)
+  LIMIT 50
+  `
+}
 // rdfs:label (il faut récupérer l'identité light)
-const itemsDirectlyIndexed = (collectionUri: string, search: string) => {
+const itemsDirectlyIndexed = (collectionUris: string[], projectGraphUri: string, search: string) => {
   return `
 
-SELECT *
+SELECT DISTINCT *
 WHERE {
-    GRAPH ?g_item_identity {
-    (?item ?score ?lit ?gr ?prop) text:query ("texte:${search}") .
-    	?item crm:P1_is_identified_by|crm:P102_has_title|skos:prefLabel|crm:P48_has_preferred_identifier|rdfs:label ?label .
+    GRAPH <${projectGraphUri}> {
+    (?item ?score ?lit ?g ?prop) text:query ("texte:${search}") .
     	?item ?p ?label .
-    	<${collectionUri}> sherlock:has_member ?item .
+      FILTER(?lit = ?label)
+      ?collection_uri sherlock:has_member ?item .
+      VALUES ?collection_uri { ${collectionUris.map(uri => `<${uri}>`).join(' ')} }
     }
   FILTER(isLiteral(?label))
 }
@@ -47,16 +92,17 @@ WHERE {
   `
 }
 
-const itemsFromE13Fragment = (projectCode: string, collectionUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
+const itemsFromE13Fragment = (projectCode: string, collectionUris: string[], projectGraphUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
   return includeE13 ? `
-  GRAPH ?g {
+  GRAPH <${projectGraphUri}> {
     {
-    SELECT DISTINCT ?e13_indexed ?item
+    SELECT DISTINCT ?e13_indexed ?item ?collection_uri
     	WHERE {
-        (?e13_indexed ?score ?lit ?gr ?prop) text:query ("p141:${search}") .
+        (?e13_indexed ?score ?lit ?g ?prop) text:query ("p141:${search}") .
         	GRAPH ?g {
             ?e13_indexed crm:P140_assigned_attribute_to ?item .
-            <${collectionUri}> sherlock:has_member ?item .
+            ?collection_uri sherlock:has_member ?item .
+            VALUES ?collection_uri { ${collectionUris.map(uri => `<${uri}>`).join(' ')} }
         	}
     	}
       	ORDER BY DESC(?score)
@@ -68,9 +114,6 @@ const itemsFromE13Fragment = (projectCode: string, collectionUri: string, search
     ?e13 crm:P141_assigned ?p141 .
     ?e13 rdf:type crm:E13_Attribute_Assignment .
     ${!displayNotIndexedE13 ? `FILTER(?e13 = ?e13_indexed)` : ``}
-    OPTIONAL {
-      ?item rdfs:label ?item_label
-    }
     FILTER(isLiteral(?p141))
   }
   GRAPH ?g_meta {
@@ -80,8 +123,8 @@ const itemsFromE13Fragment = (projectCode: string, collectionUri: string, search
         ?p177 crm:P1_is_identified_by ?p177_e42 .
         ?p177_e42 rdf:type crm:E42_Identifier .
         ?p177_e42 crm:P190_has_symbolic_content ?project_code .
-        ?p177_e42 crm:P2_has_type <http://data-iremus.huma-num.fr/id/5372610b-88b1-4949-b87a-1e5102bf2fb7> .
-        FILTER(STRSTARTS(?project_code, "${projectCode}::"))
+        # ?p177_e42 crm:P2_has_type <http://data-iremus.huma-num.fr/id/5372610b-88b1-4949-b87a-1e5102bf2fb7> .
+        # FILTER(STRSTARTS(?project_code, "${projectCode}::"))
     }
       FILTER(isLiteral(?p177_label))
     }
