@@ -1,9 +1,9 @@
-// TODO: add light identity for non-E13-fetched items
+import { RESOURCE_LIGHT_IDENTITY_PREDICATES } from 'sherlock-rdf'
+
 /*
-* includeE13: true if you want the search engine to run on P141_assigned literals.
 * displayNotIndexedE13: true if you want the query to return all E13 assigned to the same resource than the matched one.
 */
-export const f = (projectCode: string, collectionUris: string[], projectGraphUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
+export const f = (projectCode: string, collectionUris: string[], projectGraphUri: string, search: string, queryE13: boolean, displayNotIndexedE13: boolean) => {
   console.log(projectCode)
   // Format search query to approximate each word
   search = search.split(" ").map(word => `${word}~`).join(" ");
@@ -17,10 +17,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT *
 WHERE {
-  {
-    ${itemsFromE13Fragment(projectCode, collectionUris, projectGraphUri, search, includeE13, displayNotIndexedE13)}
-  }
-  UNION
+  ${itemsFromE13Fragment(projectCode, collectionUris, projectGraphUri, search, queryE13, displayNotIndexedE13)}
   {
     ${itemsDirectlyIndexed(collectionUris, projectGraphUri, search)}
   }
@@ -37,7 +34,7 @@ const lightIdentityFragment = () => {
   OPTIONAL {
     GRAPH ?g_item_identity {
       OPTIONAL {
-        VALUES ?item_label_p { crm:P1_is_identified_by crm:P102_has_title skos:prefLabel crm:P48_has_preferred_identifier rdfs:label } .
+        VALUES ?item_label_p { ${RESOURCE_LIGHT_IDENTITY_PREDICATES.map(predicate => '<' + predicate + '>').join(' ')} } .
 	      ?item ?item_label_p ?item_label .
         FILTER(isLiteral(?item_label))
       }
@@ -92,8 +89,8 @@ WHERE {
   `
 }
 
-const itemsFromE13Fragment = (projectCode: string, collectionUris: string[], projectGraphUri: string, search: string, includeE13: boolean, displayNotIndexedE13: boolean) => {
-  return includeE13 ? `
+const itemsFromE13Fragment = (projectCode: string, collectionUris: string[], projectGraphUri: string, search: string, queryE13: boolean, displayNotIndexedE13: boolean) => {
+  return queryE13 ? `{
   GRAPH <${projectGraphUri}> {
     {
     SELECT DISTINCT ?e13_indexed ?item ?collection_uri
@@ -128,6 +125,7 @@ const itemsFromE13Fragment = (projectCode: string, collectionUris: string[], pro
     }
       FILTER(isLiteral(?p177_label))
     }
-  }`
-    : ``;
+  }
+}
+  UNION` : ``
 }

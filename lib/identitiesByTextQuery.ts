@@ -51,6 +51,7 @@ const subjectRestrictionWithTextQuery = (queryString: string, limit: number) => 
 const identifiersPredicatesThatMatchARelevantResource = () => [
   "crm:P1_is_identified_by",
   "crm:P102_has_title",
+  "crm:P48_has_preferred_identifier",
   "dcterms:title",
   "rdfs:label",
   "skos:prefLabel",
