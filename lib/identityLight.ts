@@ -9,7 +9,7 @@ PREFIX text: <http://jena.apache.org/text#>
 `
 const SELECT = 'SELECT ?linked_resource ?label (COALESCE(?_internal_id, "") AS ?internal_id)'
 const LABEL = `
-    ?linked_resource ${RESOURCE_LIGHT_IDENTITY_PREDICATES.map(predicate => '<' + predicate + '>').join('|')} ?label .
+    ?linked_resource ${RESOURCE_LIGHT_IDENTITY_PREDICATES.map((predicate: string) => '<' + predicate + '>').join('|')} ?label .
     FILTER(isLiteral(?label))
 `
 
