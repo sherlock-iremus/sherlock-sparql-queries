@@ -34,7 +34,7 @@ const lightIdentityFragment = () => {
   OPTIONAL {
     GRAPH ?g_item_identity {
       OPTIONAL {
-        VALUES ?item_label_p { ${RESOURCE_LIGHT_IDENTITY_PREDICATES.map(predicate => '<' + predicate + '>').join(' ')} } .
+        VALUES ?item_label_p { ${RESOURCE_LIGHT_IDENTITY_PREDICATES.map((predicate: string) => '<' + predicate + '>').join(' ')} } .
 	      ?item ?item_label_p ?item_label .
         FILTER(isLiteral(?item_label))
       }
