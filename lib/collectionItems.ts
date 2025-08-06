@@ -1,4 +1,4 @@
-import { RESOURCE_LIGHT_IDENTITY_PREDICATES } from 'sherlock-rdf'
+import { RESOURCE_LIGHT_IDENTITY_PREDICATES } from 'sherlock-rdf/lib/rdf-resource-identity'
 
 /*
 * displayNotIndexedE13: true if you want the query to return all E13 assigned to the same resource than the matched one.

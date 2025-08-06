@@ -1,4 +1,4 @@
-import { RESOURCE_LIGHT_IDENTITY_PREDICATES } from 'sherlock-rdf'
+import { RESOURCE_LIGHT_IDENTITY_PREDICATES } from 'sherlock-rdf/lib/rdf-resource-identity'
 
 const PREFIXES = `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
