@@ -1,2 +1,1 @@
-# pnpm link --global sherlock-rdf
-yarn link sherlock-rdf
+pnpm link ../sherlock-rdf
