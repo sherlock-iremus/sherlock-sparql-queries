@@ -61,7 +61,7 @@ export const identity = (
 ): string =>
   getLinkedResourcesIdentity && linkingPredicates.length == 0
     ? ''
-    : spfmt(
+    : spfmt.format(
       prefixes() +
       (!getLinkedResourcesIdentity
         ? resourceIdentity(resource)
