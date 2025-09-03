@@ -49,14 +49,13 @@ const itemsFromIdentifierFragment = (collectionUris: string[], projectGraphUri: 
   WHERE {
     GRAPH <${projectGraphUri}> {
       (?identifier ?score ?lit ?g ?prop) text:query ("texte:${search}") .
-      
-          VALUES ?p { crm:P1_is_identified_by } .
-          VALUES ?type { crm:E41_Appellation crm:E42_Identifier } .
-          ?item ?p ?identifier .
-          ?identifier crm:P190_has_symbolic_content ?label .
-          ?identifier rdf:type ?type .
-          ?collection_uri sherlock:has_member ?item .
-          VALUES ?collection_uri { ${collectionUris.map(uri => `<${uri}>`).join(' ')} }
+      VALUES ?p { crm:P1_is_identified_by } .
+      VALUES ?type { crm:E41_Appellation crm:E42_Identifier } .
+      ?item ?p ?identifier .
+      ?identifier crm:P190_has_symbolic_content ?label .
+      ?identifier rdf:type ?type .
+      ?collection_uri sherlock:has_member ?item .
+      VALUES ?collection_uri { ${collectionUris.map(uri => `<${uri}>`).join(' ')} }
       ?identifier crm:P2_has_type ?E55_Type .
       
       GRAPH ?g_item_identifiers {
