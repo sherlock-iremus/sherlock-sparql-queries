@@ -29,9 +29,9 @@ function toPrefixed(uri: string): string {
 * displayNotIndexedE13: true if you want the query to return all E13 assigned to the same resource than the matched one.
 */
 
-const toLuceneSearchString = (needle: string, textField: string) =>  {
+const toLuceneSearchString = (needle: string, textField: string) => {
   const excludedWords = ["de", "d", "ba"];
-  if(excludedWords.includes(needle.split(' ').at(-1))) {
+  if (excludedWords.includes(needle.split(' ').at(-1) || '')) {
     needle = needle.split(' ').slice(0, -1).join(' ');
   };
 

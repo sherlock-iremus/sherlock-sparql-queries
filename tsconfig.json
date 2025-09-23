@@ -3,10 +3,10 @@
     "allowJs": true,
     "checkJs": false,
     "declaration": true,
-    "target": "ES2021",
+    "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": [
-      "ES2021",
+      "ES2022",
       "DOM",
       "DOM.Iterable"
     ],
