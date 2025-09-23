@@ -6,7 +6,7 @@ PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
 SELECT *
 WHERE {
     GRAPH ?g {
-        ?e13 ?p <${p140}> .
+        ?e13 crm:P140_assigned_attribute_to <${p140}> .
         ?e13 rdf:type crm:E13_Attribute_Assignment .
         ?e13 crm:P141_assigned ?p141 .
         ?e13 crm:P177_assigned_property_of_type ?p177 .
