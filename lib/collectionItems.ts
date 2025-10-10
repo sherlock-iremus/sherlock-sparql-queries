@@ -1,20 +1,5 @@
 import { RESOURCE_LIGHT_IDENTITY_PREDICATES } from 'sherlock-rdf/lib/rdf-resource-identity'
-
-const PREFIXES = {
-  'http://www.cidoc-crm.org/cidoc-crm/': 'crm',
-  'http://purl.org/dc/terms/': 'dcterms',
-  'http://www.w3.org/1999/02/22-rdf-syntax-ns#': 'rdf',
-  'http://www.w3.org/2000/01/rdf-schema#': 'rdfs',
-  'http://www.w3.org/2004/02/skos/core#': 'skos',
-  'http://jena.apache.org/text#': 'text',
-  'http://data-iremus.huma-num.fr/ns/sherlock#': 'sherlock',
-  'http://data-iremus.huma-num.fr/id/': 'iremus',
-  'http://purl.org/dc/elements/1.1/': 'purl',
-  'http://xmlns.com/foaf/0.1/': 'foaf',
-}
-
-
-
+import { PREFIXES } from './common';
 
 function toPrefixed(uri: string): string {
   for (const [base, prefix] of Object.entries(PREFIXES)) {

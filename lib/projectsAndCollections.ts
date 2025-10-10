@@ -1,5 +1,6 @@
-export const f = (projectCode: string | undefined) => {
-return `
+import { spfmt } from 'sparql-formatter'
+
+export const projectAndCollections = (projectCode: string | undefined) => spfmt.format(`
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
@@ -27,7 +28,4 @@ WHERE {
     FILTER(isLITERAL(?project_name))
     FILTER(isLITERAL(?collection_name))
   }
-}`
-}
-
-export default f;
+}`)

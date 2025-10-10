@@ -1,48 +1,6 @@
 // @ts-ignore
 import { spfmt } from 'sparql-formatter'
-import { makePrefixedUri, CRM_BASE, DCTERMS_BASE, RDF_BASE, RDFS_BASE, SKOS_BASE } from 'sherlock-rdf/lib/rdf-prefixes'
-
-export const IDENTITY_PREDICATES = [
-  CRM_BASE + 'P1_is_identified_by',
-  CRM_BASE + 'P102_has_title',
-  CRM_BASE + 'P190_has_symbolic_content',
-  CRM_BASE + 'P1_is_identified_by',
-  CRM_BASE + 'E35_Title',
-  CRM_BASE + 'E41_Appellation',
-  CRM_BASE + 'E42_Identifier',
-  CRM_BASE + 'P2_has_type',
-  DCTERMS_BASE + 'title',
-  RDF_BASE + 'type',
-  RDFS_BASE + 'label',
-  SKOS_BASE + 'prefLabel',
-  SKOS_BASE + 'altLabel'
-]
-
-export const IDENTITY_PREDICATES_PREFIXED = IDENTITY_PREDICATES.map(makePrefixedUri).map(puri => puri.toString())
-
-export enum LinkedResourcesDirectionEnum {
-  INCOMING = 'INCOMING',
-  OUTGOING = 'OUTGOING'
-}
-
-const literalIdentifiersPredicates = () =>
-  [
-    'crm:P1_is_identified_by',
-    'crm:P48_has_preferred_identifier',
-    'crm:P102_has_title',
-    'dcterms:title',
-    'crm:P190_has_symbolic_content',
-    'rdfs:label',
-    'skos:prefLabel',
-    'skos:altLabel'
-  ].join(' ')
-
-export const identifiersPredicates = () =>
-  [
-    'crm:P1_is_identified_by',
-    'crm:P48_has_preferred_identifier',
-    'crm:P102_has_title',
-  ].join(' ')
+import { LinkedResourcesDirectionEnum, IDENTIFIERS_PREDICATES, IDENTITY_PREDICATES_PREFIXED, LL_PREDICATES } from './common'
 
 const identifiersCrmClasses = () =>
   ['crm:E35_Title', 'crm:E41_Appellation', 'crm:E42_Identifier'].join(' ')
@@ -184,7 +142,7 @@ UNION
 export const identitiersLiterals = (resource: string): string => `
 { ######## get direct literal label
 ${resource} ?p ?label .
-VALUES ?p { ${literalIdentifiersPredicates()} } .
+VALUES ?p { ${LL_PREDICATES.join(' ')} } .
 FILTER(isLiteral(?label)) .
 }
 `
@@ -192,7 +150,7 @@ FILTER(isLiteral(?label)) .
 export const identifiersResources = (resource: string): string => `
 { ######## get identifiers linked resources
   ${resource} ?p ?r .
-  VALUES ?p { ${identifiersPredicates()} }
+  VALUES ?p { ${IDENTIFIERS_PREDICATES.join(' ')} }
   GRAPH ?r_types_g {
     ?r rdf:type ?r_type .
     ?r crm:P190_has_symbolic_content ?label .

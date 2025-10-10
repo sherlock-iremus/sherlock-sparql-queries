@@ -1,4 +1,7 @@
-export const getResources = () => `
+import { LL_PREDICATES } from './common'
+import { spfmt } from 'sparql-formatter'
+
+export const getResources = () => spfmt(`
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -14,7 +17,7 @@ SELECT DISTINCT ?s
         }
         FILTER(?type != <http://www.ics.forth.gr/isl/CRMdig/D35_Area>) . 
         FILTER(?type != crm:E42_Identifier) . 
-        VALUES ?p { crm:P1_is_identified_by crm:P102_has_title dcterms:title rdfs:label skos:prefLabel skos:altLabel crm:P190_has_symbolic_content }
+        VALUES ?p { ${LL_PREDICATES.join(' ')} }
     }
   }
-`;
+`);

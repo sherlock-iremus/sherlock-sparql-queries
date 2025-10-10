@@ -1,1 +1,1 @@
-export declare const getResources: () => string;
+export declare const getResources: () => any;

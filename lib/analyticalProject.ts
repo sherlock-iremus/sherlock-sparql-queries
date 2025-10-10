@@ -1,4 +1,4 @@
-import { ANALYTICAL_PROJECT, DRAFT_PROJECT } from "./constants";
+import { ANALYTICAL_PROJECT, DRAFT_PROJECT } from "./constants"
 
 export const getAnalyticalProject = (analyticalProjectIri: string) => `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -12,4 +12,4 @@ WHERE {
     ?project crm:P14_carried_out_by ?contributor.
     OPTIONAL { ?project sherlock:has_privacy_type ?draft }.
 }
-LIMIT 1`;
+LIMIT 1`

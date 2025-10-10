@@ -1,4 +1,5 @@
-import { identitiersLiterals, identifiersResources, identifiersPredicates, types } from "./identity"
+import { LL_PREDICATES } from './common'
+import { identitiersLiterals, identifiersResources, types } from "./identity"
 
 /**
  * @param {string} queryString queryString
@@ -28,7 +29,7 @@ const subjectRestrictionWithTextQuery = (queryString: string, limit: number) => 
     {
       { (?x ?score) text:query ("${queryString}")}
       GRAPH ?g_x {
-        VALUES ?identifier_predicate {${identifiersPredicates()}} .
+        VALUES ?identifier_predicate {${LL_PREDICATES.join(' ')}} .
         ?s ?identifier_predicate ?x 
       }
     }
@@ -36,7 +37,7 @@ const subjectRestrictionWithTextQuery = (queryString: string, limit: number) => 
     # Literal text:query that match a relevant resource
     # Pas de P190 car le sujet d'un P190 n'est pas la ressource en tant que telle.
     {
-      ${identifiersPredicatesThatMatchARelevantResource().map(predicate => `
+      ${LL_PREDICATES.map(predicate => `
       {
         (?s ?score) text:query (${predicate} "${queryString}")
       }
@@ -47,16 +48,6 @@ const subjectRestrictionWithTextQuery = (queryString: string, limit: number) => 
   LIMIT ${limit}  
 }
 `
-
-const identifiersPredicatesThatMatchARelevantResource = () => [
-  "crm:P1_is_identified_by",
-  "crm:P102_has_title",
-  "crm:P48_has_preferred_identifier",
-  "dcterms:title",
-  "rdfs:label",
-  "skos:prefLabel",
-  "skos:altLabel",
-]
 
 const prefixesFragment = () => `PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dcterms: <http://purl.org/dc/terms/>

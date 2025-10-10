@@ -1,2 +1,2 @@
-export declare const countOutgoingPredicates: (resource: string) => string;
-export declare const countIncomingPredicates: (resource: string) => string;
+export declare const countOutgoingPredicates: (resourceUri: string) => string;
+export declare const countIncomingPredicates: (resourceUri: string) => string;
