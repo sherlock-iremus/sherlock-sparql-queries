@@ -32,7 +32,6 @@ export const f = (
   search: string,
   displayNotIndexedE13: boolean
 ) => {
-  console.log(projectCode)
   // Format search query to approximate each word
   return `
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>

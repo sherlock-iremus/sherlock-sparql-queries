@@ -1,78 +1,82 @@
 // @ts-ignore
 import { spfmt } from 'sparql-formatter'
 
-function common(): string {
-  return `
-# Livraisons F1 et F2 TEI
-?F1_livraison a lrmoo:F1_Work .
-?F1_livraison crm:P102_has_title ?livraison_titre .
-?F1_livraison crm:P2_has_type iremus:901c2bb5-549d-47e9-bd91-7a21d7cbe49f . # type livraison
-?F1_livraison lrmoo:R3_is_realised_in ?F2_livraison_tei .
-?F2_livraison_tei a lrmoo:F2_Expression .
-?F2_livraison_tei crm:P2_has_type iremus:901c2bb5-549d-47e9-bd91-7a21d7cbe49f . # type livraison
-?F2_livraison_tei crm:P2_has_type iremus:625bc194-d452-4f38-9ba9-83b2e0a79e00 . # type contenu tei
-?F2_livraison_tei crm:P1_is_identified_by ?E42_F2_livraison_business_id .
-?E42_F2_livraison_business_id crm:P2_has_type iremus:574ffe9e-525c-42f2-8188-329ba3c7231d . # type business id
-?E42_F2_livraison_business_id a crm:E42_Identifier .
-?E42_F2_livraison_business_id crm:P190_has_symbolic_content ?livraison_business_id .
-# Articles F2
-?F2_livraison_tei lrmoo:R75_incorporates ?F2_article_tei .
-?F2_article_tei a lrmoo:F2_Expression .
-?F2_article_tei crm:P2_has_type iremus:13f43e00-680a-4a6d-a223-48e8d9bbeaae . # type article
-?F2_article_tei crm:P2_has_type iremus:625bc194-d452-4f38-9ba9-83b2e0a79e00 . # type contenu tei
-# Date de publication
-?F1_livraison lrmoo:R3_is_realised_in ?F2_livraison_originale .
-?F3_manifestation_originale lrmoo:R4_embodies ?F2_livraison_originale .
-?F3_manifestation_originale a lrmoo:F3_Manifestation .
-?F2_livraison_originale a lrmoo:F2_Expression .
-?F2_livraison_originale crm:P2_has_type iremus:901c2bb5-549d-47e9-bd91-7a21d7cbe49f . # type livraison
-?F2_livraison_originale crm:P2_has_type iremus:7d7fc017-61ba-4f80-88e1-744f1d00dd60 . # type texte original
-?F30 lrmoo:R24_created ?F3_manifestation_originale .
-?F30 a lrmoo:F30_Manifestation_Creation .
-?F30 crm:P4_has_time-span ?E52 .
-?E52 crm:P82b_end_of_the_end ?date .
-`
-}
-
-export const mg_livraisons = (): string => spfmt(`
+export const mg_livraisons = (): string => spfmt.format(`
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
 PREFIX iremus: <http://data-iremus.huma-num.fr/id/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?F2_livraison_tei ?livraison_titre ?date ?livraison_business_id (COUNT(?F2_article_tei) AS ?n_articles)
+SELECT ?livraison_f2 ?livraison_business_id ?livraison_title ?livraison_subtitle (COUNT(?article_f2) AS ?n_articles)
 WHERE {
   GRAPH <http://data-iremus.huma-num.fr/graph/mercure-galant-tei> {
-    ?F18 a lrmoo:F18_Serial_Work .
-    ?F18 lrmoo:R10_has_member ?F1_livraison .
-    ${common()}
+    ?livraison_f2 a lrmoo:F2_Expression .
+    ?livraison_f2 crm:P2_has_type iremus:901c2bb5-549d-47e9-bd91-7a21d7cbe49f .
+
+    ?livraison_f2 crm:P1_is_identified_by ?livraison_business_id_e42 .
+    ?livraison_business_id_e42 a crm:E42_Identifier .
+    ?livraison_business_id_e42 crm:P2_has_type iremus:574ffe9e-525c-42f2-8188-329ba3c7231d .
+    ?livraison_business_id_e42 crm:P190_has_symbolic_content ?livraison_business_id .
+
+    ?livraison_f2 crm:P102_has_title ?livraison_title .
+    FILTER(isLiteral(?livraison_title))
+    OPTIONAL {
+      ?livraison_f2 crm:P102_has_title ?livraison_subtitle_e35 .
+      ?livraison_subtitle_e35 a crm:E35_Title .
+      ?livraison_subtitle_e35 crm:P2_has_type iremus:07efe30c-f8a3-4a40-bf59-bed53d0e29a8 .
+      ?livraison_subtitle_e35 crm:P190_has_symbolic_content ?livraison_subtitle .
+    }
+
+    ?livraison_f2 lrmoo:R5_has_component ?article_f2 .
+    ?article_f2 a lrmoo:F2_Expression .
+    ?article_f2 crm:P2_has_type iremus:13f43e00-680a-4a6d-a223-48e8d9bbeaae .
   }
 }
-GROUP BY ?F2_livraison_tei ?livraison_titre ?date ?livraison_business_id
+GROUP BY ?livraison_f2 ?livraison_business_id ?livraison_title ?livraison_subtitle
 ORDER BY ?livraison_business_id
 `);
 
-export const mg_livraison = (livraisonBusinessId: string): string => spfmt(`
+export const mg_livraison = (livraisonBusinessId: string): string => spfmt.format(`
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>
 PREFIX iremus: <http://data-iremus.huma-num.fr/id/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?F2_article_tei ?article_title ?article_business_id ?livraison_titre
+SELECT *
 WHERE {
   GRAPH <http://data-iremus.huma-num.fr/graph/mercure-galant-tei> {
     VALUES ?livraison_business_id { "${livraisonBusinessId}" }
-    ?F2_livraison_tei crm:P1_is_identified_by ?E42_tei_file .
-    ?E42_tei_file a crm:E42_Identifier .
-    ?E42_tei_file crm:P2_has_type iremus:f005e36a-4690-4c83-9791-2927f5f823e0 . # type url de fichier tei
-    ?F2_article_tei crm:P1_is_identified_by ?E42_article_business_id .
-    ?E42_article_business_id a crm:E42_Identifier .
-    ?E42_article_business_id crm:P2_has_type iremus:574ffe9e-525c-42f2-8188-329ba3c7231d . # type business id
-    ?E42_article_business_id crm:P190_has_symbolic_content ?article_business_id .
-    ?F2_article_tei crm:P102_has_title ?article_title .
-    ${common()}
+    ?livraison a lrmoo:F2_Expression .
+    ?livraison crm:P1_is_identified_by ?livraison_business_id_e42 .
+    ?livraison_business_id_e42 crm:P2_has_type iremus:574ffe9e-525c-42f2-8188-329ba3c7231d .
+    ?livraison_business_id_e42 crm:P190_has_symbolic_content ?livraison_business_id .
+
+    ?livraison lrmoo:R5_has_component ?article .
+    ?article a lrmoo:F2_Expression .
+    ?article crm:P1_is_identified_by ?article_business_id_e42 .
+    ?article_business_id_e42 crm:P2_has_type iremus:574ffe9e-525c-42f2-8188-329ba3c7231d .
+    ?article_business_id_e42 crm:P190_has_symbolic_content ?article_business_id .
+
+    OPTIONAL {
+      ?article crm:P102_has_title ?e35_forge .
+      ?e35_forge a crm:E35_Titie .
+      ?e35_forge crm:P2_has_type iremus:aa97d53f-d397-4222-92ad-ea74d5310f60 .
+      ?e35_forge crm:P190_has_symbolic_content ?title_forge .
+    }
+    OPTIONAL {
+      ?article crm:P102_has_title ?e35_paratexte .
+      ?e35_paratexte a crm:E35_Titie .
+      ?e35_paratexte crm:P2_has_type iremus:3e8d9526-4c24-4c3a-b7c1-0dfc8ab74e22 .
+      ?e35_paratexte crm:P190_has_symbolic_content ?title_paratexte .
+    }
+    OPTIONAL {
+      ?article crm:P102_has_title ?e35_courant .
+      ?e35_courant a crm:E35_Titie .
+      ?e35_courant crm:P2_has_type iremus:f50565da-e46e-40cc-b7b3-167cd0a52404 .
+      ?e35_courant crm:P190_has_symbolic_content ?title_courant .
+    }
   }
 }
 ORDER BY ?article_business_id
