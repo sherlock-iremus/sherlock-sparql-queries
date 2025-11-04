@@ -6,10 +6,8 @@ PREFIX iremus: <http://data-iremus.huma-num.fr/id/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX sherlock: <http://data-iremus.huma-num.fr/ns/sherlock#>
 `
-const select = `SELECT 
-  ?project_code (COALESCE(?_project_emoticon, "") AS ?project_emoticon) ?project_logo ?project_name ?project_uri
-  (REPLACE(STR(?project_uri), "^.*/([^/]*)$", "$1") AS ?project_uuid)
-`
+
+const select = `SELECT ?project_code (COALESCE(?_project_emoticon, "") AS ?project_emoticon) ?project_logo ?project_name ?project_uri (REPLACE(STR(?project_uri), "^.*/([^/]*)$", "$1") AS ?project_uuid)`
 
 const project_name = `
 ?project_uri crm:P1_is_identified_by ?project_name .
@@ -20,8 +18,8 @@ const project_emoticon = `
 OPTIONAL {
   ?project_uri crm:P1_is_identified_by ?e42_emoticon .
   ?e42_emoticon a crm:E42_Identifier .
-  ?e42_code crm:P2_has_type iremus:17e3d5f6-36ae-4e90-adc2-1de04eeeacb9 .
-  ?e42_code crm:P190_has_symbolic_content ?_project_emoticon .
+  ?e42_emoticon crm:P2_has_type iremus:17e3d5f6-36ae-4e90-adc2-1de04eeeacb9 .
+  ?e42_emoticon crm:P190_has_symbolic_content ?_project_emoticon .
 }
 `
 

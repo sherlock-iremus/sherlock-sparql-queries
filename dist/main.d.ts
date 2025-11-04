@@ -15,7 +15,7 @@ export * from './historicalModelsOntologies';
 export * from './identitiesByTextQuery';
 export * from './identity';
 export * from './listLinkedResources';
-export * from './mg_livraisons';
+export * from './mercure_galant_livraisons';
 export * from './noteOccurences';
 export * from './p127';
 export * from './p140';

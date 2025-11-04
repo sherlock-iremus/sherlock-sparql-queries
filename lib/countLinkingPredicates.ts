@@ -1,4 +1,6 @@
-export const countOutgoingPredicates = (resourceUri: string): string => `
+import { spfmt } from 'sparql-formatter'
+
+export const countOutgoingPredicates = (resourceUri: string): string => spfmt.format(`
 SELECT (COUNT(*) AS ?c) ?lp
 WHERE {
   GRAPH ?g {
@@ -6,9 +8,9 @@ WHERE {
   }
 }
 GROUP BY ?lp
-`;
+`)
 
-export const countIncomingPredicates = (resourceUri: string): string => `
+export const countIncomingPredicates = (resourceUri: string): string => spfmt.format(`
 SELECT (COUNT(*) AS ?c) ?lp
 WHERE {
   GRAPH ?g {
@@ -16,4 +18,4 @@ WHERE {
   }
 }
 GROUP BY ?lp
-`;
+`)
