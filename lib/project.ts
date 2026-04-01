@@ -42,9 +42,13 @@ ${prefixes}
 ${select}
 WHERE {
   GRAPH ?g1 {
-    <${resourceURI}> sherlock:has_context_project ?project_uri .
+    <${resourceURI}> sherlock:has_context_project ?direct_project_uri .
   }
   GRAPH ?g2 {
+    ?project_uri crm:P9_consists_of* ?direct_project_uri .
+    FILTER NOT EXISTS {
+      ?other crm:P9_consists_of ?project_uri .
+    }
     ${project_code}
     ${project_emoticon}
     ${project_logo}

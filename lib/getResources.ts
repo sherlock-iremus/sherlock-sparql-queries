@@ -19,5 +19,5 @@ SELECT DISTINCT ?s
         FILTER(?type != crm:E42_Identifier) . 
         VALUES ?p { ${LL_PREDICATES.join(' ')} }
     }
-  }
+}
 `);

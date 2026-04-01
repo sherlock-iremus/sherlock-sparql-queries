@@ -37,5 +37,5 @@ WHERE {
   }
 }
 GROUP BY ?linked_resource ?business_id_literal ?business_id
-ORDER BY ?linked_resource
+ORDER BY ?business_id_literal
 `)

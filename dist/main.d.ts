@@ -11,6 +11,7 @@ export * from './dotOne';
 export * from './e13WithLiteralP141';
 export * from './fondamentales';
 export * from './getResources';
+export * from './getResourceByBusinessId';
 export * from './historicalModelsOntologies';
 export * from './identitiesByTextQuery';
 export * from './identity';
