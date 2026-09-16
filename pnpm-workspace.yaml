@@ -1,5 +1,2 @@
-onlyBuiltDependencies:
-  - esbuild
-
 overrides:
-  sherlock-rdf: link:../sherlock-rdf
+  sherlock-sparql-queries: link:../sherlock-sparql-queries
