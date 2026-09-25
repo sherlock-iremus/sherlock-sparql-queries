@@ -143,7 +143,7 @@ export const identitiersLiterals = (resource: string): string => `
 { ######## get direct literal label
 ${resource} ?p ?label .
 VALUES ?p { ${LL_PREDICATES.join(' ')} } .
-FILTER(isLiteral(?label)) .
+# FILTER(isLiteral(?label)) .
 }
 `
 
